@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,23 +9,58 @@
     <div class="container">
         <header>
             <h1>Essam Turki</h1>
-            <p>Cybersecurity Enthusiast & IT Professional</p>
+            <p class="animate__animated animate__fadeInUp">Cybersecurity Enthusiast & IT Professional</p>
+            <div class="header-icons">
+                <a href="#" class="icon github" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" class="icon linkedin" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="icon twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
         </header>
-        <section id="bio">
+        <div class="scroll-down">
+            <div class="scroll-circle">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+        <section id="bio" class="section-reveal">
             <h2>About Me</h2>
             <p>Passionate about cybersecurity and experienced in IT infrastructure, I have completed several professional courses from Google, enhancing my skills in system administration, networking, and security.</p>
+            <div class="skills">
+                <span class="skill">Cybersecurity</span>
+                <span class="skill">System Administration</span>
+                <span class="skill">Networking</span>
+                <span class="skill">IT Infrastructure</span>
+            </div>
         </section>
-        <!-- Updated Certificates Section -->
         <section id="certificates" class="section-reveal">
             <h2>Certificates</h2>
-            <ul class="certificate-list">
-                <li><a href="https://ibb.co/Xtkqhr5" target="_blank" class="certificate-link">System Administration and IT Infrastructure Services</a></li>
-                <li><a href="https://ibb.co/T01m0DW" target="_blank" class="certificate-link">Google IT Support Professional Certificate</a></li>
-                <li><a href="https://ibb.co/SvJvY1z" target="_blank" class="certificate-link">IT Security: Defense against the Digital Dark Arts</a></li>
-                <li><a href="https://ibb.co/DYpGFkv" target="_blank" class="certificate-link">Operating Systems and You: Becoming a Power User</a></li>
-            </ul>
+            <div class="certificate-gallery">
+                <div class="certificate">
+                    <img src="https://i.ibb.co/Xtkqhr5/image.png" alt="System Administration and IT Infrastructure Services">
+                    <div class="certificate-overlay">
+                        <div class="certificate-text">System Administration and IT Infrastructure Services</div>
+                    </div>
+                </div>
+                <div class="certificate">
+                    <img src="https://i.ibb.co/T01m0DW/image.png" alt="Google IT Support Professional Certificate">
+                    <div class="certificate-overlay">
+                        <div class="certificate-text">Google IT Support Professional Certificate</div>
+                    </div>
+                </div>
+                <div class="certificate">
+                    <img src="https://i.ibb.co/SvJvY1z/image.png" alt="IT Security: Defense against the Digital Dark Arts">
+                    <div class="certificate-overlay">
+                        <div class="certificate-text">IT Security: Defense against the Digital Dark Arts</div>
+                    </div>
+                </div>
+                <div class="certificate">
+                    <img src="https://i.ibb.co/DYpGFkv/image.png" alt="Operating Systems and You: Becoming a Power User">
+                    <div class="certificate-overlay">
+                        <div class="certificate-text">Operating Systems and You: Becoming a Power User</div>
+                    </div>
+                </div>
+            </div>
         </section>
-        <section id="contact">
+        <section id="contact" class="section-reveal">
             <h2>Contact Me</h2>
             <form>
                 <input type="text" placeholder="Your Name" required>
@@ -37,8 +71,45 @@
         </section>
         <footer>
             <p>© 2024 Essam Turki. All rights reserved.</p>
+            <nav>
+                <ul>
+                    <li><a href="#" id="interactive-link">🎮 ooh a secret i see!? 🎮</a></li>
+                </ul>
+            </nav>
         </footer>
     </div>
+    <div id="interactive-overlay"></div>
+    <div id="interactive-content">
+        <div id="typing-effect"></div>
+        <div id="secret-message"></div>
+        <button id="close-button">Close</button>
+    </div>
+    <div id="certificate-preview">
+        <button class="close-preview">X</button>
+        <img src="" alt="Certificate Preview">
+    </div>
+    <div id="background-particles"></div>
+    <div id="cursor-trail"></div>
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+     <!-- Scroll-down arrow -->
+    <div class="scroll-down" id="scrollDownArrow">
+        <i class="fas fa-chevron-down"></i>
+    </div>
+
+    <!-- Content to scroll to -->
+    <div style="margin-top:100vh;">
+        you really have hit rock bottom. lol
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js"></script>
     <script src="scripts.js"></script>
+  <div class="scroll-down">
+    <div class="scroll-circle">
+        <div class="scroll-arrow">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </div>
+</div>
 </body>
 </html>

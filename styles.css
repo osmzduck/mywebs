@@ -2,6 +2,7 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    overflow-x: hidden;
 }
 
 header {
@@ -9,10 +10,23 @@ header {
     color: #fff;
     padding: 20px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
 header h1 {
     margin: 0;
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.animated-text {
+    animation: text-animation 3s infinite;
+}
+
+@keyframes text-animation {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
 }
 
 section {
@@ -30,6 +44,32 @@ section {
     margin: 5px 0;
     padding: 10px;
     border-left: 5px solid #007BFF;
+    transition: transform 0.3s ease-in-out;
+}
+
+#certificates li:hover {
+    transform: translateX(10px);
+}
+
+.certificate-link {
+    color: #007BFF;
+    text-decoration: none;
+    position: relative;
+}
+
+.certificate-link::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #007BFF;
+    transition: width 0.3s ease-in-out;
+}
+
+.certificate-link:hover::before {
+    width: 100%;
 }
 
 form input, form textarea {
@@ -37,14 +77,25 @@ form input, form textarea {
     padding: 10px;
     margin: 10px 0;
     box-sizing: border-box;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease-in-out;
 }
 
-button {
+form input:focus, form textarea:focus {
+    border-color: #007BFF;
+}
+
+.submit-btn {
     background-color: #007BFF;
     color: white;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
 }
 
 footer {

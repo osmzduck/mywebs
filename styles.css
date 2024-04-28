@@ -439,8 +439,9 @@ h1 span {
     color: #007BFF;
 }
 .modal {
-    display: none;
-    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     left: 0;
     top: 0;
     width: 100%;
@@ -452,7 +453,8 @@ h1 span {
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: #333;
+    color: white;
     margin: 10% auto;
     padding: 20px;
     width: 90%;
@@ -478,6 +480,8 @@ h1 span {
 }
 
 .input-area input {
+     background-color: #444;
+    color: white;
     width: 70%;
     padding: 10px;
     border: 2px solid #007BFF;
@@ -494,6 +498,11 @@ h1 span {
     transition: background-color 0.3s ease;
 }
 
+#decrypted-message {
+    margin-top: 20px;
+    color: #007BFF;
+}
+
 .input-area button:hover {
     background-color: #0056b3;
 }
@@ -502,11 +511,11 @@ h1 span {
     float: right;
     font-size: 28px;
     cursor: pointer;
-    color: #aaa;
+    color: white;
 }
 
 .close:hover {
-    color: #333;
+    color: #007BFF;
 }
 
 .close:hover {

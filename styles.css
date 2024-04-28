@@ -451,6 +451,11 @@ h1 span {
     transition: opacity 0.5s ease;
 }
 
+.modal.show {
+    display: block;
+    opacity: 1;
+}
+
 .modal-content {
     background-color: #fefefe;
     margin: 10% auto;
@@ -460,11 +465,6 @@ h1 span {
     border-radius: 8px;
     transform: translateY(-30px);
     transition: transform 0.5s ease-out;
-}
-
-.modal.show {
-    display: block;
-    opacity: 1;
 }
 
 .modal-content.show {

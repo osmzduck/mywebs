@@ -74,17 +74,12 @@ certificates.forEach(certificate => {
         certificatePreview.style.display = 'flex';
     });
 });
-
-certificatePreview.addEventListener('click', (event) => {
-    if (event.target.tagName === 'IMG') {
-        // Modify the URL when an image in the preview is clicked
-        const src = event.target.src;
-        const baseUrl = src.substring(0, src.lastIndexOf("/")) // Get the base URL without the filename
-                           .replace('i.ibb.co', 'ibb.co');     // Replace the domain as required
+ certificates.forEach(certificate => {
+    certificate.addEventListener('click', () => {
+        const imgSrc = certificate.querySelector('img').src;
+        const baseUrl = imgSrc.replace('i.ibb.co', 'ibb.co').replace('/image.png', '');
         window.open(baseUrl, '_blank');
-    } else {
-        certificatePreview.style.display = 'none';
-    }
+    });
 });
 
 // Close button for certificate preview

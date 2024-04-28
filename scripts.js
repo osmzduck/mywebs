@@ -310,59 +310,121 @@ window.addEventListener('scroll', () => {
 // Add this code at the end of your existing scripts.js file
 
 // Game variables
-let targetNumber;
-let attempts;
+let gameCanvas;
+let gameContext;
+let birdX;
+let birdY;
+let birdRadius;
+let birdVelocity;
+let gravity;
+let pipeWidth;
+let pipeGap;
+let pipes;
+let score;
+let gameLoop;
 
-// Game elements
-const gameOverlay = document.getElementById('game-overlay');
-const gameContainer = document.getElementById('game-container');
-const guessInput = document.getElementById('guess-input');
-const guessButton = document.getElementById('guess-button');
-const resultMessage = document.getElementById('result-message');
-const playAgainButton = document.getElementById('play-again-button');
-const closeGameButton = document.getElementById('close-game-button');
-
-// Function to start a new game
-function startNewGame() {
-    targetNumber = Math.floor(Math.random() * 100) + 1;
-    attempts = 0;
-    guessInput.value = '';
-    resultMessage.textContent = '';
-    playAgainButton.classList.add('hidden');
+// Game initialization
+function initGame() {
+    gameCanvas = document.getElementById('game-canvas');
+    gameContext = gameCanvas.getContext('2d');
+    gameCanvas.width = 400;
+    gameCanvas.height = 600;
+    birdX = 50;
+    birdY = 200;
+    birdRadius = 20;
+    birdVelocity = 0;
+    gravity = 0.5;
+    pipeWidth = 60;
+    pipeGap = 150;
+    pipes = [];
+    score = 0;
 }
 
-// Function to handle the guess button click
-function handleGuessClick() {
-    const userGuess = parseInt(guessInput.value);
-    attempts++;
+// Game loop
+function startGameLoop() {
+    gameLoop = setInterval(() => {
+        update();
+        render();
+    }, 1000 / 60);
+}
 
-    if (userGuess === targetNumber) {
-        resultMessage.textContent = `Congratulations! You guessed the number in ${attempts} attempts!`;
-        playAgainButton.classList.remove('hidden');
-    } else if (userGuess < targetNumber) {
-        resultMessage.textContent = 'Too low! Try again.';
-    } else {
-        resultMessage.textContent = 'Too high! Try again.';
+// Game update
+function update() {
+    birdVelocity += gravity;
+    birdY += birdVelocity;
+
+    if (birdY + birdRadius > gameCanvas.height) {
+        endGame();
     }
 
-    guessInput.value = '';
+    if (pipes.length === 0 || pipes[pipes.length - 1].x < gameCanvas.width - 200) {
+        const pipeY = Math.random() * (gameCanvas.height - pipeGap);
+        pipes.push({
+            x: gameCanvas.width,
+            y: pipeY
+        });
+    }
+
+    pipes.forEach(pipe => {
+        pipe.x -= 2;
+
+        if (pipe.x < -pipeWidth) {
+            pipes.shift();
+            score++;
+            document.getElementById('score-value').textContent = score;
+        }
+
+        if (
+            birdX + birdRadius > pipe.x &&
+            birdX - birdRadius < pipe.x + pipeWidth &&
+            (birdY - birdRadius < pipe.y || birdY + birdRadius > pipe.y + pipeGap)
+        ) {
+            endGame();
+        }
+    });
 }
 
-// Function to handle the play again button click
-function handlePlayAgainClick() {
-    startNewGame();
+// Game rendering
+function render() {
+    gameContext.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+
+    // Draw bird
+    gameContext.beginPath();
+    gameContext.arc(birdX, birdY, birdRadius, 0, Math.PI * 2);
+    gameContext.fillStyle = '#ff4081';
+    gameContext.fill();
+    gameContext.closePath();
+
+    // Draw pipes
+    pipes.forEach(pipe => {
+        gameContext.fillStyle = '#4caf50';
+        gameContext.fillRect(pipe.x, 0, pipeWidth, pipe.y);
+        gameContext.fillRect(pipe.x, pipe.y + pipeGap, pipeWidth, gameCanvas.height - pipe.y - pipeGap);
+    });
 }
 
-// Function to handle the close game button click
-function handleCloseGameClick() {
-    gameOverlay.classList.add('hidden');
-    startNewGame();
+// Game control
+function flap() {
+    birdVelocity = -8;
+}
+
+// Game end
+function endGame() {
+    clearInterval(gameLoop);
+    gameContext.font = '24px Arial';
+    gameContext.fillStyle = '#ffffff';
+    gameContext.textAlign = 'center';
+    gameContext.fillText('Game Over!', gameCanvas.width / 2, gameCanvas.height / 2);
 }
 
 // Event listeners
-guessButton.addEventListener('click', handleGuessClick);
-playAgainButton.addEventListener('click', handlePlayAgainClick);
-closeGameButton.addEventListener('click', handleCloseGameClick);
+document.addEventListener('keydown', event => {
+    if (event.code === 'Space') {
+        flap();
+    }
+});
+
+gameCanvas.addEventListener('click', flap);
 
 // Add this code after the existing interactiveLink click event listener
 interactiveLink.addEventListener('click', () => {
@@ -371,8 +433,15 @@ interactiveLink.addEventListener('click', () => {
         secretMessage.textContent = "Shh... Cybersecurity is not just a job, it's a lifestyle!";
         secretMessage.style.opacity = '1';
         setTimeout(() => {
-            gameOverlay.classList.remove('hidden');
-            startNewGame();
+            document.getElementById('game-overlay').classList.remove('hidden');
+            initGame();
+            startGameLoop();
         }, 2000);
     }, 8000);
+});
+
+// Close game button
+document.getElementById('close-game-button').addEventListener('click', () => {
+    document.getElementById('game-overlay').classList.add('hidden');
+    clearInterval(gameLoop);
 });

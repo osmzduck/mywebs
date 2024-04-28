@@ -405,4 +405,43 @@ function triggerConfetti() {
 
 // Attach event handler to secret link or button
 document.getElementById('interactive-link').addEventListener('click', openGameModal);
+// Add these functions to the end of your scripts.js file
+function openGameModal() {
+    const modal = document.getElementById('game-modal');
+    const modalContent = document.querySelector('.modal-content');
+    modal.classList.add('show');
+    modalContent.classList.add('show');
+}
 
+function closeGameModal() {
+    const modal = document.getElementById('game-modal');
+    const modalContent = document.querySelector('.modal-content');
+    modal.classList.remove('show');
+    modalContent.classList.remove('show');
+    setTimeout(() => modal.style.display = 'none', 500);
+}
+
+function decryptMessage() {
+    const key = document.getElementById('decryption-key').value.trim();
+    const encryptedMessage = "Uif tfdsfu up tvddftt jt dpotjtufodz.";
+    let decryptedMessage = '';
+    
+    if (key.toLowerCase() === 'consistency') {
+        decryptedMessage = "The secret to success is consistency.";
+        document.getElementById('decrypted-message').textContent = decryptedMessage;
+        triggerConfetti();
+    } else {
+        document.getElementById('decrypted-message').textContent = "Wrong key, try again!";
+    }
+}
+
+function triggerConfetti() {
+    // Assume confetti.js is already included
+    const confettiSettings = { target: 'confetti-canvas', width: 800, height: 600 };
+    const confetti = new ConfettiGenerator(confettiSettings);
+    confetti.render();
+    setTimeout(() => confetti.clear(), 5000);  // Stop confetti after 5 seconds
+}
+
+// Attach event handler to secret link or button
+document.getElementById('interactive-link').addEventListener('click', openGameModal);

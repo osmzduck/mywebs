@@ -364,3 +364,33 @@ function decryptMessage() {
 document.getElementById('interactive-link').addEventListener('click', function() {
     document.getElementById('game-modal').style.display = 'block';
 });
+
+// Add these functions at the end of the scripts.js file
+function openGameModal() {
+    document.getElementById('game-modal').style.display = 'block';
+}
+
+function closeGameModal() {
+    document.getElementById('game-modal').style.display = 'none';
+}
+
+function decryptMessage() {
+    const key = document.getElementById('decryption-key').value;
+    const encryptedMessage = "Uif tfdsfu up tvddftt jt dpotjtufodz.";
+    let decryptedMessage = '';
+
+    if (key.toLowerCase() === 'consistency') {
+        decryptedMessage = "The secret to success is consistency.";
+        document.getElementById('decrypted-message').textContent = decryptedMessage;
+        triggerConfetti();  // Trigger confetti on correct decryption
+    } else {
+        document.getElementById('decrypted-message').textContent = "Wrong key, try again!";
+    }
+}
+
+function triggerConfetti() {
+    const confettiSettings = { target: 'confetti-canvas', max: '80' };
+    const confetti = new ConfettiGenerator(confettiSettings);
+    confetti.render();
+    setTimeout(() => confetti.clear(), 5000); // Stop confetti after 5 seconds
+}

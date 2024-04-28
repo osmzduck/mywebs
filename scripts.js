@@ -307,3 +307,72 @@ window.addEventListener('scroll', () => {
         scrollDown.classList.remove('hidden');
     }
 });
+// Add this code at the end of your existing scripts.js file
+
+// Game variables
+let targetNumber;
+let attempts;
+
+// Game elements
+const gameOverlay = document.getElementById('game-overlay');
+const gameContainer = document.getElementById('game-container');
+const guessInput = document.getElementById('guess-input');
+const guessButton = document.getElementById('guess-button');
+const resultMessage = document.getElementById('result-message');
+const playAgainButton = document.getElementById('play-again-button');
+const closeGameButton = document.getElementById('close-game-button');
+
+// Function to start a new game
+function startNewGame() {
+    targetNumber = Math.floor(Math.random() * 100) + 1;
+    attempts = 0;
+    guessInput.value = '';
+    resultMessage.textContent = '';
+    playAgainButton.classList.add('hidden');
+}
+
+// Function to handle the guess button click
+function handleGuessClick() {
+    const userGuess = parseInt(guessInput.value);
+    attempts++;
+
+    if (userGuess === targetNumber) {
+        resultMessage.textContent = `Congratulations! You guessed the number in ${attempts} attempts!`;
+        playAgainButton.classList.remove('hidden');
+    } else if (userGuess < targetNumber) {
+        resultMessage.textContent = 'Too low! Try again.';
+    } else {
+        resultMessage.textContent = 'Too high! Try again.';
+    }
+
+    guessInput.value = '';
+}
+
+// Function to handle the play again button click
+function handlePlayAgainClick() {
+    startNewGame();
+}
+
+// Function to handle the close game button click
+function handleCloseGameClick() {
+    gameOverlay.classList.add('hidden');
+    startNewGame();
+}
+
+// Event listeners
+guessButton.addEventListener('click', handleGuessClick);
+playAgainButton.addEventListener('click', handlePlayAgainClick);
+closeGameButton.addEventListener('click', handleCloseGameClick);
+
+// Add this code after the existing interactiveLink click event listener
+interactiveLink.addEventListener('click', () => {
+    // ...existing code...
+    setTimeout(() => {
+        secretMessage.textContent = "Shh... Cybersecurity is not just a job, it's a lifestyle!";
+        secretMessage.style.opacity = '1';
+        setTimeout(() => {
+            gameOverlay.classList.remove('hidden');
+            startNewGame();
+        }, 2000);
+    }, 8000);
+});

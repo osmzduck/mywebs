@@ -104,11 +104,20 @@
         </footer>
     </div>
     <div id="interactive-overlay"></div>
-    <div id="interactive-content">
-        <div id="typing-effect"></div>
-        <div id="secret-message"></div>
-        <button id="close-button">Close</button>
+<div id="interactive-content">
+    <div id="typing-effect"></div>
+    <div id="secret-message"></div>
+    <button id="close-button">Close</button>
+    <div id="game-container">
+        <canvas id="game-canvas"></canvas>
+        <div id="game-overlay">
+            <h2>Cybersecurity Adventure</h2>
+            <p>Help Essam navigate through the digital world and collect certificates!</p>
+            <button id="start-game">Start Game</button>
+        </div>
+        <div id="game-score">Score: <span id="score">0</span></div>
     </div>
+</div>
     <div id="certificate-preview">
         <button class="close-preview">X</button>
         <img src="" alt="Certificate Preview">

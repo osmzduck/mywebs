@@ -307,3 +307,120 @@ window.addEventListener('scroll', () => {
         scrollDown.classList.remove('hidden');
     }
 });
+// Game variables
+let gameCanvas;
+let gameContext;
+let gameLoop;
+let player;
+let certificates;
+let score;
+
+// Game initialization
+function initGame() {
+    gameCanvas = document.getElementById('game-canvas');
+    gameContext = gameCanvas.getContext('2d');
+    gameCanvas.width = 800;
+    gameCanvas.height = 600;
+    player = {
+        x: gameCanvas.width / 2,
+        y: gameCanvas.height - 50,
+        width: 50,
+        height: 50,
+        speed: 5
+    };
+    certificates = [];
+    score = 0;
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('keyup', handleKeyUp);
+    gameLoop = setInterval(updateGame, 1000 / 60);
+}
+
+// Player movement
+let leftPressed = false;
+let rightPressed = false;
+
+function handleKeyDown(event) {
+    if (event.key === 'ArrowLeft') {
+        leftPressed = true;
+    } else if (event.key === 'ArrowRight') {
+        rightPressed = true;
+    }
+}
+
+function handleKeyUp(event) {
+    if (event.key === 'ArrowLeft') {
+        leftPressed = false;
+    } else if (event.key === 'ArrowRight') {
+        rightPressed = false;
+    }
+}
+
+// Game update
+function updateGame() {
+    // Move player
+    if (leftPressed && player.x > 0) {
+        player.x -= player.speed;
+    } else if (rightPressed && player.x < gameCanvas.width - player.width) {
+        player.x += player.speed;
+    }
+
+    // Spawn certificates
+    if (Math.random() < 0.02) {
+        const certificate = {
+            x: Math.random() * (gameCanvas.width - 50),
+            y: 0,
+            width: 50,
+            height: 50,
+            speed: 2
+        };
+        certificates.push(certificate);
+    }
+
+    // Move certificates
+    certificates.forEach(certificate => {
+        certificate.y += certificate.speed;
+    });
+
+    // Check for collision
+    certificates = certificates.filter(certificate => {
+        if (
+            player.x < certificate.x + certificate.width &&
+            player.x + player.width > certificate.x &&
+            player.y < certificate.y + certificate.height &&
+            player.y + player.height > certificate.y
+        ) {
+            score++;
+            return false;
+        }
+        return certificate.y < gameCanvas.height;
+    });
+
+    // Clear canvas
+    gameContext.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+
+    // Draw player
+    gameContext.fillStyle = '#007BFF';
+    gameContext.fillRect(player.x, player.y, player.width, player.height);
+
+    // Draw certificates
+    gameContext.fillStyle = '#ff4081';
+    certificates.forEach(certificate => {
+        gameContext.fillRect(certificate.x, certificate.y, certificate.width, certificate.height);
+    });
+
+    // Update score
+    document.getElementById('score').textContent = score;
+}
+
+// Start game
+document.getElementById('start-game').addEventListener('click', () => {
+    document.getElementById('game-overlay').style.display = 'none';
+    initGame();
+});
+
+// Show game container when the secret message is displayed
+secretMessage.addEventListener('transitionend', () => {
+    if (secretMessage.style.opacity === '1') {
+        document.getElementById('game-container').style.display = 'flex';
+    }
+});

@@ -17,6 +17,7 @@
                 <a href="#" class="icon linkedin" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
                 <a href="#" class="icon twitter" title="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
                 <a href="#" class="icon secret-game game-link" title="Unlock the Secret!" onclick="openGameModal()"><i class="fas fa-user-secret"></i></a>
+            </div>
         </header>
         <div class="scroll-down">
             <div class="scroll-circle">
@@ -39,33 +40,25 @@
             <h2>Certificates</h2>
             <div class="certificate-gallery">
                 <div class="certificate">
-                    <a href="https://ibb.co/Xtkqhr5" target="_blank">
-                        <img src="https://i.ibb.co/Xtkqhr5/image.png" alt="System Administration and IT Infrastructure Services">
-                    </a>
+                    <img src="https://i.ibb.co/Xtkqhr5/image.png" alt="System Administration and IT Infrastructure Services">
                     <div class="certificate-overlay">
                         <div class="certificate-text">System Administration and IT Infrastructure Services</div>
                     </div>
                 </div>
                 <div class="certificate">
-                    <a href="https://ibb.co/T01m0DW" target="_blank">
-                        <img src="https://i.ibb.co/T01m0DW/image.png" alt="Google IT Support Professional Certificate">
-                    </a>
+                    <img src="https://i.ibb.co/T01m0DW/image.png" alt="Google IT Support Professional Certificate">
                     <div class="certificate-overlay">
                         <div class="certificate-text">Google IT Support Professional Certificate</div>
                     </div>
                 </div>
                 <div class="certificate">
-                    <a href="https://ibb.co/SvJvY1z" target="_blank">
-                        <img src="https://i.ibb.co/SvJvY1z/image.png" alt="IT Security: Defense against the Digital Dark Arts">
-                    </a>
+                    <img src="https://i.ibb.co/SvJvY1z/image.png" alt="IT Security: Defense against the Digital Dark Arts">
                     <div class="certificate-overlay">
                         <div class="certificate-text">IT Security: Defense against the Digital Dark Arts</div>
                     </div>
                 </div>
                 <div class="certificate">
-                    <a href="https://ibb.co/DYpGFkv" target="_blank">
-                        <img src="https://i.ibb.co/DYpGFkv/image.png" alt="Operating Systems and You: Becoming a Power User">
-                    </a>
+                    <img src="https://i.ibb.co/DYpGFkv/image.png" alt="Operating Systems and You: Becoming a Power User">
                     <div class="certificate-overlay">
                         <div class="certificate-text">Operating Systems and You: Becoming a Power User</div>
                     </div>
@@ -81,18 +74,19 @@
                 <button type="submit">Send</button>
             </form>
         </section>
-     <section id="timeline">
-    <h2>My Journey</h2>
-    <div class="timeline-container">
-        <div class="timeline-block">
-            <p class="timeline-date">2018</p>
-            <p>Started my journey in cybersecurity.</p>
-        </div>
-        <div class="timeline-block">
-            <p class="timeline-date">2020</p>
-            <p>Completed my first professional certification.</p>
-        </div>
-      </section>
+        <section id="timeline">
+            <h2>My Journey</h2>
+            <div class="timeline-container">
+                <div class="timeline-block">
+                    <p class="timeline-date">2018</p>
+                    <p>Started my journey in cybersecurity.</p>
+                </div>
+                <div class="timeline-block">
+                    <p class="timeline-date">2020</p>
+                    <p>Completed my first professional certification.</p>
+                </div>
+            </div>
+        </section>
         <footer>
             <p>© 2024 Essam Turki. All rights reserved.</p>
             <nav>
@@ -121,18 +115,17 @@
     <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js"></script>
     <script src="scripts.js"></script>
 
-<div id="game-modal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeGameModal()">&times;</span>
-                <h2>Decrypt the Message!</h2>
-                <p>Find the correct key to decrypt the message.</p>
-                <div class="input-area">
-                    <input type="text" id="decryption-key" placeholder="Enter decryption key...">
-                    <button onclick="decryptMessage()">Decrypt</button>
-                    <canvas id="modal-confetti-canvas"></canvas>
-                </div>
-                <p id="decrypted-message"></p>
+    <div id="game-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeGameModal()">&times;</span>
+            <h2>Decrypt the Message!</h2>
+            <p>Find the correct key to decrypt the message.</p>
+            <div class="input-area">
+                <input type="text" id="decryption-key" placeholder="Enter decryption key...">
+                <button onclick="decryptMessage()">Decrypt</button>
+                <canvas id="modal-confetti-canvas"></canvas>
             </div>
+            <p id="decrypted-message"></p>
         </div>
     </div>
 </body>

@@ -136,8 +136,10 @@
         <span class="close" onclick="closeGameModal()">&times;</span>
         <h2>Decrypt the Message!</h2>
         <p>Find the correct key to decrypt the message.</p>
-        <input type="text" id="decryption-key" placeholder="Enter decryption key...">
-        <button onclick="decryptMessage()">Decrypt</button>
+        <div class="input-area">
+            <input type="text" id="decryption-key" placeholder="Enter decryption key...">
+            <button onclick="decryptMessage()">Decrypt</button>
+        </div>
         <p id="decrypted-message"></p>
     </div>
 </div>

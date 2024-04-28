@@ -1,5 +1,4 @@
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -132,16 +131,17 @@
     </div>
 </div>
 <div id="game-modal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeGameModal()">&times;</span>
-        <h2>Decrypt the Message!</h2>
-        <p>Find the correct key to decrypt the message.</p>
-        <div class="input-area">
-            <input type="text" id="decryption-key" placeholder="Enter decryption key...">
-            <button onclick="decryptMessage()">Decrypt</button>
+            <div class="modal-content">
+                <span class="close" onclick="closeGameModal()">&times;</span>
+                <h2>Decrypt the Message!</h2>
+                <p>Find the correct key to decrypt the message.</p>
+                <div class="input-area">
+                    <input type="text" id="decryption-key" placeholder="Enter decryption key...">
+                    <button onclick="decryptMessage()">Decrypt</button>
+                </div>
+                <p id="decrypted-message"></p>
+            </div>
         </div>
-        <p id="decrypted-message"></p>
     </div>
-</div>
 </body>
 </html>

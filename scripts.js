@@ -57,7 +57,7 @@ certificates.forEach(certificate => {
     certificate.addEventListener('click', (event) => {
         event.stopPropagation();
         const imgSrc = certificate.querySelector('img').src;
-        certificatePreview.innerHTML = `<img src="${imgSrc}" alt="Certificate Preview">`;
+        certificatePreview.querySelector('img').src = imgSrc;
         certificatePreview.style.display = 'flex';
     });
 });
@@ -288,15 +288,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         });
     });
 });
-// Smooth scrolling
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-});
 
 // Scroll-down arrow functionality
 const scrollDown = document.querySelector('.scroll-down');
@@ -305,11 +296,14 @@ const bioSection = document.getElementById('bio');
 
 scrollDown.addEventListener('click', () => {
     bioSection.scrollIntoView({ behavior: 'smooth' });
-    scrollCircle.style.display = 'none';
-});
-scrollDown.addEventListener('click', () => {
-    console.log("Scroll down clicked"); // Check if this message appears in the console when you click the arrow
-    bioSection.scrollIntoView({ behavior: 'smooth' });
-    scrollCircle.style.display = 'none';
+    scrollDown.classList.add('hidden');
 });
 
+// Hide scroll-down arrow when the user scrolls down
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 100) {
+        scrollDown.classList.add('hidden');
+    } else {
+        scrollDown.classList.remove('hidden');
+    }
+});

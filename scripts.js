@@ -45,7 +45,7 @@ skills.forEach(skill => {
         container.classList.add('shake');
         setTimeout(() => {
             container.classList.remove('shake');
-        }, 500);
+        }, 5000);
     });
 });
 

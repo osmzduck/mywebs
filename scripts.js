@@ -365,35 +365,36 @@ document.getElementById('interactive-link').addEventListener('click', function()
     document.getElementById('game-modal').style.display = 'block';
 });
 
-// Add these functions to the end of your scripts.js file
 function openGameModal() {
     const modal = document.getElementById('game-modal');
-    const modalContent = document.querySelector('.modal-content');
     modal.classList.add('show');
-    modalContent.classList.add('show');
+    modal.style.display = 'block'; // Ensure the modal is initially displayed
+    setTimeout(() => modal.style.opacity = 1, 10); // Smooth transition for opacity
 }
 
 function closeGameModal() {
     const modal = document.getElementById('game-modal');
-    const modalContent = document.querySelector('.modal-content');
-    modal.classList.remove('show');
-    modalContent.classList.remove('show');
-    setTimeout(() => modal.style.display = 'none', 500);
+    modal.style.opacity = 0; // Smooth transition for opacity
+    setTimeout(() => {
+        modal.classList.remove('show');
+        modal.style.display = 'none';
+    }, 500); // Delay to allow opacity transition
 }
 
 function decryptMessage() {
-    const key = document.getElementById('decryption-key').value.trim();
+    const key = document.getElementById('decryption-key').value.trim().toLowerCase();
     const encryptedMessage = "Uif tfdsfu up tvddftt jt dpotjtufodz.";
     let decryptedMessage = '';
     
-    if (key.toLowerCase() === 'consistency') {
+    if (key === 'consistency') {
         decryptedMessage = "The secret to success is consistency.";
         document.getElementById('decrypted-message').textContent = decryptedMessage;
-        triggerConfetti();
     } else {
         document.getElementById('decrypted-message').textContent = "Wrong key, try again!";
     }
 }
+
+document.getElementById('interactive-link').addEventListener('click', openGameModal);
 
 function triggerConfetti() {
     // Assume confetti.js is already included

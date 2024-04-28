@@ -512,3 +512,30 @@ h1 span {
 .close:hover {
     color: #333;
 }
+.game-link {
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.game-link:hover {
+    transform: scale(1.2);
+}
+
+.game-link::after {
+    content: 'Decrypt the hidden game!';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+}
+
+.game-link:hover::after {
+    opacity: 1;
+}

@@ -439,9 +439,8 @@ h1 span {
     color: #007BFF;
 }
 .modal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: none;
+    position: fixed;
     left: 0;
     top: 0;
     width: 100%;
@@ -450,19 +449,34 @@ h1 span {
     z-index: 1000;
     opacity: 0;
     transition: opacity 0.5s ease;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-content {
-    background-color: #333;
-    color: white;
-    margin: 10% auto;
-    padding: 20px;
+    background-color: #fff;
+    padding: 30px;
     width: 90%;
     max-width: 500px;
-    border-radius: 8px;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transform: translateY(-30px);
     transition: transform 0.5s ease-out;
+    position: relative;
 }
+
+.modal-content::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: linear-gradient(45deg, #ff0058, #0056b3);
+    border-radius: 40px;
+    z-index: -1;
+}
+
 
 .modal.show {
     display: block;
@@ -480,12 +494,10 @@ h1 span {
 }
 
 .input-area input {
-     background-color: #444;
-    color: white;
     width: 70%;
     padding: 10px;
     border: 2px solid #007BFF;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .input-area button {
@@ -493,7 +505,7 @@ h1 span {
     background-color: #007BFF;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -508,14 +520,17 @@ h1 span {
 }
 
 .close {
-    float: right;
+    position: absolute;
+    top: 15px;
+    right: 15px;
     font-size: 28px;
     cursor: pointer;
-    color: white;
+    color: #aaa;
+    transition: color 0.3s ease;
 }
 
 .close:hover {
-    color: #007BFF;
+    color: #333;
 }
 
 .close:hover {

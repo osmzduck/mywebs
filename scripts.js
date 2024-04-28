@@ -22,6 +22,19 @@ function revealSections() {
 
 window.addEventListener('scroll', revealSections);
 
+function revealTimelineBlocks() {
+    const blocks = document.querySelectorAll('.timeline-block');
+    blocks.forEach(block => {
+        const blockTop = block.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (blockTop < windowHeight * 0.8) {
+            block.style.transform = 'translateX(0)';
+            block.style.opacity = '1';
+        }
+    });
+}
+
+window.addEventListener('scroll', revealTimelineBlocks);
 // Text animation
 const heading = document.querySelector('h1');
 const text = heading.textContent;
@@ -247,11 +260,13 @@ particlesJS('background-particles', {
 const cursorTrail = document.getElementById('cursor-trail');
 let trailParticles = [];
 
+// Modify the existing cursor trail effect
 document.addEventListener('mousemove', (event) => {
     const particle = document.createElement('div');
     particle.classList.add('cursor-particle');
     particle.style.left = `${event.clientX}px`;
     particle.style.top = `${event.clientY}px`;
+    particle.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;  // Colorful particles
     cursorTrail.appendChild(particle);
     trailParticles.push(particle);
 
@@ -264,6 +279,7 @@ document.addEventListener('mousemove', (event) => {
         }, 1000);
     }, 0);
 });
+
 
 // Confetti effect on form submission
 const form = document.querySelector('form');
@@ -306,4 +322,17 @@ window.addEventListener('scroll', () => {
     } else {
         scrollDown.classList.remove('hidden');
     }
+});
+// Add to scripts.js
+document.querySelectorAll('.certificate').forEach(certificate => {
+    certificate.addEventListener('mousemove', function(e) {
+        const rect = e.target.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        e.target.style.transform = `rotateX(${(y - rect.height/2)/10}deg) rotateY(${(x - rect.width/2)/10}deg)`;
+    });
+
+    certificate.addEventListener('mouseout', function(e) {
+        e.target.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    });
 });

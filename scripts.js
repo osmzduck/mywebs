@@ -1,423 +1,309 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(to right, #6a11cb, #2575fc);
-    color: white;
+ document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    alert('Thank you for your message!');
+});
+
+window.addEventListener('scroll', function() {
+    const scrolled = window.scrollY;
+    document.body.style.backgroundColor = `rgba(106, 17, 203, ${1 - scrolled / 1000})`;
+});
+
+// Reveal sections on scroll
+function revealSections() {
+    const sections = document.querySelectorAll('.section-reveal');
+    sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (sectionTop < windowHeight * 0.8) {
+            section.classList.add('active');
+        }
+    });
 }
 
-.container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
-    color: #333;
-}
+window.addEventListener('scroll', revealSections);
 
-header {
-    text-align: center;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-}
+// Text animation
+const heading = document.querySelector('h1');
+const text = heading.textContent;
+const letters = text.split('');
 
-h1 {
-    font-size: 48px;
-    margin-bottom: 10px;
-    opacity: 0;
-    animation: fadeIn 1s ease-in-out forwards;
-}
+heading.textContent = '';
 
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px);
+letters.forEach((letter, index) => {
+    const span = document.createElement('span');
+    span.textContent = letter;
+    span.style.animationDelay = `${index * 0.1}s`;
+    heading.appendChild(span);
+});
+
+// Skills animation
+const skills = document.querySelectorAll('.skill');
+
+skills.forEach(skill => {
+    skill.addEventListener('click', () => {
+        const container = document.querySelector('.container');
+        container.classList.add('shake');
+        setTimeout(() => {
+            container.classList.remove('shake');
+        }, 5000);
+    });
+});
+
+// Certificate preview
+const certificates = document.querySelectorAll('.certificate');
+const certificatePreview = document.getElementById('certificate-preview');
+
+certificates.forEach(certificate => {
+    certificate.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const imgSrc = certificate.querySelector('img').src;
+        certificatePreview.querySelector('img').src = imgSrc;
+        certificatePreview.style.display = 'flex';
+    });
+});
+
+certificatePreview.addEventListener('click', (event) => {
+    if (event.target.tagName === 'IMG') {
+        window.open(event.target.src, '_blank');
+    } else {
+        certificatePreview.style.display = 'none';
     }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
+});
+
+// Close button for certificate preview
+document.querySelector('.close-preview').addEventListener('click', function() {
+    certificatePreview.style.display = 'none';
+});
+
+// Interactive button and content
+const interactiveLink = document.getElementById('interactive-link');
+const interactiveOverlay = document.getElementById('interactive-overlay');
+const interactiveContent = document.getElementById('interactive-content');
+const typingEffect = document.getElementById('typing-effect');
+const secretMessage = document.getElementById('secret-message');
+const closeButton = document.getElementById('close-button');
+
+const messages = [
+    "Welcome to Essam Turki's interactive CV!",
+    "Explore the world of cybersecurity and IT.",
+    "Discover the power of knowledge and skills.",
+    "Join the fight against the digital dark arts!",
+    "Thank you for your interest. Until next time!"
+];
+
+let currentMessageIndex = 0;
+let currentMessage = '';
+let isDeleting = false;
+let typingSpeed = 100;
+
+function typeMessage() {
+    const currentChar = messages[currentMessageIndex].charAt(currentMessage.length);
+    if (isDeleting) {
+        currentMessage = currentMessage.slice(0, -1);
+    } else {
+        currentMessage += currentChar;
     }
-}
-
-.scroll-down {
-    position: relative;
-    margin: 20px auto;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    animation: bounce 2s infinite;
-}
-
-.scroll-circle {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 2px solid white;
-    border-radius: 50%;
-    animation: circleScale 2s infinite;
-}
-
-.scroll-arrow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 24px;
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
+    typingEffect.textContent = currentMessage;
+    typingSpeed = isDeleting ? 30 : 100;
+    if (!isDeleting && currentMessage === messages[currentMessageIndex]) {
+        typingSpeed = 2000;
+        isDeleting = true;
+    } else if (isDeleting && currentMessage === '') {
+        isDeleting = false;
+        currentMessageIndex++;
+        if (currentMessageIndex === messages.length) {
+            currentMessageIndex = 0;
+        }
     }
-    40% {
-        transform: translateY(-10px);
+    setTimeout(typeMessage, typingSpeed);
+}
+
+interactiveLink.addEventListener('click', () => {
+    interactiveOverlay.style.display = 'flex';
+    interactiveContent.style.display = 'block';
+    setTimeout(typeMessage, 1000);
+    setTimeout(() => {
+        secretMessage.textContent = "Shh... Cybersecurity is not just a job, it's a lifestyle!";
+        secretMessage.style.opacity = '1';
+    }, 8000);
+});
+
+closeButton.addEventListener('click', () => {
+    interactiveOverlay.style.display = 'none';
+    interactiveContent.style.display = 'none';
+    currentMessage = '';
+    isDeleting = false;
+    secretMessage.style.opacity = '0';
+});
+
+// Background particles
+particlesJS('background-particles', {
+    particles: {
+        number: {
+            value: 80,
+            density: {
+                enable: true,
+                value_area: 800
+            }
+        },
+        color: {
+            value: '#ffffff'
+        },
+        shape: {
+            type: 'circle',
+            stroke: {
+                width: 0,
+                color: '#000000'
+            },
+            polygon: {
+                nb_sides: 5
+            }
+        },
+        opacity: {
+            value: 0.5,
+            random: false,
+            anim: {
+                enable: false,
+                speed: 1,
+                opacity_min: 0.1,
+                sync: false
+            }
+        },
+        size: {
+            value: 3,
+            random: true,
+            anim: {
+                enable: false,
+                speed: 40,
+                size_min: 0.1,
+                sync: false
+            }
+        },
+        line_linked: {
+            enable: true,
+            distance: 150,
+            color: '#ffffff',
+            opacity: 0.4,
+            width: 1
+        },
+        move: {
+            enable: true,
+            speed: 6,
+            direction: 'none',
+            random: false,
+            straight: false,
+            out_mode: 'out',
+            bounce: false,
+            attract: {
+                enable: false,
+                rotateX: 600,
+                rotateY: 1200
+            }
+        }
+    },
+    interactivity: {
+        detect_on: 'canvas',
+        events: {
+            onhover: {
+                enable: true,
+                mode: 'repulse'
+            },
+            onclick: {
+                enable: true,
+                mode: 'push'
+            },
+            resize: true
+        },
+        modes: {
+            grab: {
+                distance: 400,
+                line_linked: {
+                    opacity: 1
+                }
+            },
+            bubble: {
+                distance: 400,
+                size: 40,
+                duration: 2,
+                opacity: 8,
+                speed: 3
+            },
+            repulse: {
+                distance: 200,
+                duration: 0.4
+            },
+            push: {
+                particles_nb: 4
+            },
+            remove: {
+                particles_nb: 2
+            }
+        }
+    },
+    retina_detect: true
+});
+
+// Cursor trail effect
+const cursorTrail = document.getElementById('cursor-trail');
+let trailParticles = [];
+
+document.addEventListener('mousemove', (event) => {
+    const particle = document.createElement('div');
+    particle.classList.add('cursor-particle');
+    particle.style.left = `${event.clientX}px`;
+    particle.style.top = `${event.clientY}px`;
+    cursorTrail.appendChild(particle);
+    trailParticles.push(particle);
+
+    setTimeout(() => {
+        particle.style.transform = 'scale(0)';
+        particle.style.opacity = '0';
+        setTimeout(() => {
+            cursorTrail.removeChild(particle);
+            trailParticles = trailParticles.filter(p => p !== particle);
+        }, 1000);
+    }, 0);
+});
+
+// Confetti effect on form submission
+const form = document.querySelector('form');
+const confettiSettings = { target: 'confetti-canvas' };
+const confetti = new ConfettiGenerator(confettiSettings);
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    confetti.render();
+    setTimeout(() => {
+        confetti.clear();
+    }, 30000);
+    form.reset();
+});
+
+// Smooth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Scroll-down arrow functionality
+const scrollDown = document.querySelector('.scroll-down');
+const scrollCircle = document.querySelector('.scroll-circle');
+const bioSection = document.getElementById('bio');
+
+scrollDown.addEventListener('click', () => {
+    bioSection.scrollIntoView({ behavior: 'smooth' });
+    scrollDown.classList.add('hidden');
+});
+
+// Hide scroll-down arrow when the user scrolls down
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 100) {
+        scrollDown.classList.add('hidden');
+    } else {
+        scrollDown.classList.remove('hidden');
     }
-    60% {
-        transform: translateY(-5px);
-    }
-}
-
-@keyframes circleScale {
-    0%, 100% {
-        transform: scale(0.8);
-        opacity: 0.5;
-    }
-    50% {
-        transform: scale(1.2);
-        opacity: 1;
-    }
-}
-
-section {
-    margin: 20px 0;
-    padding: 20px;
-    border-left: 5px solid #007BFF;
-    transition: all 0.5s ease;
-}
-
-section:hover {
-    background: rgba(0, 123, 255, 0.1);
-}
-
-.skills {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.skill {
-    background-color: #007BFF;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.skill:hover {
-    transform: scale(1.1);
-}
-
-.certificate-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-.certificate {
-    position: relative;
-    width: 300px;
-    height: 200px;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.certificate:hover {
-    transform: scale(1.05);
-}
-
-.certificate img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.certificate-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.certificate:hover .certificate-overlay {
-    opacity: 1;
-}
-
-.certificate-text {
-    text-align: center;
-    padding: 10px;
-}
-
-#certificate-preview {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-}
-
-#certificate-preview img {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
-}
-
-.close-preview {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-form input, form textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #007BFF;
-    transition: border-color 0.3s ease;
-}
-
-form input:focus, form textarea:focus {
-    border-color: #0056b3;
-    outline: none;
-}
-
-button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-#interactive-link {
-    display: inline-block;
-    padding: 5px 10px;
-    background-color: #ff4081;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-#interactive-link:hover {
-    background-color: #ff0058;
-}
-
-#interactive-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 9998;
-}
-
-#interactive-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    display: none;
-    position: relative;
-    z-index: 9999;
-}
-
-#typing-effect {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-#secret-message {
-    font-size: 18px;
-    color: #ff4081;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-#close-button {
-    margin-top: 20px;
-}
-
-footer {
-    text-align: center;
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-}
-
-.header-icons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.icon {
-    color: white;
-    font-size: 24px;
-    transition: color 0.3s ease;
-}
-
-.icon:hover {
-    color: #ff4081;
-}
-
-h1 span {
-    display: inline-block;
-    animation: bounce 0.5s ease-in-out forwards;
-    opacity: 0;
-}
-
-@keyframes bounce {
-    0% {
-        transform: translateY(-100px);
-        opacity: 0;
-    }
-    60% {
-        transform: translateY(20px);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-.container.shake {
-    animation: shake 0.5s;
-}
-
-@keyframes shake {
-    0%, 100% {
-        transform: translateX(0);
-    }
-    10%, 30%, 50%, 70%, 90% {
-        transform: translateX(-10px);
-    }
-    20%, 40%, 60%, 80% {
-        transform: translateX(10px);
-    }
-}
-
-#background-particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
-
-#cursor-trail {
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    z-index: 9999;
-}
-
-.cursor-particle {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-    animation: cursorParticleAnimation 1s ease-out;
-}
-
-@keyframes cursorParticleAnimation {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(0);
-        opacity: 0;
-    }
-}
-
-.section-reveal {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 1s ease, transform 1s ease;
-}
-
-.section-reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-@media (max-width: 768px) {
-    .container {
-        padding: 10px;
-    }
-
-    header {
-        padding: 10px;
-    }
-
-    section {
-        padding: 10px;
-    }
-
-    .certificate {
-        width: 100%;
-        height: auto;
-    }
-
-    #certificate-preview img {
-        max-width: 100%;
-        max-height: 100%;
-    }
-}
-
+});

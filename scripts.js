@@ -412,15 +412,12 @@ function updateGame() {
     document.getElementById('score').textContent = score;
 }
 
-// Start game
+secretMessage.addEventListener('click', () => {
+    document.getElementById('game-container').style.display = 'block';
+});
+
 document.getElementById('start-game').addEventListener('click', () => {
     document.getElementById('game-overlay').style.display = 'none';
     initGame();
 });
 
-// Show game container when the secret message is displayed
-secretMessage.addEventListener('transitionend', () => {
-    if (secretMessage.style.opacity === '1') {
-        document.getElementById('game-container').style.display = 'flex';
-    }
-});

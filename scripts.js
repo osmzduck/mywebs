@@ -365,7 +365,7 @@ document.getElementById('interactive-link').addEventListener('click', function()
     document.getElementById('game-modal').style.display = 'block';
 });
 
-// Add these functions at the end of the scripts.js file
+// Add these functions to the end of your scripts.js file
 function openGameModal() {
     const modal = document.getElementById('game-modal');
     const modalContent = document.querySelector('.modal-content');

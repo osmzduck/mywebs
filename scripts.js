@@ -367,30 +367,41 @@ document.getElementById('interactive-link').addEventListener('click', function()
 
 // Add these functions at the end of the scripts.js file
 function openGameModal() {
-    document.getElementById('game-modal').style.display = 'block';
+    const modal = document.getElementById('game-modal');
+    const modalContent = document.querySelector('.modal-content');
+    modal.classList.add('show');
+    modalContent.classList.add('show');
 }
 
 function closeGameModal() {
-    document.getElementById('game-modal').style.display = 'none';
+    const modal = document.getElementById('game-modal');
+    const modalContent = document.querySelector('.modal-content');
+    modal.classList.remove('show');
+    modalContent.classList.remove('show');
+    setTimeout(() => modal.style.display = 'none', 500);
 }
 
 function decryptMessage() {
-    const key = document.getElementById('decryption-key').value;
+    const key = document.getElementById('decryption-key').value.trim();
     const encryptedMessage = "Uif tfdsfu up tvddftt jt dpotjtufodz.";
     let decryptedMessage = '';
-
+    
     if (key.toLowerCase() === 'consistency') {
         decryptedMessage = "The secret to success is consistency.";
         document.getElementById('decrypted-message').textContent = decryptedMessage;
-        triggerConfetti();  // Trigger confetti on correct decryption
+        triggerConfetti();
     } else {
         document.getElementById('decrypted-message').textContent = "Wrong key, try again!";
     }
 }
 
 function triggerConfetti() {
-    const confettiSettings = { target: 'confetti-canvas', max: '80' };
+    // Assume confetti.js is already included
+    const confettiSettings = { target: 'confetti-canvas', width: 800, height: 600 };
     const confetti = new ConfettiGenerator(confettiSettings);
     confetti.render();
-    setTimeout(() => confetti.clear(), 5000); // Stop confetti after 5 seconds
+    setTimeout(() => confetti.clear(), 5000);  // Stop confetti after 5 seconds
 }
+
+// Attach event handler to secret link or button
+document.getElementById('interactive-link').addEventListener('click', openGameModal);

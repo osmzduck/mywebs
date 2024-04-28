@@ -170,6 +170,10 @@ section:hover {
 .certificate:hover .certificate-overlay {
     opacity: 1;
 }
+.certificate:hover {
+    transform: scale(1.05) rotateX(5deg) rotateY(5deg);
+    transition: transform 0.3s ease-in-out;
+}
 
 .certificate-text {
     text-align: center;

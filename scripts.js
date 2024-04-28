@@ -75,14 +75,13 @@ certificates.forEach(certificate => {
     });
 });
 
-ertificatePreview.addEventListener('click', (event) => {
+certificatePreview.addEventListener('click', (event) => {
     if (event.target.tagName === 'IMG') {
-        // Extract the base URL without the image file extension and subdomain prefix
-        let url = new URL(event.target.src);
-        let pathParts = url.pathname.split('/');
-        let lastPart = pathParts.pop(); // Remove the image file part
-        let modifiedUrl = `https://ibb.co/${pathParts.pop()}`; // Get the last part of the path as the image identifier
-        window.open(modifiedUrl, '_blank');
+        // Modify the URL when an image in the preview is clicked
+        const src = event.target.src;
+        const baseUrl = src.substring(0, src.lastIndexOf("/")) // Get the base URL without the filename
+                           .replace('i.ibb.co', 'ibb.co');     // Replace the domain as required
+        window.open(baseUrl, '_blank');
     } else {
         certificatePreview.style.display = 'none';
     }

@@ -424,3 +424,24 @@ function triggerConfetti() {
 
 // Attach event handler to secret link or button
 document.getElementById('interactive-link').addEventListener('click', openGameModal);
+
+function triggerConfettiOnModal() {
+    const modalConfettiSettings = {
+        target: 'modal-confetti-canvas',
+        max: 200,
+        size: 1,
+        animate: true,
+        props: ['circle', 'square', 'triangle', 'line'],
+        colors: [[165, 104, 246], [230, 61, 135], [0, 199, 228], [253, 214, 126]],
+        clock: 25,
+        rotate: true,
+        width: 500,
+        height: 500,
+        start_from_edge: true,
+        respawn: false
+    };
+    const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
+    modalConfetti.render();
+
+    setTimeout(() => modalConfetti.clear(), 3000);
+}

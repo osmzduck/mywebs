@@ -275,7 +275,7 @@ form.addEventListener('submit', (event) => {
     confetti.render();
     setTimeout(() => {
         confetti.clear();
-    }, 3000);
+    }, 30000);
     form.reset();
 });
 

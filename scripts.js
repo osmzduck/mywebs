@@ -408,6 +408,7 @@ document.getElementById('interactive-link').addEventListener('click', openGameMo
 // Add these functions to the end of your scripts.js file
 function openGameModal() {
     const modal = document.getElementById('game-modal');
+    modal.style.display = 'flex';
     const modalContent = document.querySelector('.modal-content');
     modal.classList.add('show');
     modalContent.classList.add('show');
@@ -415,6 +416,7 @@ function openGameModal() {
 
 function closeGameModal() {
     const modal = document.getElementById('game-modal');
+    modal.style.display = 'none';
     const modalContent = document.querySelector('.modal-content');
     modal.classList.remove('show');
     modalContent.classList.remove('show');

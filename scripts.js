@@ -65,21 +65,20 @@ skills.forEach(skill => {
 // Certificate preview
 const certificates = document.querySelectorAll('.certificate');
 const certificatePreview = document.getElementById('certificate-preview');
+const previewImage = certificatePreview.querySelector('img');
 
 certificates.forEach(certificate => {
     certificate.addEventListener('click', (event) => {
         event.stopPropagation();
         const imgSrc = certificate.querySelector('img').src;
-        certificatePreview.querySelector('img').src = imgSrc;
+        previewImage.src = imgSrc;
         certificatePreview.style.display = 'flex';
     });
 });
- certificates.forEach(certificate => {
-    certificate.addEventListener('click', () => {
-        const imgSrc = certificate.querySelector('img').src;
-        const baseUrl = imgSrc.replace('i.ibb.co', 'ibb.co').replace('/image.png', '');
-        window.open(baseUrl, '_blank');
-    });
+
+previewImage.addEventListener('click', () => {
+    const baseUrl = previewImage.src.replace('i.ibb.co', 'ibb.co').split('/').slice(0, -1).join('/');
+    window.open(baseUrl, '_blank');
 });
 
 // Close button for certificate preview

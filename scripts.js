@@ -75,9 +75,14 @@ certificates.forEach(certificate => {
     });
 });
 
-certificatePreview.addEventListener('click', (event) => {
+ertificatePreview.addEventListener('click', (event) => {
     if (event.target.tagName === 'IMG') {
-window.open(event.target.src.replace('i.ibb.co', 'ibb.co').replace('/image.png', ''), '_blank');
+        // Extract the base URL without the image file extension and subdomain prefix
+        let url = new URL(event.target.src);
+        let pathParts = url.pathname.split('/');
+        let lastPart = pathParts.pop(); // Remove the image file part
+        let modifiedUrl = `https://ibb.co/${pathParts.pop()}`; // Get the last part of the path as the image identifier
+        window.open(modifiedUrl, '_blank');
     } else {
         certificatePreview.style.display = 'none';
     }

@@ -77,7 +77,7 @@ certificates.forEach(certificate => {
 
 certificatePreview.addEventListener('click', (event) => {
     if (event.target.tagName === 'IMG') {
-        window.open(event.target.src, '_blank');
+window.open(event.target.src.replace('i.ibb.co', 'ibb.co').replace('/image.png', ''), '_blank');
     } else {
         certificatePreview.style.display = 'none';
     }

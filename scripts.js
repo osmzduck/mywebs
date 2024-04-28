@@ -336,30 +336,6 @@ document.querySelectorAll('.certificate').forEach(certificate => {
         e.target.style.transform = 'rotateX(0deg) rotateY(0deg)';
     });
 });
-document.querySelector('.close').addEventListener('click', function() {
-    document.getElementById('game-modal').style.display = 'none';
-});
-
-function decryptMessage() {
-    const key = document.getElementById('decryption-key').value;
-    const encryptedMessage = "Uif tfdsfu up tvddftt jt dpotjtufodz.";
-    let decryptedMessage = '';
-
-    if (key === 'shift1') {
-        decryptedMessage = encryptedMessage.split('').map(char => {
-            if (char.match(/[a-z]/i)) {
-                let code = char.charCodeAt(0);
-                if ((code >= 65) && (code <= 90)) code = code - 1 < 65 ? 90 : code - 1;
-                else if ((code >= 97) && (code <= 122)) code = code - 1 < 97 ? 122 : code - 1;
-                return String.fromCharCode(code);
-            }
-            return char;
-        }).join('');
-        document.getElementById('decrypted-message').textContent = decryptedMessage;
-    } else {
-        document.getElementById('decrypted-message').textContent = "Wrong key, try again!";
-    }
-}
 
 document.getElementById('interactive-link').addEventListener('click', function() {
     document.getElementById('game-modal').style.display = 'block';
@@ -382,19 +358,20 @@ function closeGameModal() {
 }
 
 function decryptMessage() {
-    const key = document.getElementById('decryption-key').value.trim();
-    const encryptedMessage = "Uif tfdsfu up tvddftt jt dpotjtufodz.";
+    const key = document.getElementById('decrypt-key').value;
     let decryptedMessage = '';
-    
+
     if (key.toLowerCase() === 'consistency') {
         decryptedMessage = "The secret to success is consistency.";
         document.getElementById('decrypted-message').textContent = decryptedMessage;
         triggerConfetti();
+        shakeModal();
+        setTimeout(triggerConfettiOnModal, 1000); // Trigger confetti on modal after 1 second
     } else {
-        document.getElementById('decrypted-message').textContent = "Wrong key, try again!";
+        decryptedMessage = "Incorrect key. Please try again.";
+        document.getElementById('decrypted-message').textContent = decryptedMessage;
     }
 }
-
 function triggerConfetti() {
     // Assume confetti.js is already included
     const confettiSettings = { target: 'confetti-canvas', width: 800, height: 600 };

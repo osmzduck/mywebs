@@ -307,3 +307,189 @@ window.addEventListener('scroll', () => {
         scrollDown.classList.remove('hidden');
     }
 });
+const gameOverlay = document.getElementById('game-overlay');
+const gameContainer = document.getElementById('game-container');
+const gameCanvas = document.getElementById('game-canvas');
+const startGameButton = document.getElementById('start-game');
+const scoreElement = document.getElementById('score');
+
+let gameLoop;
+let player;
+let hearts;
+let bugs;
+let score = 0;
+
+class Player {
+    constructor(x, y, size, color) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.color = color;
+    }
+
+    draw(ctx) {
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x, this.y, this.size, this.size);
+    }
+
+    move(dx, dy) {
+        this.x += dx;
+        this.y += dy;
+    }
+}
+
+class Heart {
+    constructor(x, y, size, color) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.color = color;
+    }
+
+    draw(ctx) {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(this.x + this.size, this.y + this.size / 2);
+        ctx.lineTo(this.x, this.y + this.size);
+        ctx.lineTo(this.x - this.size, this.y + this.size / 2);
+        ctx.closePath();
+        ctx.fill();
+    }
+}
+
+class Bug {
+    constructor(x, y, size, color) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.color = color;
+        this.speed = 1;
+    }
+
+    draw(ctx) {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    move() {
+        this.y += this.speed;
+    }
+}
+
+function startGame() {
+    gameCanvas.width = 400;
+    gameCanvas.height = 600;
+    const ctx = gameCanvas.getContext('2d');
+
+    player = new Player(gameCanvas.width / 2 - 10, gameCanvas.height - 30, 20, '#ff4081');
+    hearts = [];
+    bugs = [];
+    score = 0;
+    scoreElement.textContent = score;
+
+    gameLoop = setInterval(gameIteration, 1000 / 60);
+}
+
+function gameIteration() {
+    const ctx = gameCanvas.getContext('2d');
+    ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+
+    player.draw(ctx);
+
+    if (Math.random() < 0.02) {
+        const x = Math.random() * (gameCanvas.width - 20);
+        const y = -20;
+        const size = 10;
+        const color = '#ff0058';
+        hearts.push(new Heart(x, y, size, color));
+    }
+
+    if (Math.random() < 0.03) {
+        const x = Math.random() * (gameCanvas.width - 20);
+        const y = -20;
+        const size = 10;
+        const color = '#000';
+        bugs.push(new Bug(x, y, size, color));
+    }
+
+    hearts.forEach((heart, index) => {
+        heart.draw(ctx);
+        heart.y += 1;
+
+        if (
+            player.x < heart.x + heart.size &&
+            player.x + player.size > heart.x &&
+            player.y < heart.y + heart.size &&
+            player.y + player.size > heart.y
+        ) {
+            hearts.splice(index, 1);
+            score++;
+            scoreElement.textContent = score;
+        }
+
+        if (heart.y > gameCanvas.height) {
+            hearts.splice(index, 1);
+        }
+    });
+
+    bugs.forEach((bug, index) => {
+        bug.draw(ctx);
+        bug.move();
+
+        if (
+            player.x < bug.x + bug.size &&
+            player.x + player.size > bug.x &&
+            player.y < bug.y + bug.size &&
+            player.y + player.size > bug.y
+        ) {
+            endGame();
+        }
+
+        if (bug.y > gameCanvas.height) {
+            bugs.splice(index, 1);
+        }
+    });
+}
+
+function endGame() {
+    clearInterval(gameLoop);
+    alert(`Game Over! Your score: ${score}`);
+    gameOverlay.style.display = 'none';
+    gameContainer.style.display = 'none';
+}
+
+function handleKeyDown(event) {
+    const key = event.keyCode;
+    const speed = 5;
+
+    switch (key) {
+        case 37: // Left Arrow
+            player.move(-speed, 0);
+            break;
+        case 38: // Up Arrow
+            player.move(0, -speed);
+            break;
+        case 39: // Right Arrow
+            player.move(speed, 0);
+            break;
+        case 40: // Down Arrow
+            player.move(0, speed);
+            break;
+    }
+}
+
+interactiveLink.addEventListener('click', () => {
+    interactiveOverlay.style.display = 'flex';
+    gameOverlay.style.display = 'flex';
+    gameContainer.style.display = 'block';
+});
+
+startGameButton.addEventListener('click', () => {
+    startGame();
+    gameContainer.removeChild(gameInstructions);
+});
+
+document.addEventListener('keydown', handleKeyDown);

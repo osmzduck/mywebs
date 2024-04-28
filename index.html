@@ -108,17 +108,15 @@
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js"></script>
     <script src="scripts.js"></script>
-    <!-- Add this code just before the closing </body> tag -->
+<!-- Add this code just before the closing </body> tag -->
 <div id="game-overlay" class="hidden">
     <div id="game-container">
-        <h2>Guess the Number!</h2>
-        <p>I'm thinking of a number between 1 and 100. Can you guess it?</p>
-        <input type="number" id="guess-input" min="1" max="100" required>
-        <button id="guess-button">Guess</button>
-        <p id="result-message"></p>
-        <button id="play-again-button" class="hidden">Play Again</button>
+        <canvas id="game-canvas"></canvas>
+        <div id="game-instructions">Press Space or Click to Flap!</div>
+        <div id="game-score">Score: <span id="score-value">0</span></div>
         <button id="close-game-button">Close</button>
     </div>
+</div>
 </div>
 </body>
 </html>

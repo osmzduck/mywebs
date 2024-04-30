@@ -728,3 +728,8 @@ h1 span {
     opacity: 1;
     transform: none;
 }
+
+.scroll-down.hidden {
+  opacity: 0;
+  pointer-events: none;
+}

@@ -1,0 +1,91 @@
+body {
+    background: linear-gradient(to left, #000000, #333333);
+    color: white;
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+}
+
+header {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+section {
+    border-right: 5px solid #ffffff;
+}
+
+section:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.skill {
+    background-color: #ffffff;
+    color: black;
+}
+
+form input, form textarea {
+    border: 1px solid #ffffff;
+}
+
+button {
+    background-color: #ffffff;
+    color: black;
+}
+
+#interactive-link {
+    background-color: #ffffff;
+    color: black;
+}
+
+#interactive-link:hover {
+    background-color: #cccccc;
+}
+
+#secret-message {
+    color: #ffffff;
+}
+
+footer {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.icon {
+    color: white;
+}
+
+.icon:hover {
+    color: #cccccc;
+}
+
+.timeline-date {
+    color: #ffffff;
+}
+
+.modal-content {
+    background-color: #000000;
+}
+
+.input-area input {
+    border: 2px solid #ffffff;
+}
+
+.input-area button {
+    background-color: #ffffff;
+    color: black;
+}
+
+#decrypted-message {
+    color: #ffffff;
+}
+
+.game-link::after {
+    background-color: #ffffff;
+    color: black;
+}
+
+#translator-link {
+    background-color: #ffffff;
+    color: black;
+}

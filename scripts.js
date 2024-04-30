@@ -352,6 +352,7 @@ function openGameModal() {
 
 function closeGameModal() {
     const modal = document.getElementById('game-modal');
+    modal.style.display = 'none';
     const modalContent = document.querySelector('.modal-content');
     modal.classList.remove('show');
     modalContent.classList.remove('show');

@@ -1,3 +1,4 @@
+
  <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -10,8 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-            <h1>عصام_تركي</h1>
+    <div class="container">
+        <header>
+            <h1>عصام تركي</h1>
             <p class="animate__animated animate__fadeInUp">مهتم بالأمن السيبراني ومحترف تكنولوجيا المعلومات</p>
             <div class="header-icons">
                 <a href="#" class="icon github" title="جيت هاب" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
@@ -24,10 +26,9 @@
             </div>
         </header>
         <div class="scroll-down">
-         <div class="scroll-down hidden">
             <div class="scroll-circle">
                 <div class="scroll-arrow">
-                <i class="fas fa-chevron-down"></i>
+                    <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
         </div>
@@ -80,8 +81,6 @@
             </form>
         </section>
         <section id="timeline">
-         <section class="timeline">
-         <div class="section-line"></div>
             <h2>رحلتي</h2>
             <div class="timeline-container">
                 <div class="timeline-block">
@@ -98,7 +97,7 @@
             <p>© 2024 عصام تركي. جميع الحقوق محفوظة.</p>
             <nav>
                 <ul>
-                    <li><a href="#" id="interactive-link">🎮 أوه، هل هذا سر أراه!؟ 🎮</a></li>
+                    <li><a href="#" id="interactive-link">🎮 أوه، هل سر أراه!؟ 🎮</a></li>
                 </ul>
             </nav>
         </footer>
@@ -115,27 +114,24 @@
     </div>
     <canvas id="background-particles"></canvas>
     <div id="cursor-trail"></div>
-    <div class="modal-overlay"></div>
-    <div class="spotlight"></div>
-    <canvas class="confetti"></canvas>
     <canvas id="confetti-canvas"></canvas>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js"></script>
     <script src="scripts.js"></script>
 
 <div id="game-modal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeGameModal()">&times;</span>
-        <h2>فك تشفير الرسالة!</h2>
-        <p>ابحث عن الرسالة المخفية في الصفحة وفك تشفيرها لتكشف سر عصام.</p>
-        Uif tfdsfu up tvddftt jt dpotjtufodz.
-        <input type="text" id="decoded-message" placeholder="أدخل الرسالة المفككة هنا">
-        <button id="submit-message" onclick="decryptMessage()">إرسال</button>
-        <p id="message-feedback"></p>
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>فك تشفير الرسالة!</h2>
+            <p>ابحث عن الرسالة المخفية في الصفحة وفك تشفيرها لتكشف سر عصام.</p>
+            Uif tfdsfu up tvddftt jt dpotjtufodz.
+            <input type="text" id="decoded-message" placeholder="أدخل الرسالة المفككة هنا">
+            <button id="submit-message">إرسال</button>
+            <p id="message-feedback"></p>
+        </div>
     </div>
-</div>
- 
     <a href="index.html" id="translator-link" title="ترجم إلى الإنجليزية">
     <i class="fas fa-language"></i>
 </a>

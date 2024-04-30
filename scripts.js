@@ -98,8 +98,8 @@ const closeButton = document.getElementById('close-button');
 const messages = [
     "Welcome to Essam Turki's interactive CV!",
     "i have no idea what to say here",
-    "yeah yove seen the red text. go up already.",
-    "alright i guess you can stay and read this still.",
+    "yeah youve seen the red text. go up already.",
+    "alright i guess you can have this hint: ceaser! its a ceaser ####er.",
     "ok now ive really lost all talking points, UNTILL NEXT TIME"
 ];
 

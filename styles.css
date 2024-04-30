@@ -608,7 +608,7 @@ h1 span {
 .icon.secret-game {
     animation-delay: 1.8s;
 }
-#translator-btn {
+#translator-link {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -623,7 +623,7 @@ h1 span {
     transition: transform 0.3s ease;
 }
 
-#translator-btn:hover {
+#translator-link:hover {
     transform: scale(1.1);
 }
 

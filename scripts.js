@@ -471,4 +471,20 @@ translatorBtn.addEventListener('click', () => {
         body.removeChild(translateAnimation);
     }, 1100);
 });
+const translatorLink = document.getElementById('translator-link');
 
+translatorLink.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    const translateAnimation = document.createElement('div');
+    translateAnimation.classList.add('translate-animation');
+    document.body.appendChild(translateAnimation);
+
+    setTimeout(() => {
+        translateAnimation.classList.add('active');
+    }, 100);
+
+    setTimeout(() => {
+        window.location.href = 'index-ar.html';
+    }, 600);
+});

@@ -444,3 +444,31 @@ function triggerConfettiOnModal() {
 
     setTimeout(() => modalConfetti.clear(), 3000);
 }
+
+const translatorBtn = document.getElementById('translator-btn');
+const body = document.body;
+
+translatorBtn.addEventListener('click', () => {
+    // Create the animation element
+    const translateAnimation = document.createElement('div');
+    translateAnimation.classList.add('translate-animation');
+    body.appendChild(translateAnimation);
+
+    // Trigger the animation
+    setTimeout(() => {
+        translateAnimation.classList.add('active');
+    }, 100);
+
+    // Simulate translation (replace with actual translation logic)
+    setTimeout(() => {
+        body.style.direction = 'rtl';
+        // Add translation logic here, e.g., using a translation library or API
+        // Update the text content of elements with their Arabic translations
+    }, 600);
+
+    // Remove the animation element after the animation is complete
+    setTimeout(() => {
+        body.removeChild(translateAnimation);
+    }, 1100);
+});
+

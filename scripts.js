@@ -1,3 +1,5 @@
+
+
 document.querySelector('form').addEventListener('submit', function(event) {
     event.preventDefault();
     alert('Thank you for your message!');
@@ -493,3 +495,4 @@ translatorLink.addEventListener('click', function(e) {
         window.location.href = 'index-ar.html';
     }, 600);
 });
+

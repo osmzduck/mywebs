@@ -2,6 +2,12 @@ const translatorLink = document.getElementById('translator-link');
 
 translatorLink.addEventListener('click', function(e) {
     e.preventDefault();
+       
+    // Disable scroll reveal
+    const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+    scrollRevealElements.forEach(element => {
+        element.classList.add('no-reveal');
+    });
 
     const translateAnimation = document.createElement('div');
     translateAnimation.classList.add('translate-animation');

@@ -608,3 +608,37 @@ h1 span {
 .icon.secret-game {
     animation-delay: 1.8s;
 }
+#translator-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+#translator-btn:hover {
+    transform: scale(1.1);
+}
+
+.translate-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, black 50%, white 50%);
+    z-index: 9999;
+    transform: translateY(-100%);
+    transition: transform 0.5s ease;
+}
+
+.translate-animation.active {
+    transform: translateY(0);
+}

@@ -305,12 +305,18 @@ footer {
     justify-content: center;
     gap: 20px;
     margin-top: 20px;
+    opacity: 0;
+    animation: slideInFromSide 1s ease-in-out forwards;
+    animation-delay: 1s;
 }
 
 .icon {
     color: white;
     font-size: 24px;
     transition: color 0.3s ease;
+    opacity: 0;
+    transform: translateX(-100%);
+    animation: slideInFromSide 1s ease-in-out forwards;
 }
 
 .icon:hover {
@@ -574,4 +580,31 @@ h1 span {
     height: 100%;
     pointer-events: none;
     z-index: 10;
+}
+
+@keyframes slideInFromSide {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.icon.github {
+    animation-delay: 1.2s;
+}
+
+.icon.linkedin {
+    animation-delay: 1.4s;
+}
+
+.icon.twitter {
+    animation-delay: 1.6s;
+}
+
+.icon.secret-game {
+    animation-delay: 1.8s;
 }

@@ -6,7 +6,7 @@ translatorLink.addEventListener('click', function(e) {
     const translateAnimation = document.createElement('div');
     translateAnimation.classList.add('translate-animation');
     document.body.appendChild(translateAnimation);
-
+    
     setTimeout(() => {
         translateAnimation.classList.add('active');
     }, 100);
@@ -14,7 +14,8 @@ translatorLink.addEventListener('click', function(e) {
     setTimeout(() => {
         window.location.href = translatorLink.getAttribute('href');
     }, 600);
-        translateAnimation.addEventListener('transitionend', () => {
+    
+    translateAnimation.addEventListener('transitionend', () => {
         window.location.href = translatorLink.getAttribute('href');
     }, { once: true });
 });

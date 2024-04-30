@@ -199,3 +199,8 @@ h1 span {
     z-index: 1;
     pointer-events: none;
 }
+
+.scroll-reveal.no-reveal {
+    opacity: 1;
+    transform: none;
+}

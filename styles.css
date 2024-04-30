@@ -610,12 +610,12 @@ h1 span {
 }
 #translator-link {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 10px;
+    right: 23px;
     background-color: #007BFF;
     color: white;
     border: none;
-    padding: 10px;
+    padding: 8px;
     border-radius: 50%;
     font-size: 20px;
     cursor: pointer;

@@ -1,4 +1,5 @@
 
+
  body, html {
     margin: 0;
     padding: 0;
@@ -636,6 +637,21 @@ h1 span {
     height: 100%;
     background: linear-gradient(to bottom, black 50%, white 50%);
     z-index: 9999;
+    transform: translateY(-100%);
+    transition: transform 0.5s ease;
+}
+
+.translate-animation.active {
+    transform: translateY(0);
+}
+.translate-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, black 50%, white 50%);
+    z-index: 9999;
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.5s ease;
@@ -661,3 +677,4 @@ h1 span {
 .translate-animation.active::before {
     transform: scaleY(1);
 }
+

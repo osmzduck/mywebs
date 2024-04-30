@@ -567,7 +567,7 @@ h1 span {
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    padding: 3px 6px;
+    padding: 6px 12px;
     background-color: #007BFF;
     color: white;
     border-radius: 4px;
@@ -578,6 +578,7 @@ h1 span {
     line-height: 1.2;
     max-width: 120px;
     text-align: center;
+    z-index: 1;
 }
 
 .game-link:hover::after {

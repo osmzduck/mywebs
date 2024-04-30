@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>السيرة الذاتية لعصام تركي</title>
+    <title>السيرة الذاتية لعصام لتركي</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="styles-ar.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
@@ -21,7 +21,7 @@
                 <a href="#" class="icon secret-game game-link" title="افتح السر!" onclick="openGameModal()"><i class="fas fa-user-secret"></i></a>
                 <a href="index.html" id="translator-link" title="Translate to English">
                     <i class="fas fa-language"></i>
-                </a>   
+                </a>
             </div>
         </header>
         <div class="scroll-down">
@@ -115,12 +115,25 @@
     <div id="cursor-trail"></div>
     <canvas id="confetti-canvas"></canvas>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js"></script>
+    <script src="scripts.js"></script>
+    <script src="translation.js"></script>
+
     <div id="game-modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeGameModal()">&times;</span>
             <h2>فك تشفير الرسالة!</h2>
-            <p>ابحث عن المفتاح الصحيح لفك تشفير الرسالة.</p>
-            <p>Uif tfdsfu up tvddftt jt dpotjtufodz.</p>
+                        <p>ابحث عن المفتاح الصحيح لفك تشفير الرسالة.</p>
+            <div class="input-area">
+                <input type="text" id="decryption-key" placeholder="أدخل مفتاح فك التشفير...">
+                <button onclick="decryptMessage()">فك التشفير</button>
+                <canvas id="modal-confetti-canvas"></canvas>
+            </div>
+            <p id="decrypted-message"></p>
+                    <p>ابحث عن المفتاح الصحيح لفك تشفير الرسالة.
+                = Uif tfdsfu up tvddftt jt dpotjtufodz. </p>
             <div class="input-area">
                 <input type="text" id="decryption-key" placeholder="أدخل مفتاح فك التشفير...">
                 <button onclick="decryptMessage()">فك التشفير</button>
@@ -129,10 +142,6 @@
             <p id="decrypted-message"></p>
         </div>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js"></script>
-    <script src="scripts.js"></script>
+    <script src="translation.js"></script>
 </body>
 </html>

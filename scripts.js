@@ -304,12 +304,12 @@ form.addEventListener('submit', (event) => {
 });
 
 // Smooth scrolling
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollArrow = document.querySelector('.scroll-arrow');
+    const aboutSection = document.querySelector('#about');
+
+    scrollArrow.addEventListener('click', function() {
+        aboutSection.scrollIntoView({ behavior: 'smooth'                              
     });
 });
 

@@ -106,7 +106,7 @@ const messages = [
 let currentMessageIndex = 0;
 let currentMessage = '';
 let isDeleting = false;
-let typingSpeed = 1000;
+let typingSpeed = 100;
 
 function typeMessage() {
     const currentChar = messages[currentMessageIndex].charAt(currentMessage.length);
@@ -116,9 +116,9 @@ function typeMessage() {
         currentMessage += currentChar;
     }
     typingEffect.textContent = currentMessage;
-    typingSpeed = isDeleting ? 30 : 100;
+    typingSpeed = isDeleting ? 30 : 10;
     if (!isDeleting && currentMessage === messages[currentMessageIndex]) {
-        typingSpeed = 20000;
+        typingSpeed = 200;
         isDeleting = true;
     } else if (isDeleting && currentMessage === '') {
         isDeleting = false;
@@ -133,7 +133,7 @@ function typeMessage() {
 interactiveLink.addEventListener('click', () => {
     interactiveOverlay.style.display = 'flex';
     interactiveContent.style.display = 'block';
-    setTimeout(typeMessage, 100);
+    setTimeout(typeMessage, 10);
     setTimeout(() => {
         secretMessage.textContent = "Shh... go click the hacker icon up top, its a secret! dont tell anyone.";
         secretMessage.style.opacity = '1';

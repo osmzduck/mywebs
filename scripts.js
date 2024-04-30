@@ -267,7 +267,6 @@ document.addEventListener('mousemove', (event) => {
     particle.classList.add('cursor-particle');
     particle.style.left = `${event.clientX}px`;
     particle.style.top = `${event.clientY}px`;
-    particle.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;  // Colorful particles
     cursorTrail.appendChild(particle);
     trailParticles.push(particle);
 
@@ -345,9 +344,12 @@ document.getElementById('interactive-link').addEventListener('click', function()
 // Add these functions to the end of your scripts.js file
 function openGameModal() {
     const modal = document.getElementById('game-modal');
+    modal.style.display = 'block';
+    setTimeout(() => {
+        modal.classList.add('show');
     const modalContent = document.querySelector('.modal-content');
-    modal.classList.add('show');
-    modalContent.classList.add('show');
+        modalContent.classList.add('show');
+    }, 50);
 }
 
 function closeGameModal() {

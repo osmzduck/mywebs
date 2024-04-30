@@ -1,3 +1,4 @@
+
 document.querySelector('form').addEventListener('submit', function(event) {
     event.preventDefault();
     alert('Thank you for your message!');
@@ -96,17 +97,16 @@ const closeButton = document.getElementById('close-button');
 
 const messages = [
     "Welcome to Essam Turki's interactive CV!",
-    "im just typing random stuff to make you think you are entertaned!",
-    "maybe click the hacker guy icon up top?!",
-    "you might beat the hidden game!",
-    "oops i think i shouldn've told you about it if it was a hidden game."
-    "eh who cares. UNTIL NEXT TIME !"
+    "i have no idea what to say here",
+    "yeah yove seen the red text. go up already.",
+    "alright i guess you can stay and read this still.",
+    "ok now ive really lost all talking points, UNTILL NEXT TIME"
 ];
 
 let currentMessageIndex = 0;
 let currentMessage = '';
 let isDeleting = false;
-let typingSpeed = 300;
+let typingSpeed = 1000;
 
 function typeMessage() {
     const currentChar = messages[currentMessageIndex].charAt(currentMessage.length);
@@ -118,7 +118,7 @@ function typeMessage() {
     typingEffect.textContent = currentMessage;
     typingSpeed = isDeleting ? 30 : 100;
     if (!isDeleting && currentMessage === messages[currentMessageIndex]) {
-        typingSpeed = 5000;
+        typingSpeed = 20000;
         isDeleting = true;
     } else if (isDeleting && currentMessage === '') {
         isDeleting = false;
@@ -133,9 +133,9 @@ function typeMessage() {
 interactiveLink.addEventListener('click', () => {
     interactiveOverlay.style.display = 'flex';
     interactiveContent.style.display = 'block';
-    setTimeout(typeMessage, 1000);
+    setTimeout(typeMessage, 100);
     setTimeout(() => {
-        secretMessage.textContent = "Shh... go beat the hacker icon game. its hidden! ";
+        secretMessage.textContent = "Shh... go click the hacker icon up top, its a secret! dont tell anyone.";
         secretMessage.style.opacity = '1';
     }, 8000);
 });
@@ -150,7 +150,6 @@ closeButton.addEventListener('click', () => {
 
 // Attach event handler to the decrypt game icon
 document.querySelector('.secret-game.game-link').addEventListener('click', openGameModal);
-
 // Background particles
 particlesJS('background-particles', {
     particles: {
@@ -382,6 +381,8 @@ function triggerConfetti() {
     setTimeout(() => confetti.clear(), 5000);  // Stop confetti after 5 seconds
 }
 
+// Attach event handler to secret link or button
+document.getElementById('interactive-link').addEventListener('click', openGameModal);
 // Add these functions to the end of your scripts.js file
 function openGameModal() {
     const modal = document.getElementById('game-modal');
@@ -445,4 +446,3 @@ function triggerConfettiOnModal() {
 
     setTimeout(() => modalConfetti.clear(), 3000);
 }
-

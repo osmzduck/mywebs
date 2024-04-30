@@ -377,6 +377,21 @@ function decryptMessage() {
     }
 }
 
+function decryptMessage() {
+    const key = document.getElementById('decryption-key').value.trim();
+    const encryptedMessage = "Uif tfdsfu up tvddftt jt dpotjtufodz.";
+    let decryptedMessage = '';
+    
+    if (key.toLowerCase() === 'consistency') {
+        decryptedMessage = "سر النجاح هو الاتساق.";
+        document.getElementById('decrypted-message').textContent = decryptedMessage;
+        triggerConfetti();
+        showCelebration();
+    } else {
+        document.getElementById('decrypted-message').textContent = "مفتاح خاطئ، حاول مرة أخرى!";
+    }
+}
+
 function triggerConfetti() {
     const modalConfettiSettings = {
         target: 'modal-confetti-canvas',

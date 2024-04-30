@@ -111,12 +111,19 @@ let typingSpeed = 100;
 function typeMessage() {
     const currentChar = messages[currentMessageIndex].charAt(currentMessage.length);
     if (isDeleting) {
+                if (currentMessage.length > 1) {
+            currentMessage = currentMessage.slice(0, -1);
+        } else {
+            currentMessage = ' ';
         currentMessage = currentMessage.slice(0, -1);
     } else {
         currentMessage += currentChar;
-    }
+        }
+    } else {
+        currentMessage += currentChar;
+     }
     typingEffect.textContent = currentMessage;
-    typingSpeed = isDeleting ? 30 : 10;
+    typingSpeed = isDeleting ? 30 : 100;
     if (!isDeleting && currentMessage === messages[currentMessageIndex]) {
         typingSpeed = 200;
         isDeleting = true;

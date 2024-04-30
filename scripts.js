@@ -489,3 +489,27 @@ translatorLink.addEventListener('click', function(e) {
         window.location.href = 'index-ar.html';
     }, 600);
 });
+
+const interactiveLines = document.querySelectorAll('.interactive-line');
+
+document.addEventListener('mousemove', (event) => {
+    interactiveLines.forEach((line, index) => {
+        const x = event.clientX;
+        const y = event.clientY;
+
+        const lineX = line.offsetLeft + line.offsetWidth / 2;
+        const lineY = line.offsetTop + line.offsetHeight / 2;
+
+        const deltaX = x - lineX;
+        const deltaY = y - lineY;
+
+        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        const maxDistance = 500;
+
+        const opacity = 1 - (distance / maxDistance);
+        const angle = Math.atan2(deltaY, deltaX) * 180 / Math.PI;
+
+        line.style.opacity = opacity;
+        line.style.transform = `rotate(${angle}deg) scale(${1 + opacity * 0.5})`;
+    });
+});

@@ -489,15 +489,16 @@ translatorLink.addEventListener('click', function(e) {
         window.location.href = 'index-ar.html';
     }, 600);
 });
-const interactiveLines = document.querySelectorAll('.interactive-line');
+const sectionLines = document.querySelectorAll('.section-line');
 
 document.addEventListener('mousemove', (event) => {
-    interactiveLines.forEach((line, index) => {
+    sectionLines.forEach((line) => {
         const x = event.clientX;
         const y = event.clientY;
 
-        const lineX = line.offsetLeft + line.offsetWidth / 2;
-        const lineY = line.offsetTop + line.offsetHeight / 2;
+        const lineRect = line.getBoundingClientRect();
+        const lineX = lineRect.left + lineRect.width / 2;
+        const lineY = lineRect.top + lineRect.height / 2;
 
         const deltaX = x - lineX;
         const deltaY = y - lineY;

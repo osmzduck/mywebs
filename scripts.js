@@ -441,3 +441,12 @@ function triggerConfettiOnModal() {
 
     setTimeout(() => modalConfetti.clear(), 3000);
 }
+
+const icons = document.querySelectorAll('.icon');
+
+icons.forEach(icon => {
+    icon.addEventListener('mouseover', () => {
+        icon.style.animationDuration = `${Math.random() * 0.5 + 0.3}s`;
+        icon.style.animationDelay = `${Math.random() * 0.3}s`;
+    });
+});

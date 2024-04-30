@@ -121,16 +121,17 @@
     <script src="scripts.js"></script>
 
 <div id="game-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>فك تشفير الرسالة!</h2>
-            <p>ابحث عن الرسالة المخفية في الصفحة وفك تشفيرها لتكشف سر عصام.</p>
-            Uif tfdsfu up tvddftt jt dpotjtufodz.
-            <input type="text" id="decoded-message" placeholder="أدخل الرسالة المفككة هنا">
-            <button id="submit-message">إرسال</button>
-            <p id="message-feedback"></p>
-        </div>
+    <div class="modal-content">
+        <span class="close" onclick="closeGameModal()">&times;</span>
+        <h2>فك تشفير الرسالة!</h2>
+        <p>ابحث عن الرسالة المخفية في الصفحة وفك تشفيرها لتكشف سر عصام.</p>
+        Uif tfdsfu up tvddftt jt dpotjtufodz.
+        <input type="text" id="decoded-message" placeholder="أدخل الرسالة المفككة هنا">
+        <button id="submit-message">إرسال</button>
+        <p id="message-feedback"></p>
     </div>
+</div>
+ 
     <a href="index.html" id="translator-link" title="ترجم إلى الإنجليزية">
     <i class="fas fa-language"></i>
 </a>

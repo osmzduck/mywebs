@@ -1,5 +1,4 @@
 
-
  body, html {
     margin: 0;
     padding: 0;
@@ -677,4 +676,3 @@ h1 span {
 .translate-animation.active::before {
     transform: scaleY(1);
 }
-

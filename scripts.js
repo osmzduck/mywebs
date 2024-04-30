@@ -363,26 +363,39 @@ function closeGameModal() {
 }
 
 function decryptMessage() {
-    const key = document.getElementById('decrypt-key').value;
+    const key = document.getElementById('decryption-key').value.trim();
+    const encryptedMessage = "Uif tfdsfu up tvddftt jt dpotjtufodz.";
     let decryptedMessage = '';
-
+    
     if (key.toLowerCase() === 'consistency') {
         decryptedMessage = "The secret to success is consistency.";
         document.getElementById('decrypted-message').textContent = decryptedMessage;
         triggerConfetti();
-        shakeModal();
-        setTimeout(triggerConfettiOnModal, 5000); // Trigger confetti on modal after 1 second
+        showCelebration(); // Add this line to trigger the theatre and light animation
     } else {
-        decryptedMessage = "Incorrect key. Please try again.";
-        document.getElementById('decrypted-message').textContent = decryptedMessage;
+        document.getElementById('decrypted-message').textContent = "Wrong key, try again!";
     }
 }
+
 function triggerConfetti() {
-    // Assume confetti.js is already included
-    const confettiSettings = { target: 'confetti-canvas', width: 800, height: 600 };
-    const confetti = new ConfettiGenerator(confettiSettings);
-    confetti.render();
-    setTimeout(() => confetti.clear(), 5000);  // Stop confetti after 5 seconds
+    const modalConfettiSettings = {
+        target: 'modal-confetti-canvas',
+        max: 200,
+        size: 1,
+        animate: true,
+        props: ['circle', 'square', 'triangle', 'line'],
+        colors: [[165, 104, 246], [230, 61, 135], [0, 199, 228], [253, 214, 126]],
+        clock: 25,
+        rotate: true,
+        width: 500,
+        height: 500,
+        start_from_edge: true,
+        respawn: false
+    };
+    const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
+    modalConfetti.render();
+
+    setTimeout(() => modalConfetti.clear(), 3000);
 }
 
 // Add these functions to the end of your scripts.js file
@@ -497,8 +510,7 @@ function showCelebration() {
     const modalOverlay = document.querySelector('.modal-overlay');
     const spotlight = document.querySelector('.spotlight');
     const confettiCanvas = document.querySelector('.confetti');
-    const audio = new Audio('path/to/clapping-sound.mp3');
-
+    
     modalOverlay.classList.add('show');
     spotlight.classList.add('show');
     audio.play();
@@ -510,6 +522,5 @@ function showCelebration() {
     setTimeout(() => {
         modalOverlay.classList.remove('show');
         spotlight.classList.remove('show');
-        confetti.clear();
     }, 5000);
 }

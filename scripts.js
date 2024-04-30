@@ -1,4 +1,3 @@
-
 document.querySelector('form').addEventListener('submit', function(event) {
     event.preventDefault();
     alert('Thank you for your message!');
@@ -98,8 +97,8 @@ const closeButton = document.getElementById('close-button');
 const messages = [
     "Welcome to Essam Turki's interactive CV!",
     "i have no idea what to say here",
-    "yeah youve seen the red text. go up already.",
-    "alright i guess you can have this hint: ceaser! its a ceaser ####er.",
+    "yeah yove seen the red text. go up already.",
+    "alright i guess you win, its a ceaser ciph... happy now?",
     "ok now ive really lost all talking points, UNTILL NEXT TIME"
 ];
 
@@ -140,7 +139,7 @@ function typeMessage() {
 interactiveLink.addEventListener('click', () => {
     interactiveOverlay.style.display = 'flex';
     interactiveContent.style.display = 'block';
-    setTimeout(typeMessage, 10);
+    setTimeout(typeMessage, 100);
     setTimeout(() => {
         secretMessage.textContent = "Shh... go click the hacker icon up top, its a secret! dont tell anyone.";
         secretMessage.style.opacity = '1';
@@ -274,6 +273,7 @@ document.addEventListener('mousemove', (event) => {
     particle.classList.add('cursor-particle');
     particle.style.left = `${event.clientX}px`;
     particle.style.top = `${event.clientY}px`;
+    particle.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;  // Colorful particles
     cursorTrail.appendChild(particle);
     trailParticles.push(particle);
 
@@ -300,17 +300,15 @@ form.addEventListener('submit', (event) => {
         confetti.clear();
     }, 30000);
     form.reset();
-    decryptButton.addEventListener('click', decryptMessage);
 });
 
 // Smooth scrolling
-
-document.addEventListener('DOMContentLoaded', function() {
-    const scrollArrow = document.querySelector('.scroll-arrow');
-    const aboutSection = document.querySelector('#about');
-
-    scrollArrow.addEventListener('click', function() {
-        aboutSection.scrollIntoView({ behavior: 'smooth' });
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
     });
 });
 
@@ -353,17 +351,13 @@ document.getElementById('interactive-link').addEventListener('click', function()
 // Add these functions to the end of your scripts.js file
 function openGameModal() {
     const modal = document.getElementById('game-modal');
-    modal.style.display = 'block';
-    setTimeout(() => {
-        modal.classList.add('show');
     const modalContent = document.querySelector('.modal-content');
-        modalContent.classList.add('show');
-    }, 50);
+    modal.classList.add('show');
+    modalContent.classList.add('show');
 }
 
 function closeGameModal() {
     const modal = document.getElementById('game-modal');
-    modal.style.display = 'none';
     const modalContent = document.querySelector('.modal-content');
     modal.classList.remove('show');
     modalContent.classList.remove('show');
@@ -371,54 +365,26 @@ function closeGameModal() {
 }
 
 function decryptMessage() {
-    const key = document.getElementById('decryption-key').value.trim();
-    const encryptedMessage = "Uif tfdsfu up tvddftt jt dpotjtufodz.";
+    const key = document.getElementById('decrypt-key').value;
     let decryptedMessage = '';
-    
+
     if (key.toLowerCase() === 'consistency') {
         decryptedMessage = "The secret to success is consistency.";
         document.getElementById('decrypted-message').textContent = decryptedMessage;
         triggerConfetti();
-        showCelebration(); // Add this line to trigger the animations
+        shakeModal();
+        setTimeout(triggerConfettiOnModal, 1000); // Trigger confetti on modal after 1 second
     } else {
-        document.getElementById('decrypted-message').textContent = "Wrong key, try again!";
-    }
-}
-
-function decryptMessage() {
-    const key = document.getElementById('decryption-key').value.trim();
-    const encryptedMessage = "Uif tfdsfu up tvddftt jt dpotjtufodz.";
-    let decryptedMessage = '';
-    
-    if (key.toLowerCase() === 'consistency') {
-        decryptedMessage = "سر النجاح هو الاتساق.";
+        decryptedMessage = "Incorrect key. Please try again.";
         document.getElementById('decrypted-message').textContent = decryptedMessage;
-        triggerConfetti();
-        showCelebration();
-    } else {
-        document.getElementById('decrypted-message').textContent = "مفتاح خاطئ، حاول مرة أخرى!";
     }
 }
-
 function triggerConfetti() {
-    const modalConfettiSettings = {
-        target: 'modal-confetti-canvas',
-        max: 200,
-        size: 1,
-        animate: true,
-        props: ['circle', 'square', 'triangle', 'line'],
-        colors: [[165, 104, 246], [230, 61, 135], [0, 199, 228], [253, 214, 126]],
-        clock: 25,
-        rotate: true,
-        width: 500,
-        height: 500,
-        start_from_edge: true,
-        respawn: false
-    };
-    const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
-    modalConfetti.render();
-
-    setTimeout(() => modalConfetti.clear(), 3000);
+    // Assume confetti.js is already included
+    const confettiSettings = { target: 'confetti-canvas', width: 800, height: 600 };
+    const confetti = new ConfettiGenerator(confettiSettings);
+    confetti.render();
+    setTimeout(() => confetti.clear(), 5000);  // Stop confetti after 5 seconds
 }
 
 // Add these functions to the end of your scripts.js file
@@ -511,63 +477,11 @@ translatorBtn.addEventListener('click', () => {
         body.removeChild(translateAnimation);
     }, 1100);
 });
-
 const translatorLink = document.getElementById('translator-link');
 
 translatorLink.addEventListener('click', function(e) {
     e.preventDefault();
 
-    // Disable scroll reveal
-    const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
-    scrollRevealElements.forEach(element => {
-        element.classList.add('no-reveal');
-    });
-
-    handleTranslationAnimation();
-
-    setTimeout(() => {
-        window.location.href = translatorLink.getAttribute('href');
-    }, 600);
-});
-
-function showCelebration() {
-    const modalOverlay = document.querySelector('.modal-overlay');
-    const spotlight = document.querySelector('.spotlight');
-    const confettiCanvas = document.querySelector('.confetti');
-    const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-audience-light-applause-354.mp3');
-
-    modalOverlay.classList.add('show');
-    spotlight.classList.add('show');
-    audio.play();
-
-    const confettiSettings = { target: confettiCanvas, size: 2, rotate: true, max: 300 };
-    const confetti = new ConfettiGenerator(confettiSettings);
-    confetti.render();
-
-    setTimeout(() => {
-        modalOverlay.classList.remove('show');
-        spotlight.classList.remove('show');
-        confetti.clear();
-    }, 5000);
-}
-
-window.addEventListener('load', function() {
-    const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
-    scrollRevealElements.forEach(element => {
-        element.classList.remove('no-reveal');
-    });
-
-    ScrollReveal().reveal('.scroll-reveal', {
-        duration: 1000,
-        easing: 'ease-in-out',
-        distance: '20px',
-        interval: 200,
-        scale: 0.9,
-        viewFactor: 0.2
-    });
-});
-// Add this function to handle the translation animation
-function handleTranslationAnimation() {
     const translateAnimation = document.createElement('div');
     translateAnimation.classList.add('translate-animation');
     document.body.appendChild(translateAnimation);
@@ -577,6 +491,6 @@ function handleTranslationAnimation() {
     }, 100);
 
     setTimeout(() => {
-        translateAnimation.remove();
-    }, 1100);
-}
+        window.location.href = 'index-ar.html';
+    }, 600);
+});

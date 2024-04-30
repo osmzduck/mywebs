@@ -381,8 +381,6 @@ function triggerConfetti() {
     setTimeout(() => confetti.clear(), 5000);  // Stop confetti after 5 seconds
 }
 
-// Attach event handler to secret link or button
-document.getElementById('interactive-link').addEventListener('click', openGameModal);
 // Add these functions to the end of your scripts.js file
 function openGameModal() {
     const modal = document.getElementById('game-modal');

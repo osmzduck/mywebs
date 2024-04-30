@@ -548,3 +548,19 @@ function showCelebration() {
         confetti.clear();
     }, 5000);
 }
+
+window.addEventListener('load', function() {
+    const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+    scrollRevealElements.forEach(element => {
+        element.classList.remove('no-reveal');
+    });
+
+    ScrollReveal().reveal('.scroll-reveal', {
+        duration: 1000,
+        easing: 'ease-in-out',
+        distance: '20px',
+        interval: 200,
+        scale: 0.9,
+        viewFactor: 0.2
+    });
+});

@@ -371,7 +371,7 @@ function decryptMessage() {
         decryptedMessage = "The secret to success is consistency.";
         document.getElementById('decrypted-message').textContent = decryptedMessage;
         triggerConfetti();
-        showCelebration(); // Add this line to trigger the theatre and light animation
+        showCelebration(); // Add this line to trigger the animations
     } else {
         document.getElementById('decrypted-message').textContent = "Wrong key, try again!";
     }
@@ -510,17 +510,19 @@ function showCelebration() {
     const modalOverlay = document.querySelector('.modal-overlay');
     const spotlight = document.querySelector('.spotlight');
     const confettiCanvas = document.querySelector('.confetti');
-    
+    const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-audience-light-applause-354.mp3');
+
     modalOverlay.classList.add('show');
     spotlight.classList.add('show');
     audio.play();
 
-    const confettiSettings = { target: confettiCanvas };
+    const confettiSettings = { target: confettiCanvas, size: 2, rotate: true, max: 300 };
     const confetti = new ConfettiGenerator(confettiSettings);
     confetti.render();
 
     setTimeout(() => {
         modalOverlay.classList.remove('show');
         spotlight.classList.remove('show');
+        confetti.clear();
     }, 5000);
 }

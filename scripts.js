@@ -96,16 +96,17 @@ const closeButton = document.getElementById('close-button');
 
 const messages = [
     "Welcome to Essam Turki's interactive CV!",
-    "Explore the world of cybersecurity and IT.",
-    "Discover the power of knowledge and skills.",
-    "Join the fight against the digital dark arts!",
-    "Thank you for your interest. Until next time!"
+    "im just typing random stuff to make you think you are entertaned!",
+    "maybe click the hacker guy icon up top?!",
+    "you might beat the hidden game!",
+    "oops i think i shouldn've told you about it if it was a hidden game."
+    "eh who cares. UNTIL NEXT TIME !"
 ];
 
 let currentMessageIndex = 0;
 let currentMessage = '';
 let isDeleting = false;
-let typingSpeed = 100;
+let typingSpeed = 300;
 
 function typeMessage() {
     const currentChar = messages[currentMessageIndex].charAt(currentMessage.length);
@@ -117,7 +118,7 @@ function typeMessage() {
     typingEffect.textContent = currentMessage;
     typingSpeed = isDeleting ? 30 : 100;
     if (!isDeleting && currentMessage === messages[currentMessageIndex]) {
-        typingSpeed = 2000;
+        typingSpeed = 5000;
         isDeleting = true;
     } else if (isDeleting && currentMessage === '') {
         isDeleting = false;
@@ -134,7 +135,7 @@ interactiveLink.addEventListener('click', () => {
     interactiveContent.style.display = 'block';
     setTimeout(typeMessage, 1000);
     setTimeout(() => {
-        secretMessage.textContent = "Shh... Cybersecurity is not just a job, it's a lifestyle!";
+        secretMessage.textContent = "Shh... go beat the hacker icon game. its hidden! ";
         secretMessage.style.opacity = '1';
     }, 8000);
 });
@@ -146,6 +147,8 @@ closeButton.addEventListener('click', () => {
     isDeleting = false;
     secretMessage.style.opacity = '0';
 });
+
+// Attach event handler to the decrypt game icon
 document.querySelector('.secret-game.game-link').addEventListener('click', openGameModal);
 
 // Background particles

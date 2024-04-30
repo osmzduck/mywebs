@@ -304,12 +304,13 @@ form.addEventListener('submit', (event) => {
 });
 
 // Smooth scrolling
+
 document.addEventListener('DOMContentLoaded', function() {
     const scrollArrow = document.querySelector('.scroll-arrow');
     const aboutSection = document.querySelector('#about');
 
     scrollArrow.addEventListener('click', function() {
-        aboutSection.scrollIntoView({ behavior: 'smooth'                              
+        aboutSection.scrollIntoView({ behavior: 'smooth' });
     });
 });
 
@@ -510,21 +511,22 @@ translatorBtn.addEventListener('click', () => {
         body.removeChild(translateAnimation);
     }, 1100);
 });
+
 const translatorLink = document.getElementById('translator-link');
 
 translatorLink.addEventListener('click', function(e) {
     e.preventDefault();
 
-    const translateAnimation = document.createElement('div');
-    translateAnimation.classList.add('translate-animation');
-    document.body.appendChild(translateAnimation);
+    // Disable scroll reveal
+    const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+    scrollRevealElements.forEach(element => {
+        element.classList.add('no-reveal');
+    });
+
+    handleTranslationAnimation();
 
     setTimeout(() => {
-        translateAnimation.classList.add('active');
-    }, 100);
-
-    setTimeout(() => {
-        window.location.href = 'index-ar.html';
+        window.location.href = translatorLink.getAttribute('href');
     }, 600);
 });
 
@@ -564,3 +566,17 @@ window.addEventListener('load', function() {
         viewFactor: 0.2
     });
 });
+// Add this function to handle the translation animation
+function handleTranslationAnimation() {
+    const translateAnimation = document.createElement('div');
+    translateAnimation.classList.add('translate-animation');
+    document.body.appendChild(translateAnimation);
+
+    setTimeout(() => {
+        translateAnimation.classList.add('active');
+    }, 100);
+
+    setTimeout(() => {
+        translateAnimation.remove();
+    }, 1100);
+}

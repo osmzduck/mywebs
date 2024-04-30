@@ -1,3 +1,4 @@
+
  body, html {
     margin: 0;
     padding: 0;
@@ -310,7 +311,6 @@ footer {
     color: white;
     font-size: 24px;
     transition: color 0.3s ease;
-    display: inline-block;
 }
 
 .icon:hover {
@@ -375,7 +375,7 @@ h1 span {
     position: absolute;
     width: 8px;
     height: 8px;
-    background-color: rgba(0, 0, 0, 0.0);
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 50%;
     animation: cursorParticleAnimation 1s ease-out;
 }
@@ -547,22 +547,18 @@ h1 span {
 }
 
 .game-link::after {
-    content: 'Decrypt The Hidden Game !';
+    content: 'Decrypt the hidden game!';
     position: absolute;
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    padding: 6px 12px;
+    padding: 3px 6px;
     background-color: #007BFF;
     color: white;
-    border-radius: 5px;
+    border-radius: 2px;
     opacity: 0;
     transition: opacity 0.2s ease;
     white-space: nowrap;
-    font-size: 14px;
-    line-height: 1.2;
-    text-align: center;
-    z-index: 1;
 }
 
 .game-link:hover::after {

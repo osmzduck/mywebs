@@ -146,6 +146,7 @@ closeButton.addEventListener('click', () => {
     isDeleting = false;
     secretMessage.style.opacity = '0';
 });
+document.querySelector('.secret-game.game-link').addEventListener('click', openGameModal);
 
 // Background particles
 particlesJS('background-particles', {

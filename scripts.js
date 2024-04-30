@@ -273,7 +273,6 @@ document.addEventListener('mousemove', (event) => {
     particle.classList.add('cursor-particle');
     particle.style.left = `${event.clientX}px`;
     particle.style.top = `${event.clientY}px`;
-    particle.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;  // Colorful particles
     cursorTrail.appendChild(particle);
     trailParticles.push(particle);
 

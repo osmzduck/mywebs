@@ -405,7 +405,7 @@ h1 span {
     transition: opacity 1s ease, transform 1s ease;
 }
 
-.section-reveal.active {
+.section-reveal.active, .timeline-block.active {
     opacity: 1;
     transform: translateY(0);
 }

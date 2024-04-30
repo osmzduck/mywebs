@@ -489,7 +489,6 @@ translatorLink.addEventListener('click', function(e) {
         window.location.href = 'index-ar.html';
     }, 600);
 });
-
 const interactiveLines = document.querySelectorAll('.interactive-line');
 
 document.addEventListener('mousemove', (event) => {

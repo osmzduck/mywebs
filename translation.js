@@ -14,4 +14,7 @@ translatorLink.addEventListener('click', function(e) {
     setTimeout(() => {
         window.location.href = translatorLink.getAttribute('href');
     }, 600);
+        translateAnimation.addEventListener('transitionend', () => {
+        window.location.href = translatorLink.getAttribute('href');
+    }, { once: true });
 });

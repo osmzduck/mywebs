@@ -293,6 +293,7 @@ form.addEventListener('submit', (event) => {
         confetti.clear();
     }, 30000);
     form.reset();
+    decryptButton.addEventListener('click', decryptMessage);
 });
 
 // Smooth scrolling
@@ -370,7 +371,7 @@ function decryptMessage() {
         document.getElementById('decrypted-message').textContent = decryptedMessage;
         triggerConfetti();
         shakeModal();
-        setTimeout(triggerConfettiOnModal, 1000); // Trigger confetti on modal after 1 second
+        setTimeout(triggerConfettiOnModal, 5000); // Trigger confetti on modal after 1 second
     } else {
         decryptedMessage = "Incorrect key. Please try again.";
         document.getElementById('decrypted-message').textContent = decryptedMessage;
@@ -491,3 +492,24 @@ translatorLink.addEventListener('click', function(e) {
         window.location.href = 'index-ar.html';
     }, 600);
 });
+
+function showCelebration() {
+    const modalOverlay = document.querySelector('.modal-overlay');
+    const spotlight = document.querySelector('.spotlight');
+    const confettiCanvas = document.querySelector('.confetti');
+    const audio = new Audio('path/to/clapping-sound.mp3');
+
+    modalOverlay.classList.add('show');
+    spotlight.classList.add('show');
+    audio.play();
+
+    const confettiSettings = { target: confettiCanvas };
+    const confetti = new ConfettiGenerator(confettiSettings);
+    confetti.render();
+
+    setTimeout(() => {
+        modalOverlay.classList.remove('show');
+        spotlight.classList.remove('show');
+        confetti.clear();
+    }, 5000);
+}

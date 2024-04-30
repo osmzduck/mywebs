@@ -723,3 +723,8 @@ h1 span {
 .translate-animation.active::before {
     transform: scaleY(1);
 }
+
+.scroll-reveal.no-reveal {
+    opacity: 1;
+    transform: none;
+}

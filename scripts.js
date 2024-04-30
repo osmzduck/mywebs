@@ -10,7 +10,6 @@ window.addEventListener('scroll', function() {
     document.body.style.backgroundColor = `rgba(106, 17, 203, ${1 - scrolled / 1000})`;
 });
 
-// Reveal sections on scroll
 function revealSections() {
     const sections = document.querySelectorAll('.section-reveal');
     sections.forEach(section => {
@@ -30,8 +29,7 @@ function revealTimelineBlocks() {
         const blockTop = block.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
         if (blockTop < windowHeight * 0.8) {
-            block.style.transform = 'translateX(0)';
-            block.style.opacity = '1';
+            block.classList.add('active');
         }
     });
 }
@@ -366,20 +364,19 @@ function closeGameModal() {
 }
 
 function decryptMessage() {
-    const key = document.getElementById('decrypt-key').value;
+    const key = document.getElementById('decryption-key').value.trim().toLowerCase();
+    const encryptedMessage = "Uif tfdsfu up tvddftt jt dpotjtufodz.";
     let decryptedMessage = '';
 
-    if (key.toLowerCase() === 'consistency') {
+    if (key === 'consistency') {
         decryptedMessage = "The secret to success is consistency.";
         document.getElementById('decrypted-message').textContent = decryptedMessage;
-        triggerConfetti();
-        shakeModal();
-        setTimeout(triggerConfettiOnModal, 1000); // Trigger confetti on modal after 1 second
+        triggerConfettiOnModal();
     } else {
-        decryptedMessage = "Incorrect key. Please try again.";
-        document.getElementById('decrypted-message').textContent = decryptedMessage;
+        document.getElementById('decrypted-message').textContent = "Wrong key, try again!";
     }
 }
+
 function triggerConfetti() {
     // Assume confetti.js is already included
     const confettiSettings = { target: 'confetti-canvas', width: 800, height: 600 };

@@ -382,7 +382,7 @@ h1 span {
     position: absolute;
     width: 8px;
     height: 8px;
-    background-color: rgba(0, 0, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 50%;
     animation: cursorParticleAnimation 1s ease-out;
 }
@@ -436,7 +436,7 @@ h1 span {
 .timeline-container {
     position: relative;
     padding-left: 20px;
-    border-left: 2px solid #007BFF;
+    border-left: 2px solid #FFFFFF;
 }
 .timeline-block {
     margin-bottom: 20px;
@@ -444,7 +444,7 @@ h1 span {
 .timeline-date {
     margin-bottom: 5px;
     font-weight: bold;
-    color: #007BFF;
+    color: #FFFFFF;
 }
 .modal {
     display: none;

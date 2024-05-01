@@ -49,10 +49,17 @@ const closePreviewButton = certificatePreview.querySelector('.close-preview');
 certificates.forEach(certificate => {
     certificate.addEventListener('click', () => {
         const imageSrc = certificate.querySelector('img').getAttribute('src');
+        const cleanedSrc = imageSrc.replace('https://i.ibb.co/', 'https://ibb.co/').split('/')[0];
         certificatePreviewImage.setAttribute('src', imageSrc);
+        certificatePreviewImage.setAttribute('data-source', cleanedSrc);
         certificatePreview.style.display = 'flex';
-        certificatePreview.classList.add('active');
     });
+});
+
+certificatePreviewImage.addEventListener('click', () => {
+    const sourceUrl = certificatePreviewImage.getAttribute('data-source');
+    window.open(sourceUrl, '_blank');
+});
 
     certificate.addEventListener('mouseenter', () => {
         gsap.to(certificate, {

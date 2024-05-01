@@ -56,6 +56,10 @@ certificates.forEach(certificate => {
     });
 });
 
+closePreviewButton.addEventListener('click', () => {
+    certificatePreview.style.display = 'none';
+});
+
 certificatePreviewImage.addEventListener('click', () => {
     const sourceUrl = certificatePreviewImage.getAttribute('data-source');
     window.open(sourceUrl, '_blank');

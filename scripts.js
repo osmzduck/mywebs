@@ -81,6 +81,7 @@ closePreviewButton.addEventListener('click', () => {
 
 // Interactive secret message
 const interactiveLink = document.getElementById('interactive-link');
+const secretMessageOverlay = document.getElementById('secret-message-overlay');
 const interactiveOverlay = document.getElementById('interactive-overlay');
 const interactiveContent = document.getElementById('interactive-content');
 const typingEffectElement = document.getElementById('typing-effect');
@@ -88,6 +89,7 @@ const secretMessageElement = document.getElementById('secret-message');
 const closeButton = document.getElementById('close-button');
 
 interactiveLink.addEventListener('click', () => {
+    secretMessageOverlay.style.display = 'block';
     interactiveOverlay.style.display = 'block';
     interactiveContent.style.display = 'block';
     interactiveContent.classList.add('active');
@@ -95,6 +97,7 @@ interactiveLink.addEventListener('click', () => {
 });
 
 closeButton.addEventListener('click', () => {
+    secretMessageOverlay.style.display = 'none';
     interactiveOverlay.style.display = 'none';
     interactiveContent.style.display = 'none';
     interactiveContent.classList.remove('active');
@@ -195,6 +198,7 @@ const modalConfettiSettings = { target: modalConfettiCanvas };
 const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
 
 function openGameModal() {
+    gameModal.style.display = 'block';
     gameModal.style.display = 'flex';
     gameModal.classList.add('show');
     setTimeout(() => {

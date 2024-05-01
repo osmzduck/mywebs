@@ -1,54 +1,77 @@
 body {
-    background: linear-gradient(to left, #000000, #333333);
+    background: linear-gradient(to left, #6a11cb, #2575fc);
     color: white;
 }
 
 .container {
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
 }
 
 header {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.1);
 }
 
 section {
-    border-right: 5px solid #ffffff;
+    border-right: 5px solid #007BFF; /* Adjusted for RTL */
+    transition: all 0.5s ease;
 }
 
 section:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 123, 255, 0.1);
 }
 
 .skill {
-    background-color: #ffffff;
-    color: black;
+    background-color: #007BFF;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.skill:hover {
+    transform: scale(1.1);
 }
 
 form input, form textarea {
-    border: 1px solid #ffffff;
+    border: 1px solid #007BFF;
+}
+
+form input:focus, form textarea:focus {
+    border-color: #0056b3;
+    outline: none;
 }
 
 button {
-    background-color: #ffffff;
-    color: black;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
 }
 
 #interactive-link {
-    background-color: #ffffff;
-    color: black;
+    background-color: #ff4081;
+    color: white;
 }
 
 #interactive-link:hover {
-    background-color: #cccccc;
+    background-color: #ff0058;
 }
 
 #secret-message {
-    color: #ffffff;
+    color: #ff4081;
 }
 
 footer {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.1);
 }
 
 .icon {
@@ -56,36 +79,43 @@ footer {
 }
 
 .icon:hover {
-    color: #cccccc;
+    color: #ff4081;
 }
 
 .timeline-date {
-    color: #ffffff;
+    color: #007BFF;
 }
 
 .modal-content {
-    background-color: #000000;
+    background-color: #fff;
 }
 
 .input-area input {
-    border: 2px solid #ffffff;
+    border: 2px solid #007BFF;
 }
 
 .input-area button {
-    background-color: #ffffff;
-    color: black;
+    background-color: #007BFF;
+    color: white;
 }
 
 #decrypted-message {
-    color: #ffffff;
+    color: #007BFF;
 }
 
 .game-link::after {
-    background-color: #ffffff;
-    color: black;
+    background-color: #007BFF;
+    color: white;
 }
 
 #translator-link {
-    background-color: #ffffff;
-    color: black;
+    background-color: #007BFF;
+    color: white;
 }
+
+/* Fix for cursor trail effect */
+#cursor-trail {
+    display: none; /* Temporarily hide the cursor trail */
+}
+
+/* Alternatively, to fix the cursor trail effect, adjust the script to create and remove particles correctly. */

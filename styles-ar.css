@@ -1,104 +1,243 @@
-/* Arabic-specific styles */
 body {
+    background: linear-gradient(to left, #000000, #333333);
+    color: white;
     font-family: 'Cairo', sans-serif;
 }
 
+.container {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 header {
-    text-align: right;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    position: relative;
+    overflow: hidden;
 }
 
-.header-icons {
-    margin-top: 20px;
-    display: flex;
-    justify-content: flex-end;
+header::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
+    transform: rotate(45deg);
+    z-index: -1;
+    opacity: 0;
+    animation: headerGlow 3s ease-in-out infinite;
 }
 
-.icon {
-    margin: 0 10px;
+@keyframes headerGlow {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) scale(0.8);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(45deg) scale(1.2);
+    }
 }
 
 section {
-    text-align: right;
+    border-right: 5px solid #ffffff;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
 
-.skills {
-    justify-content: flex-end;
+section.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+section:hover {
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .skill {
-    margin-left: 10px;
-    margin-right: 0;
+    background-color: #ffffff;
+    color: black;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
 
-form {
-    direction: rtl;
+.skill:nth-child(1) {
+    transition-delay: 0.1s;
 }
 
-input,
-textarea {
-    text-align: right;
+.skill:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.skill:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.skill:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+section.active .skill {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+form input,
+form textarea {
+    border: 1px solid #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
 }
 
 button {
-    margin-left: auto;
+    background-color: #ffffff;
+    color: black;
+    transition: background-color 0.3s ease-in-out;
 }
 
-.timeline-container {
-    direction: rtl;
+button:hover {
+    background-color: #cccccc;
 }
 
-.timeline-block {
-    flex-direction: row-reverse;
+#interactive-link {
+    background-color: #ffffff;
+    color: black;
+    transition: background-color 0.3s ease-in-out;
 }
 
-.timeline-date {
-    text-align: left;
-    margin-right: 20px;
+#interactive-link:hover {
+    background-color: #cccccc;
 }
 
-.timeline-block::before {
-    right: 95px;
-    left: auto;
-}
-
-.timeline-block::after {
-    right: 90px;
-    left: auto;
+#secret-message {
+    color: #ffffff;
 }
 
 footer {
-    text-align: right;
+    background: rgba(255, 255, 255, 0.1);
 }
 
-footer nav ul {
-    direction: rtl;
+.icon {
+    color: white;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
 
-footer nav ul li {
-    margin: 0 10px;
+.icon:nth-child(1) {
+    transition-delay: 0.1s;
 }
 
-#interactive-content {
-    text-align: right;
+.icon:nth-child(2) {
+    transition-delay: 0.2s;
 }
 
-#close-button {
-    margin-right: auto;
-    margin-left: 0;
+.icon:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.icon:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+header.active .icon {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.icon:hover {
+    color: #cccccc;
+}
+
+.timeline-date {
+    color: #ffffff;
 }
 
 .modal-content {
-    text-align: right;
+    background-color: #000000;
+    transform: translateY(-30px);
+    transition: transform 0.5s ease-out;
 }
 
-.close {
-    float: left;
+.modal-content::before {
+    background: linear-gradient(45deg, #ffffff, #cccccc);
 }
 
-#decryption-key {
-    text-align: right;
+.modal-content.show {
+    transform: translateY(0);
+}
+
+.input-area input {
+    border: 2px solid #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.input-area button {
+    background-color: #ffffff;
+    color: black;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.input-area button:hover {
+    background-color: #cccccc;
 }
 
 #decrypted-message {
-    text-align: right;
+    color: #ffffff;
+}
+
+.game-link::after {
+    background-color: #ffffff;
+    color: black;
+}
+
+#translator-link {
+    background-color: #ffffff;
+    color: black;
+    transition: transform 0.3s ease-in-out;
+}
+
+#translator-link:hover {
+    transform: scale(1.1);
+}
+
+.translate-animation {
+    background: linear-gradient(to bottom, black 50%, white 50%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.translate-animation.active {
+    opacity: 1;
+}
+
+.translate-animation::before {
+    background: linear-gradient(to bottom, black 50%, white 50%);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.5s ease-in-out;
+}
+
+.translate-animation.active::before {
+    transform: scaleY(1);
 }

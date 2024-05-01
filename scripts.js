@@ -49,6 +49,10 @@ certificates.forEach(certificate => {
         const imageSrc = certificate.querySelector('img').getAttribute('src');
         certificatePreviewImage.setAttribute('src', imageSrc);
         certificatePreview.style.display = 'flex';
+        
+        certificatePreviewImage.addEventListener('click', () => {
+            window.open(imageSrc, '_blank');
+        });
     });
 });
 
@@ -148,8 +152,22 @@ window.addEventListener('click', (e) => {
 
 function decryptMessage() {
     const key = decryptionKey.value.toLowerCase();
+    const encryptedMessage = "Uif tfdsfu up tvddftt jt dpotjtufodz.";
+    const shift = 1;
+    
     if (key === 'consistency') {
-        decryptedMessage.textContent = 'The secret to success is consistency.';
+        let decryptedMessage = "";
+        for (let i = 0; i < encryptedMessage.length; i++) {
+            let charCode = encryptedMessage.charCodeAt(i);
+            if (charCode >= 65 && charCode <= 90) {
+                charCode = ((charCode - 65 - shift + 26) % 26) + 65;
+            } else if (charCode >= 97 && charCode <= 122) {
+                charCode = ((charCode - 97 - shift + 26) % 26) + 97;
+            }
+            decryptedMessage += String.fromCharCode(charCode);
+        }
+        
+        decryptedMessage.textContent = decryptedMessage;
         modalConfetti.render();
         setTimeout(() => {
             modalConfetti.clear();

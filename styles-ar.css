@@ -136,11 +136,22 @@ footer {
     background: rgba(255, 255, 255, 0.1);
 }
 
+.header-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    opacity: 1;
+    animation: fadeIn 1s ease-in-out;
+}
+
 .icon {
     color: white;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    font-size: 24px;
+    transition: color 0.3s ease-in-out;
+    opacity: 1;
+    transform: translateY(0);
+    animation: fadeInDown 1s ease-in-out;
 }
 
 .icon:nth-child(1) {
@@ -165,7 +176,18 @@ header.active .icon {
 }
 
 .icon:hover {
-    color: #cccccc;
+    color: #ff4081;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .timeline-date {

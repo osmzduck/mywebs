@@ -6,6 +6,8 @@
     <title>Essam Turki's CV</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -34,7 +36,7 @@
             <div class="skills">
                 <span class="skill">Cybersecurity</span>
                 <span class="skill">System Administration</span>
-                <span class="skill">Networking</span>
+                <span the="skill">Networking</span>
                 <span class="skill">IT Infrastructure</span>
             </div>
         </section>
@@ -121,15 +123,18 @@
         <div class="modal-content">
             <span class="close" onclick="closeGameModal()">&times;</span>
             <h2>Decrypt the Message!</h2>
-            <p>Find the correct key to decrypt the message.</p>
+            <p>Find the correct key to decrypt the message.
+                = Uif tfdsfu up tvddftt jt dpotjtufodz. </p>
             <div class="input-area">
                 <input type="text" id="decryption-key" placeholder="Enter decryption key...">
                 <button onclick="decryptMessage()">Decrypt</button>
                 <canvas id="modal-confetti-canvas"></canvas>
             </div>
             <p id="decrypted-message"></p>
-            <p>= Uif tfdsfu up tvddftt jt dpotjtufodz.</p>
         </div>
+        <button id="translator-btn" title="Translate to Arabic">
+    <i class="fas fa-language"></i>
+</button>
     </div>
 </body>
 </html>

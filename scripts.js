@@ -191,19 +191,22 @@ const closeModalButton = gameModal.querySelector('.close');
 const decryptionKey = document.getElementById('decryption-key');
 const decryptedMessage = document.getElementById('decrypted-message');
 const modalConfettiCanvas = document.getElementById('modal-confetti-canvas');
-const modalConfetti = new ConfettiGenerator({ target: modalConfettiCanvas });
+const modalConfettiSettings = { target: modalConfettiCanvas };
+const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
 
 function openGameModal() {
     gameModal.style.display = 'flex';
+    gameModal.classList.add('show');
     setTimeout(() => {
-        gameModal.classList.add('show');
+        gameModal.querySelector('.modal-content').classList.add('show');
     }, 100);
 }
 
 function closeGameModal() {
-    gameModal.classList.remove('show');
+    gameModal.querySelector('.modal-content').classList.remove('show');
     setTimeout(() => {
         gameModal.style.display = 'none';
+        gameModal.classList.remove('show');
         decryptionKey.value = '';
         decryptedMessage.textContent = '';
     }, 500);

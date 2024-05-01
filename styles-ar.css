@@ -1,124 +1,104 @@
-/* Arabic-specific Styles */
+/* Arabic-specific styles */
 body {
-    font-family: 'Cairo', Arial, sans-serif;
+    font-family: 'Cairo', sans-serif;
 }
 
-header h1 {
-    font-size: 48px;
-}
-
-section h2 {
-    font-size: 36px;
-}
-
-.timeline-date {
-    right: -100px;
-    left: auto;
-}
-
-.timeline-block::before {
-    right: -20px;
-    left: auto;
-}
-
-.timeline-block::after {
-    right: -25px;
-    left: auto;
-}
-
-/* RTL Adjustments */
-.container {
-    direction: rtl;
-}
-
-.header-icons a {
-    margin: 0 10px;
-}
-
-.skill {
-    margin: 10px;
-}
-
-.timeline-container {
-    padding-right: 120px;
-    padding-left: 0;
-}
-
-.timeline-block {
+header {
     text-align: right;
 }
 
+.header-icons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.icon {
+    margin: 0 10px;
+}
+
+section {
+    text-align: right;
+}
+
+.skills {
+    justify-content: flex-end;
+}
+
+.skill {
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+form {
+    direction: rtl;
+}
+
+input,
+textarea {
+    text-align: right;
+}
+
+button {
+    margin-left: auto;
+}
+
+.timeline-container {
+    direction: rtl;
+}
+
+.timeline-block {
+    flex-direction: row-reverse;
+}
+
+.timeline-date {
+    text-align: left;
+    margin-right: 20px;
+}
+
 .timeline-block::before {
-    right: -20px;
+    right: 95px;
     left: auto;
 }
 
 .timeline-block::after {
-    right: -25px;
+    right: 90px;
     left: auto;
 }
 
-.close-preview {
-    left: 10px;
-    right: auto;
+footer {
+    text-align: right;
 }
 
-/* Arabic-specific Hover Effects */
-.header-icons a:hover {
-    transform: scale(1.2);
+footer nav ul {
+    direction: rtl;
 }
 
-.skill:hover {
-    transform: scale(1.1) rotate(5deg);
+footer nav ul li {
+    margin: 0 10px;
 }
 
-.certificate:hover {
-    transform: scale(1.05) rotate(-3deg);
+#interactive-content {
+    text-align: right;
 }
 
-button[type="submit"]:hover {
-    transform: scale(1.1);
+#close-button {
+    margin-right: auto;
+    margin-left: 0;
 }
 
-#close-button:hover {
-    transform: scale(1.1);
+.modal-content {
+    text-align: right;
 }
 
-.close-preview:hover {
-    transform: scale(1.2);
+.close {
+    float: left;
 }
 
-/* Arabic-specific Animations */
-@keyframes scrollBounceAR {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-10px) rotate(5deg);
-    }
-    60% {
-        transform: translateY(-5px) rotate(-5deg);
-    }
+#decryption-key {
+    text-align: right;
 }
 
-.scroll-circle {
-    animation: scrollBounceAR 2s infinite;
-}
-
-@keyframes scrollArrowAR {
-    0% {
-        opacity: 0;
-        transform: rotate(225deg) translate(5px, 5px);
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        transform: rotate(225deg) translate(-5px, -5px);
-    }
-}
-
-.scroll-arrow {
-    animation: scrollArrowAR 1s infinite;
+#decrypted-message {
+    text-align: right;
 }

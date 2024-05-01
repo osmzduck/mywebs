@@ -24,6 +24,7 @@ function revealSection(entries, observer) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('active');
+            observer.unobserve(entry.target);
         }
     });
 }
@@ -35,289 +36,264 @@ const sectionObserver = new IntersectionObserver(revealSection, {
 
 sections.forEach(section => {
     sectionObserver.observe(section);
+    section.classList.add('section-hidden');
+});
+
+// Certificate hover effect
+const certificates = document.querySelectorAll('.certificate');
+const certificatePreview = document.getElementById('certificate-preview');
+const certificatePreviewImage = certificatePreview.querySelector('img');
+const closePreviewButton = certificatePreview.querySelector('.close-preview');
+
+certificates.forEach(certificate => {
+    certificate.addEventListener('click', () => {
+        const imageSrc = certificate.querySelector('img').getAttribute('src');
+        certificatePreviewImage.setAttribute('src', imageSrc);
+        certificatePreview.style.display = 'flex';
+        certificatePreview.classList.add('active');
+    });
+
+    certificate.addEventListener('mouseenter', () => {
+        gsap.to(certificate, {
+            duration: 0.3,
+            scale: 1.05,
+            rotationX: 10,
+            rotationY: 10,
+            ease: 'power1.inOut'
+        });
+    });
+
+    certificate.addEventListener('mouseleave', () => {
+        gsap.to(certificate, {
+            duration: 0.3,
+            scale: 1,
+            rotationX: 0,
+            rotationY: 0,
+            ease: 'power1.inOut'
+        });
+    });
+});
+
+closePreviewButton.addEventListener('click', () => {
+    certificatePreview.style.display = 'none';
+    certificatePreview.classList.remove('active');
 });
 
 // Interactive secret message
 const interactiveLink = document.getElementById('interactive-link');
 const interactiveOverlay = document.getElementById('interactive-overlay');
 const interactiveContent = document.getElementById('interactive-content');
-const typingEffect = document.getElementById('typing-effect');
-const secretMessage = document.getElementById('secret-message');
+const typingEffectElement = document.getElementById('typing-effect');
+const secretMessageElement = document.getElementById('secret-message');
 const closeButton = document.getElementById('close-button');
 
 interactiveLink.addEventListener('click', () => {
-    interactiveOverlay.style.display = 'flex';
-    setTimeout(() => {
-        typingEffect.textContent = 'Decoding secret message...';
-        typingEffect.classList.add('typing-effect');
-        setTimeout(() => {
-            typingEffect.textContent = 'Message decoded!';
-            setTimeout(() => {
-                secretMessage.textContent = 'Congratulations! You found the secret message. Keep exploring and never stop learning!';
-                secretMessage.style.opacity = 1;
-            }, 1000);
-        }, 2000);
-    }, 500);
+    interactiveOverlay.style.display = 'block';
+    interactiveContent.style.display = 'block';
+    interactiveContent.classList.add('active');
+    startTypingEffect();
 });
 
 closeButton.addEventListener('click', () => {
     interactiveOverlay.style.display = 'none';
-    typingEffect.textContent = '';
-    typingEffect.classList.remove('typing-effect');
-    secretMessage.textContent = '';
-    secretMessage.style.opacity = 0;
+    interactiveContent.style.display = 'none';
+    interactiveContent.classList.remove('active');
+    typingEffectElement.textContent = '';
+    secretMessageElement.textContent = '';
 });
 
-// Certificate preview
-const certificates = document.querySelectorAll('.certificate');
-const certificatePreview = document.getElementById('certificate-preview');
-const certificateImage = certificatePreview.querySelector('img');
-const closePreview = document.querySelector('.close-preview');
+function startTypingEffect() {
+    const text = "You've stumbled upon a secret! Congratulations on finding it. As a reward, here's a hidden message: Success is not final, failure is not fatal: it is the courage to continue that counts. Keep exploring and unraveling the mysteries!";
+    let i = 0;
+    const typingSpeed = 50;
 
-certificates.forEach(certificate => {
-    certificate.addEventListener('click', () => {
-        const imgSrc = certificate.querySelector('img').getAttribute('src');
-        certificateImage.setAttribute('src', imgSrc);
-        certificatePreview.style.display = 'flex';
-    });
-});
-
-closePreview.addEventListener('click', () => {
-    certificatePreview.style.display = 'none';
-});
-
-// Background particles
-particlesJS('background-particles', {
-    particles: {
-        number: {
-            value: 80,
-            density: {
-                enable: true,
-                value_area: 800
-            }
-        },
-        color: {
-            value: '#ffffff'
-        },
-        shape: {
-            type: 'circle',
-            stroke: {
-                width: 0,
-                color: '#000000'
-            },
-            polygon: {
-                nb_sides: 5
-            }
-        },
-        opacity: {
-            value: 0.5,
-            random: false,
-            anim: {
-                enable: false,
-                speed: 1,
-                opacity_min: 0.1,
-                sync: false
-            }
-        },
-        size: {
-            value: 3,
-            random: true,
-            anim: {
-                enable: false,
-                speed: 40,
-                size_min: 0.1,
-                sync: false
-            }
-        },
-        line_linked: {
-            enable: true,
-            distance: 150,
-            color: '#ffffff',
-            opacity: 0.4,
-            width: 1
-        },
-        move: {
-            enable: true,
-            speed: 6,
-            direction: 'none',
-            random: false,
-            straight: false,
-            out_mode: 'out',
-            bounce: false,
-            attract: {
-                enable: false,
-                rotateX: 600,
-                rotateY: 1200
-            }
+    function typeNextCharacter() {
+        if (i < text.length) {
+            typingEffectElement.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeNextCharacter, typingSpeed);
+        } else {
+            setTimeout(() => {
+                gsap.to(secretMessageElement, {
+                    duration: 1,
+                    opacity: 1,
+                    y: 0,
+                    ease: 'power2.out',
+                    onComplete: () => {
+                        confetti({
+                            particleCount: 100,
+                            spread: 70,
+                            origin: { y: 0.6 },
+                            zIndex: 9999
+                        });
+                    }
+                });
+                secretMessageElement.textContent = "🎉 Congratulations on discovering the secret message! 🎉";
+            }, 1000);
         }
-    },
-    interactivity: {
-        detect_on: 'canvas',
-        events: {
-            onhover: {
-                enable: true,
-                mode: 'repulse'
-            },
-            onclick: {
-                enable: true,
-                mode: 'push'
-            },
-            resize: true
-        },
-        modes: {
-            grab: {
-                distance: 400,
-                line_linked: {
-                    opacity: 1
-                }
-            },
-            bubble: {
-                distance: 400,
-                size: 40,
-                duration: 2,
-                opacity: 8,
-                speed: 3
-            },
-            repulse: {
-                distance: 200,
-                duration: 0.4
-            },
-            push: {
-                particles_nb: 4
-            },
-            remove: {
-                particles_nb: 2
-            }
-        }
-    },
-    retina_detect: true
-});
+    }
+
+    typeNextCharacter();
+}
+
+// Background particles effect
+particlesJS.load('background-particles', 'particles-config.json');
 
 // Cursor trail effect
 const cursorTrail = document.getElementById('cursor-trail');
-let trailElements = [];
+let mouseX = 0;
+let mouseY = 0;
 
-function createTrailElement(x, y) {
-    const element = document.createElement('div');
-    element.className = 'trail-element';
-    element.style.left = x + 'px';
-    element.style.top = y + 'px';
-    cursorTrail.appendChild(element);
-    trailElements.push(element);
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
 
-    setTimeout(() => {
-        element.remove();
-        trailElements = trailElements.filter(trail => trail !== element);
-    }, 1000);
+function createTrailParticle() {
+    const particle = document.createElement('div');
+    particle.className = 'cursor-particle';
+    particle.style.left = mouseX + 'px';
+    particle.style.top = mouseY + 'px';
+    cursorTrail.appendChild(particle);
+
+    gsap.to(particle, {
+        duration: 1,
+        scale: 0,
+        opacity: 0,
+        ease: 'power2.out',
+        onComplete: () => {
+            particle.remove();
+        }
+    });
 }
 
-document.addEventListener('mousemove', (event) => {
-    const x = event.clientX;
-    const y = event.clientY;
-    createTrailElement(x, y);
-});
+setInterval(createTrailParticle, 50);
 
-// Confetti effect
+// Confetti effect on form submission
+const form = document.querySelector('form');
 const confettiCanvas = document.getElementById('confetti-canvas');
-const confetti = new ConfettiGenerator({
-    target: confettiCanvas,
-    max: 100,
-    size: 1,
-    animate: true,
-    props: ['circle', 'square', 'triangle', 'line'],
-    colors: [
-        [165, 104, 246],
-        [230, 61, 135],
-        [0, 199, 228],
-        [253, 214, 126]
-    ],
-    clock: 25,
-    rotate: true,
-    width: window.innerWidth,
-    height: window.innerHeight
+const confettiSettings = { target: confettiCanvas };
+const confetti = new ConfettiGenerator(confettiSettings);
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    confetti.render();
+
+    setTimeout(() => {
+        confetti.clear();
+        form.reset();
+    }, 3000);
 });
 
-// Game modal
+// Secret game modal
 const gameModal = document.getElementById('game-modal');
-const closeGameModal = document.querySelector('.close');
+const closeModalButton = gameModal.querySelector('.close');
 const decryptionKey = document.getElementById('decryption-key');
 const decryptedMessage = document.getElementById('decrypted-message');
 const modalConfettiCanvas = document.getElementById('modal-confetti-canvas');
-const modalConfetti = new ConfettiGenerator({
-    target: modalConfettiCanvas,
-    max: 100,
-    size: 1,
-    animate: true,
-    props: ['circle', 'square', 'triangle', 'line'],
-    colors: [
-        [165, 104, 246],
-        [230, 61, 135],
-        [0, 199, 228],
-        [253, 214, 126]
-    ],
-    clock: 25,
-    rotate: true,
-    width: gameModal.offsetWidth,
-    height: gameModal.offsetHeight
-});
+const modalConfettiSettings = { target: modalConfettiCanvas };
+const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
 
 function openGameModal() {
-    gameModal.style.display = 'block';
+    gameModal.style.display = 'flex';
+    gameModal.classList.add('show');
+    setTimeout(() => {
+        gameModal.querySelector('.modal-content').classList.add('show');
+    }, 100);
 }
 
 function closeGameModal() {
-    gameModal.style.display = 'none';
-    decryptionKey.value = '';
-    decryptedMessage.textContent = '';
-    modalConfetti.clear();
+    gameModal.querySelector('.modal-content').classList.remove('show');
+    setTimeout(() => {
+        gameModal.style.display = 'none';
+        gameModal.classList.remove('show');
+        decryptionKey.value = '';
+        decryptedMessage.textContent = '';
+    }, 500);
 }
+
+closeModalButton.addEventListener('click', closeGameModal);
+window.addEventListener('click', (e) => {
+    if (e.target === gameModal) {
+        closeGameModal();
+    }
+});
 
 function decryptMessage() {
     const key = decryptionKey.value.toLowerCase();
     if (key === 'consistency') {
         decryptedMessage.textContent = 'The secret to success is consistency.';
         modalConfetti.render();
+
+        setTimeout(() => {
+            modalConfetti.clear();
+        }, 3000);
     } else {
-        decryptedMessage.textContent = 'Wrong key. Try again!';
+        decryptedMessage.textContent = 'Wrong decryption key. Try again!';
     }
 }
 
-// GSAP animations
-gsap.from('header', {
-    duration: 1,
-    y: -100,
-    opacity: 0,
-    ease: 'power2.out'
-});
-
-gsap.from('.scroll-down', {
-    duration: 1,
-    y: 100,
-    opacity: 0,
-    ease: 'power2.out',
-    delay: 0.5
-});
-
-gsap.from('.section-reveal', {
-    duration: 1,
-    y: 100,
-    opacity: 0,
-    ease: 'power2.out',
-    stagger: 0.3,
-    scrollTrigger: {
-        trigger: '.section-reveal',
-        start: 'top 80%'
+// Shake animation on wrong decryption key
+decryptionKey.addEventListener('input', () => {
+    if (decryptionKey.value.toLowerCase() !== 'consistency') {
+        gameModal.querySelector('.modal-content').classList.add('shake');
+        setTimeout(() => {
+            gameModal.querySelector('.modal-content').classList.remove('shake');
+        }, 500);
     }
 });
 
-gsap.from('.timeline-block', {
-    duration: 1,
-    x: -100,
-    opacity: 0,
-    ease: 'power2.out',
-    stagger: 0.3,
-    scrollTrigger: {
-        trigger: '.timeline-block',
-        start: 'top 80%'
-    }
+// Text animation for section titles
+const sectionTitles = document.querySelectorAll('h2');
+
+sectionTitles.forEach(title => {
+    const letters = title.textContent.split('');
+    title.textContent = '';
+
+    letters.forEach((letter, index) => {
+        const span = document.createElement('span');
+        span.textContent = letter;
+        span.style.animationDelay = `${index * 0.1}s`;
+        title.appendChild(span);
+    });
+});
+
+// Timeline animation
+const timelineBlocks = document.querySelectorAll('.timeline-block');
+
+function animateTimelineBlock(entries, observer) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+        }
+    });
+}
+
+const timelineObserver = new IntersectionObserver(animateTimelineBlock, {
+    root: null,
+    threshold: 0.5
+});
+
+timelineBlocks.forEach(block => {
+    timelineObserver.observe(block);
+});
+
+// Language translation animation
+const translatorLink = document.getElementById('translator-link');
+
+translatorLink.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    const translateAnimation = document.createElement('div');
+    translateAnimation.classList.add('translate-animation');
+    document.body.appendChild(translateAnimation);
+
+    setTimeout(() => {
+        translateAnimation.classList.add('active');
+    }, 100);
+
+    setTimeout(() => {
+        window.location.href = translatorLink.getAttribute('href');
+    }, 600);
 });

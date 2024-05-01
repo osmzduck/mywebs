@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>السيرة الذاتية لعصام لتركي</title>
-     <link rel="stylesheet" href="styles.css">
-     <link rel="stylesheet" href="styles-ar.css">
+    <title>السيرة الذاتية لعصام تركي</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-ar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -125,15 +126,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeGameModal()">&times;</span>
             <h2>فك تشفير الرسالة!</h2>
-                        <p>ابحث عن المفتاح الصحيح لفك تشفير الرسالة.</p>
-            <div class="input-area">
-                <input type="text" id="decryption-key" placeholder="أدخل مفتاح فك التشفير...">
-                <button onclick="decryptMessage()">فك التشفير</button>
-                <canvas id="modal-confetti-canvas"></canvas>
-            </div>
-            <p id="decrypted-message"></p>
-                    <p>ابحث عن المفتاح الصحيح لفك تشفير الرسالة.
-                = Uif tfdsfu up tvddftt jt dpotjtufodz. </p>
+            <p>ابحث عن المفتاح الصحيح لفك تشفير الرسالة.</p>
             <div class="input-area">
                 <input type="text" id="decryption-key" placeholder="أدخل مفتاح فك التشفير...">
                 <button onclick="decryptMessage()">فك التشفير</button>
@@ -142,6 +135,5 @@
             <p id="decrypted-message"></p>
         </div>
     </div>
-    <script src="translation.js"></script>
 </body>
 </html>

@@ -35,13 +35,13 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* Keyframes for animations */
+/* Animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Scroll down button */
+/* Scroll Down Icon */
 .scroll-down {
     position: relative;
     margin: 20px auto;
@@ -82,12 +82,13 @@ h2 {
     50% { transform: scale(1.2); opacity: 1; }
 }
 
-/* Section styling */
+/* Sections */
 section {
     margin: 20px 0;
     padding: 20px;
     border-left: 5px solid #007BFF;
     transition: all 0.5s ease;
+    background: rgba(255, 255, 255, 0.1); /* Improved visibility */
 }
 
 section:hover {
@@ -115,7 +116,7 @@ section:hover {
     transform: scale(1.1);
 }
 
-/* Certificate gallery */
+/* Certificates */
 .certificate-gallery {
     display: flex;
     flex-wrap: wrap;
@@ -169,7 +170,7 @@ section:hover {
     padding: 10px;
 }
 
-/* Certificate preview modal */
+/* Certificate Preview */
 #certificate-preview {
     position: fixed;
     top: 0;
@@ -200,7 +201,7 @@ section:hover {
     cursor: pointer;
 }
 
-/* Form styling */
+/* Form Styles */
 form input, form textarea {
     width: 100%;
     padding: 10px;
@@ -229,7 +230,7 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Interactive link styling */
+/* Interactive Link */
 #interactive-link {
     display: inline-block;
     padding: 5px 10px;
@@ -244,7 +245,7 @@ button:hover {
     background-color: #ff0058;
 }
 
-/* Interactive overlay and content */
+/* Interactive Overlay */
 #interactive-overlay {
     position: fixed;
     top: 0;
@@ -285,7 +286,7 @@ button:hover {
     margin-top: 20px;
 }
 
-/* Footer styling */
+/* Footer Styles */
 footer {
     text-align: center;
     padding: 10px;
@@ -322,14 +323,35 @@ h1 span {
     opacity: 0;
 }
 
+@keyframes bounce {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    60% {
+        transform: translateY(20px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 .container.shake {
     animation: shake 0.5s;
 }
 
 @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
-    20%, 40%, 60%, 80% { transform: translateX(10px); }
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-10px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(10px);
+    }
 }
 
 #background-particles {
@@ -359,8 +381,14 @@ h1 span {
 }
 
 @keyframes cursorParticleAnimation {
-    0% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(0); opacity: 0; }
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
 }
 
 .section-reveal {
@@ -403,17 +431,14 @@ h1 span {
     padding-left: 20px;
     border-left: 2px solid #007BFF;
 }
-
 .timeline-block {
     margin-bottom: 20px;
 }
-
 .timeline-date {
     margin-bottom: 5px;
     font-weight: bold;
     color: #007BFF;
 }
-
 .modal {
     display: none;
     position: fixed;
@@ -453,6 +478,7 @@ h1 span {
     z-index: -1;
 }
 
+
 .modal.show {
     display: block;
     opacity: 1;
@@ -485,83 +511,102 @@ h1 span {
     transition: background-color 0.3s ease;
 }
 
-
 #decrypted-message {
     margin-top: 20px;
-    color: #007BFF; /* Adjusted the color code for consistency */
-    font-size: 18px;
-    text-align: center;
-    transition: color 0.3s ease;
-}
-
-/* Additional styles for better visual appeal and interactivity */
-#game-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 500px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
-}
-
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    cursor: pointer;
-    color: #aaa;
-}
-
-.close:hover {
-    color: #333;
-}
-
-.input-area {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.input-area input {
-    width: 70%;
-    padding: 10px;
-    border: 2px solid #007BFF;
-    border-radius: 10px;
-}
-
-.input-area button {
-    width: 25%;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    color: #007BFF;
 }
 
 .input-area button:hover {
     background-color: #0056b3;
 }
 
+.close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #333;
+}
+
+.close:hover {
+    color: #333;
+}
+.game-link {
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.game-link:hover {
+    transform: scale(1.2);
+}
+
+.game-link::after {
+    content: 'Decrypt the hidden game!';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 10px;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.game-link:hover::after {
+    opacity: 1;
+}
+
+#modal-confetti-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+@keyframes slideInFromSide {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.icon.github {
+    animation-delay: 1.2s;
+}
+
+.icon.linkedin {
+    animation-delay: 1.4s;
+}
+
+.icon.twitter {
+    animation-delay: 1.6s;
+}
+
+.icon.secret-game {
+    animation-delay: 1.8s;
+}
+
 #translator-link {
     position: fixed;
     bottom: 10px;
-    right: 10px;
+    right: 23px;
     background-color: #007BFF;
     color: white;
     border: none;
@@ -569,6 +614,7 @@ h1 span {
     border-radius: 50%;
     font-size: 20px;
     cursor: pointer;
+    z-index: 1000;
     transition: transform 0.3s ease;
 }
 

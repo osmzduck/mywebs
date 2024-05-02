@@ -93,7 +93,6 @@ interactiveLink.addEventListener('click', (e) => {
     interactiveContent.style.display = 'block';
     interactiveContent.classList.add('active');
     startTypingEffect();
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 });
 
 closeButton.addEventListener('click', () => {
@@ -232,6 +231,10 @@ function decryptMessage() {
         }, 3000);
     } else {
         decryptedMessage.textContent = 'Wrong decryption key. Try again!';
+        gameModal.querySelector('.modal-content').classList.add('shake');
+        setTimeout(() => {
+            gameModal.querySelector('.modal-content').classList.remove('shake');
+        }, 500);
     }
 }
 
@@ -283,10 +286,9 @@ timelineBlocks.forEach(block => {
 
 // Language translation animation
 const translatorLink = document.getElementById('translator-link');
+const translatorBtn = document.getElementById('translator-btn');
 
-translatorLink.addEventListener('click', function(e) {
-    e.preventDefault();
-
+function translatePage() {
     const translateAnimation = document.createElement('div');
     translateAnimation.classList.add('translate-animation');
     document.body.appendChild(translateAnimation);
@@ -298,4 +300,14 @@ translatorLink.addEventListener('click', function(e) {
     setTimeout(() => {
         window.location.href = translatorLink.getAttribute('href');
     }, 600);
+}
+
+translatorLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    translatePage();
+});
+
+translatorBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    translatePage();
 });

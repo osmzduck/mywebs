@@ -1,3 +1,4 @@
+scripts.js :: 
 // Scroll down arrow animation
 const scrollArrow = document.querySelector('.scroll-arrow');
 const scrollCircle = document.querySelector('.scroll-circle');
@@ -137,9 +138,7 @@ function startTypingEffect() {
 }
 
 // Background particles effect
-particlesJS.load('background-particles', 'particles-config.json', () => {
-    console.log('Particles loaded successfully');
-});
+particlesJS.load('background-particles', 'particles-config.json');
 
 // Cursor trail effect
 const cursorTrail = document.getElementById('cursor-trail');

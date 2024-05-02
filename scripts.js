@@ -20,14 +20,14 @@ window.addEventListener('scroll', () => {
 // Reveal sections on scroll
 const sections = document.querySelectorAll('.section-reveal');
 
-const revealSection = (entries, observer) => {
+function revealSection(entries, observer) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('active');
             observer.unobserve(entry.target);
         }
     });
-};
+}
 
 const sectionObserver = new IntersectionObserver(revealSection, {
     root: null,
@@ -102,12 +102,12 @@ closeButton.addEventListener('click', () => {
     secretMessageElement.textContent = '';
 });
 
-const startTypingEffect = () => {
+function startTypingEffect() {
     const text = "You've stumbled upon a secret! Congratulations on finding it. As a reward, here's a hidden message: Success is not final, failure is not fatal: it is the courage to continue that counts. Keep exploring and unraveling the mysteries!";
     let i = 0;
     const typingSpeed = 50;
 
-    const typeNextCharacter = () => {
+    function typeNextCharacter() {
         if (i < text.length) {
             typingEffectElement.textContent += text.charAt(i);
             i++;
@@ -131,13 +131,15 @@ const startTypingEffect = () => {
                 secretMessageElement.textContent = "🎉 Congratulations on discovering the secret message! 🎉";
             }, 1000);
         }
-    };
+    }
 
     typeNextCharacter();
-};
+}
 
 // Background particles effect
-particlesJS.load('background-particles', 'particles-config.json');
+particlesJS.load('background-particles', 'particles-config.json', () => {
+    console.log('Particles loaded successfully');
+});
 
 // Cursor trail effect
 const cursorTrail = document.getElementById('cursor-trail');
@@ -149,11 +151,11 @@ document.addEventListener('mousemove', (e) => {
     mouseY = e.clientY;
 });
 
-const createTrailParticle = () => {
+function createTrailParticle() {
     const particle = document.createElement('div');
     particle.className = 'cursor-particle';
-    particle.style.left = `${mouseX}px`;
-    particle.style.top = `${mouseY}px`;
+    particle.style.left = mouseX + 'px';
+    particle.style.top = mouseY + 'px';
     cursorTrail.appendChild(particle);
 
     gsap.to(particle, {
@@ -165,7 +167,7 @@ const createTrailParticle = () => {
             particle.remove();
         }
     });
-};
+}
 
 setInterval(createTrailParticle, 50);
 
@@ -193,27 +195,16 @@ const decryptedMessage = document.getElementById('decrypted-message');
 const modalConfettiCanvas = document.getElementById('modal-confetti-canvas');
 const modalConfettiSettings = { target: modalConfettiCanvas };
 const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
-// Add this function to open the game modal
 
 function openGameModal() {
-    gameModal.style.display = 'block';
-}
-
-function closeGameModal() {
-    gameModal.style.display = 'none';
-    decryptionKey.value = '';
-    decryptedMessage.textContent = '';
-}
-
-const openGameModal = () => {
     gameModal.style.display = 'flex';
     gameModal.classList.add('show');
     setTimeout(() => {
         gameModal.querySelector('.modal-content').classList.add('show');
     }, 100);
-};
+}
 
-const closeGameModal = () => {
+function closeGameModal() {
     gameModal.querySelector('.modal-content').classList.remove('show');
     setTimeout(() => {
         gameModal.style.display = 'none';
@@ -221,7 +212,7 @@ const closeGameModal = () => {
         decryptionKey.value = '';
         decryptedMessage.textContent = '';
     }, 500);
-};
+}
 
 closeModalButton.addEventListener('click', closeGameModal);
 window.addEventListener('click', (e) => {
@@ -230,7 +221,7 @@ window.addEventListener('click', (e) => {
     }
 });
 
-const decryptMessage = () => {
+function decryptMessage() {
     const key = decryptionKey.value.toLowerCase();
     if (key === 'consistency') {
         decryptedMessage.textContent = 'The secret to success is consistency.';
@@ -242,7 +233,7 @@ const decryptMessage = () => {
     } else {
         decryptedMessage.textContent = 'Wrong decryption key. Try again!';
     }
-};
+}
 
 // Shake animation on wrong decryption key
 decryptionKey.addEventListener('input', () => {
@@ -272,14 +263,14 @@ sectionTitles.forEach(title => {
 // Timeline animation
 const timelineBlocks = document.querySelectorAll('.timeline-block');
 
-const animateTimelineBlock = (entries, observer) => {
+function animateTimelineBlock(entries, observer) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('active');
             observer.unobserve(entry.target);
         }
     });
-};
+}
 
 const timelineObserver = new IntersectionObserver(animateTimelineBlock, {
     root: null,
@@ -293,7 +284,7 @@ timelineBlocks.forEach(block => {
 // Language translation animation
 const translatorLink = document.getElementById('translator-link');
 
-translatorLink.addEventListener('click', (e) => {
+translatorLink.addEventListener('click', function(e) {
     e.preventDefault();
 
     const translateAnimation = document.createElement('div');

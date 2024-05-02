@@ -6,12 +6,11 @@
     <title>Essam Turki's CV</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1 class="animate__animated animate__fadeInDown">Essam Turki</h1>
+            <h1>Essam Turki</h1>
             <p class="animate__animated animate__fadeInUp">Cybersecurity Enthusiast & IT Professional</p>
             <div class="header-icons">
                 <a href="#" class="icon github" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
@@ -23,7 +22,9 @@
         </header>
         <div class="scroll-down">
             <div class="scroll-circle">
-                <div class="scroll-arrow"><i class="fas fa-chevron-down"></i></div>
+                <div class="scroll-arrow">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
             </div>
         </div>
         <section id="bio" class="section-reveal">
@@ -88,7 +89,7 @@
             </div>
         </section>
         <footer>
-            <p>© 2024 Essam Turki. All rights reserved.</p>
+            <p>&copy; 2024 Essam Turki. All rights reserved.</p>
             <nav>
                 <ul>
                     <li><a href="#" id="interactive-link">🎮 Ooh, a secret I see!? 🎮</a></li>
@@ -120,9 +121,11 @@
             <span class="close" onclick="closeGameModal()">&times;</span>
             <h2>Decrypt the Message!</h2>
             <p>Find the correct key to decrypt the message.</p>
+            <p>= Uif tfdsfu up tvddftt jt dpotjtufodz.</p>
             <div class="input-area">
                 <input type="text" id="decryption-key" placeholder="Enter decryption key...">
                 <button onclick="decryptMessage()">Decrypt</button>
+                <canvas id="modal-confetti-canvas"></canvas>
             </div>
             <p id="decrypted-message"></p>
         </div>

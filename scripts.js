@@ -51,14 +51,15 @@ certificates.forEach(certificate => {
     certificate.addEventListener('click', () => {
         const imageSrc = certificate.querySelector('img').getAttribute('src');
         certificatePreviewImage.setAttribute('src', imageSrc);
-        certificatePreview.style.display = 'flex';
+        certificatePreview.classList.add('active');
     });
 
     certificate.addEventListener('mouseenter', () => {
         gsap.to(certificate, {
             duration: 0.3,
             scale: 1.05,
-            boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
+            rotationX: 10,
+            rotationY: 10,
             ease: 'power1.inOut'
         });
     });
@@ -67,14 +68,15 @@ certificates.forEach(certificate => {
         gsap.to(certificate, {
             duration: 0.3,
             scale: 1,
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            rotationX: 0,
+            rotationY: 0,
             ease: 'power1.inOut'
         });
     });
 });
 
 closePreviewButton.addEventListener('click', () => {
-    certificatePreview.style.display = 'none';
+    certificatePreview.classList.remove('active');
 });
 
 // Interactive secret message
@@ -85,16 +87,15 @@ const typingEffectElement = document.getElementById('typing-effect');
 const secretMessageElement = document.getElementById('secret-message');
 const closeButton = document.getElementById('close-button');
 
-interactiveLink.addEventListener('click', () => {
-    interactiveOverlay.style.display = 'flex';
-    interactiveContent.style.display = 'block';
+interactiveLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    interactiveOverlay.style.display = 'block';
     interactiveContent.classList.add('active');
     startTypingEffect();
 });
 
 closeButton.addEventListener('click', () => {
     interactiveOverlay.style.display = 'none';
-    interactiveContent.style.display = 'none';
     interactiveContent.classList.remove('active');
     typingEffectElement.textContent = '';
     secretMessageElement.textContent = '';
@@ -187,6 +188,7 @@ form.addEventListener('submit', (e) => {
 const gameModal = document.getElementById('game-modal');
 const closeModalButton = gameModal.querySelector('.close');
 const decryptionKey = document.getElementById('decryption-key');
+const decryptButton = document.getElementById('decrypt-button');
 const decryptedMessage = document.getElementById('decrypted-message');
 const modalConfettiCanvas = document.getElementById('modal-confetti-canvas');
 const modalConfettiSettings = { target: modalConfettiCanvas };
@@ -195,12 +197,12 @@ const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
 function openGameModal() {
     gameModal.style.display = 'flex';
     setTimeout(() => {
-        gameModal.classList.add('show');
+        gameModal.querySelector('.modal-content').classList.add('show');
     }, 100);
 }
 
 function closeGameModal() {
-    gameModal.classList.remove('show');
+    gameModal.querySelector('.modal-content').classList.remove('show');
     setTimeout(() => {
         gameModal.style.display = 'none';
         decryptionKey.value = '';
@@ -232,6 +234,13 @@ function decryptMessage() {
         }, 500);
     }
 }
+
+decryptButton.addEventListener('click', decryptMessage);
+decryptionKey.addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') {
+        decryptMessage();
+    }
+});
 
 // Text animation for section titles
 const sectionTitles = document.querySelectorAll('h2');
@@ -271,9 +280,10 @@ timelineBlocks.forEach(block => {
 
 // Language translation animation
 const translatorLink = document.getElementById('translator-link');
-const translatorBtn = document.getElementById('translator-btn');
 
-function translatePage() {
+translatorLink.addEventListener('click', function(e) {
+    e.preventDefault();
+
     const translateAnimation = document.createElement('div');
     translateAnimation.classList.add('translate-animation');
     document.body.appendChild(translateAnimation);
@@ -285,14 +295,4 @@ function translatePage() {
     setTimeout(() => {
         window.location.href = translatorLink.getAttribute('href');
     }, 600);
-}
-
-translatorLink.addEventListener('click', function(e) {
-    e.preventDefault();
-    translatePage();
-});
-
-translatorBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    translatePage();
 });

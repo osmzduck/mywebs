@@ -1,3 +1,5 @@
+// scripts.js
+
 // Scroll down arrow animation
 const scrollArrow = document.querySelector('.scroll-arrow');
 const scrollCircle = document.querySelector('.scroll-circle');
@@ -50,15 +52,13 @@ certificates.forEach(certificate => {
         const imageSrc = certificate.querySelector('img').getAttribute('src');
         certificatePreviewImage.setAttribute('src', imageSrc);
         certificatePreview.style.display = 'flex';
-        certificatePreview.classList.add('active');
     });
 
     certificate.addEventListener('mouseenter', () => {
         gsap.to(certificate, {
             duration: 0.3,
             scale: 1.05,
-            rotationX: 10,
-            rotationY: 10,
+            boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
             ease: 'power1.inOut'
         });
     });
@@ -67,8 +67,7 @@ certificates.forEach(certificate => {
         gsap.to(certificate, {
             duration: 0.3,
             scale: 1,
-            rotationX: 0,
-            rotationY: 0,
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
             ease: 'power1.inOut'
         });
     });
@@ -76,7 +75,6 @@ certificates.forEach(certificate => {
 
 closePreviewButton.addEventListener('click', () => {
     certificatePreview.style.display = 'none';
-    certificatePreview.classList.remove('active');
 });
 
 // Interactive secret message
@@ -196,17 +194,15 @@ const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
 
 function openGameModal() {
     gameModal.style.display = 'flex';
-    gameModal.classList.add('show');
     setTimeout(() => {
-        gameModal.querySelector('.modal-content').classList.add('show');
+        gameModal.classList.add('show');
     }, 100);
 }
 
 function closeGameModal() {
-    gameModal.querySelector('.modal-content').classList.remove('show');
+    gameModal.classList.remove('show');
     setTimeout(() => {
         gameModal.style.display = 'none';
-        gameModal.classList.remove('show');
         decryptionKey.value = '';
         decryptedMessage.textContent = '';
     }, 500);
@@ -236,16 +232,6 @@ function decryptMessage() {
         }, 500);
     }
 }
-
-// Shake animation on wrong decryption key
-decryptionKey.addEventListener('input', () => {
-    if (decryptionKey.value.toLowerCase() !== 'consistency') {
-        gameModal.querySelector('.modal-content').classList.add('shake');
-        setTimeout(() => {
-            gameModal.querySelector('.modal-content').classList.remove('shake');
-        }, 500);
-    }
-});
 
 // Text animation for section titles
 const sectionTitles = document.querySelectorAll('h2');
@@ -285,10 +271,9 @@ timelineBlocks.forEach(block => {
 
 // Language translation animation
 const translatorLink = document.getElementById('translator-link');
+const translatorBtn = document.getElementById('translator-btn');
 
-translatorLink.addEventListener('click', function(e) {
-    e.preventDefault();
-
+function translatePage() {
     const translateAnimation = document.createElement('div');
     translateAnimation.classList.add('translate-animation');
     document.body.appendChild(translateAnimation);
@@ -300,12 +285,14 @@ translatorLink.addEventListener('click', function(e) {
     setTimeout(() => {
         window.location.href = translatorLink.getAttribute('href');
     }, 600);
+}
+
+translatorLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    translatePage();
 });
 
-// Fix image URLs
-const certificateImages = document.querySelectorAll('.certificate img');
-certificateImages.forEach(img => {
-    const oldSrc = img.getAttribute('src');
-    const newSrc = oldSrc.replace('https://i.ibb.co/', 'https://i.ibb.co/');
-    img.setAttribute('src', newSrc);
+translatorBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    translatePage();
 });

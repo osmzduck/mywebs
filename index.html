@@ -11,13 +11,14 @@
 <body>
     <div class="container">
         <header>
-            <h1 class="animate__animated animate__fadeInDown">Essam Turki</h1>
+            <h1>Essam Turki</h1>
             <p class="animate__animated animate__fadeInUp">Cybersecurity Enthusiast & IT Professional</p>
             <div class="header-icons">
-                <a href="#" class="icon github" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                <a href="#" class="icon linkedin" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="icon twitter" title="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="icon secret-game game-link" title="Unlock the Secret!" onclick="openGameModal()"><i class="fas fa-user-secret"></i></a>
+                <!-- Ensure all href="#" are replaced with actual links or removed if not applicable -->
+                <a href="https://github.com/essamturki" class="icon github" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/essamturki" class="icon linkedin" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com/essamturki" class="icon twitter" title="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="icon secret-game game-link" title="Unlock the Secret!" onclick="openGameModal(); return false;"><i class="fas fa-user-secret"></i></a>
                 <a href="index-ar.html" id="translator-link" title="Translate to Arabic"><i class="fas fa-language"></i></a>
             </div>
         </header>
@@ -41,6 +42,7 @@
         <section id="certificates" class="section-reveal">
             <h2>Certificates</h2>
             <div class="certificate-gallery">
+                <!-- Ensure all image sources are valid and accessible -->
                 <div class="certificate">
                     <img src="https://i.ibb.co/Xtkqhr5/image.png" alt="System Administration and IT Infrastructure Services">
                     <div class="certificate-overlay">
@@ -115,8 +117,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
     <script src="scripts.js"></script>
 
     <div id="game-modal" class="modal">
@@ -124,7 +124,6 @@
             <span class="close" onclick="closeGameModal()">&times;</span>
             <h2>Decrypt the Message!</h2>
             <p>Find the correct key to decrypt the message.</p>
-            <p>Uif tfdsfu up tvddftt jt dpotjtufodz.</p>
             <div class="input-area">
                 <input type="text" id="decryption-key" placeholder="Enter decryption key...">
                 <button onclick="decryptMessage()">Decrypt</button>

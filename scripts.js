@@ -1,274 +1,299 @@
 // Scroll down arrow animation
 const scrollArrow = document.querySelector('.scroll-arrow');
 const scrollCircle = document.querySelector('.scroll-circle');
+
 scrollArrow.addEventListener('click', () => {
-window.scroll
-y({ top: window.
-nnerHeight,
-be
-avio
+    window.scrollBy({
+        top: window.innerHeight,
+        behavior: 'smooth'
+    });
+});
+
 window.addEventListener('scroll', () => {
-if (window.scrollY >
-) { scrollCircle.style.
-pacity =
-0; } else { scrollC
-r
-le.s
+    if (window.scrollY > 0) {
+        scrollCircle.style.opacity = 0;
+    } else {
+        scrollCircle.style.opacity = 1;
+    }
+});
+
 // Reveal sections on scroll
 const sections = document.querySelectorAll('.section-reveal');
+
 function revealSection(entries, observer) {
-entries.forEach(entry
-> { if (entry.isInt
-rsecting) { entry.target.
-l
-ssL
-st
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+        }
+    });
+}
+
 const sectionObserver = new IntersectionObserver(revealSection, {
-root: n
-ll, thresho
-d: 0
+    root: null,
+    threshold: 0.15
+});
+
 sections.forEach(section => {
-sectionObserver.observe(secti
-n);
-// Certificate gallery preview
-const certificateImages = document.querySelectorAll('.certificate img');
+    sectionObserver.observe(section);
+    section.classList.add('section-hidden');
+});
+
+// Certificate hover effect
+const certificates = document.querySelectorAll('.certificate');
 const certificatePreview = document.getElementById('certificate-preview');
-const previewImage = certificatePreview.querySelector('img');
-const closePreviewBtn = certificatePreview.querySelector('.close-preview');
-certificateImages.forEach(image => {
-image.addEventListener('click', ()
-> { const imgSrc = image.getAttri
-ute('src'); previewImage.setAttri
-ute('src', imgSrc); certificatePre
-iew
-styl
-closePreviewBtn.addEventListener('click', () => {
-certificatePreview.style.display = 'no
-e';
-// Background particles animation
-particlesJS('background-particles', {
-particle
-: {
-number:
+const certificatePreviewImage = certificatePreview.querySelector('img');
+const closePreviewButton = certificatePreview.querySelector('.close-preview');
 
-value: 50,
-dens
-t
-:
+certificates.forEach(certificate => {
+    certificate.addEventListener('click', () => {
+        const imageSrc = certificate.querySelector('img').getAttribute('src');
+        certificatePreviewImage.setAttribute('src', imageSrc);
+        certificatePreview.style.display = 'flex';
+        certificatePreview.classList.add('active');
+    });
 
-enable:
-ru
-,
-value_
-rea: 800
+    certificate.addEventListener('mouseenter', () => {
+        gsap.to(certificate, {
+            duration: 0.3,
+            scale: 1.05,
+            rotationX: 10,
+            rotationY: 10,
+            ease: 'power1.inOut'
+        });
+    });
 
-} },
+    certificate.addEventListener('mouseleave', () => {
+        gsap.to(certificate, {
+            duration: 0.3,
+            scale: 1,
+            rotationX: 0,
+            rotationY: 0,
+            ease: 'power1.inOut'
+        });
+    });
+});
 
-color: {
+closePreviewButton.addEventListener('click', () => {
+    certificatePreview.style.display = 'none';
+    certificatePreview.classList.remove('active');
+});
 
-v
-lu
-: '#ffffff
-},
-shape:
-{
-type: 'c
-rcle',
-stroke:
-
-
-
-width:
-,
-color
-'#0000
-0'
-},
-polygon: {
-
-
-
-b_sides: 5
-}
-},
-opacity: {
-value: 0
-5,
-
-rand
-m: false,
-a
-im: {
-enable: fal
-e,
-speed: 1,
-opa
-ity_min: 0
-1,
-sync: fal
-e
-}
-
-
-}, si
-e: { val
-e: 3,
-ra
-dom: true,
-anim:
-
-
-enable: fa
-se,
-
-speed: 4
-,
-
-s
-ze_min: 0.1,
-
-ync: false
-
-
-}
-},
-line_l
-nked: {
-enab
-e: true,
-
-d
-stance: 150,
-col
-r:
-'#fffff
-',
-pa
-ity: 0.4,
-wid
-h
-
-
-}, mo
-e: {
-// Cursor trail effect
-const cursorTrail = document.getElementById('cursor-trail');
-let mouseX = 0;
-let mouseY = 0;
-let trailX = 0;
-let trailY = 0;
-let speed = 0.1;
-function animate() {
-let distX = mouseX - tra
-lX; let distY = mouseY -
-trailY; trailX += di
-tX * speed; trailY +
-distY * speed; cursorTrail.style.l
-ft = trailX + 'px'; cursorTrail.st
-le.top = trailY + 'px'; req
-es
-document.addEventListener('mousemove', (event) => {
-mouseX = event.pa
-eX; mouseY = even
-.pag
-animate();
-// Confetti animation
-const confettiSettings = {
-target: 'confetti-canv
-s', m
-x: 100,
-size: 1,
-animate: true, props: ['circle', 'square',
-triangle', 'line'], colors: [[165, 104, 246], [230, 61, 135], [0, 199,
-228], [253
-214, 126]],
-clock: 25, rotate:
-true, width: window.inn
-rWidth, height: wi
-dow.innerHeig
-t,
-const confetti = new ConfettiGenerator(confettiSettings);
-confetti.render();
 // Interactive secret message
 const interactiveLink = document.getElementById('interactive-link');
 const interactiveOverlay = document.getElementById('interactive-overlay');
 const interactiveContent = document.getElementById('interactive-content');
-const typingEffect = document.getElementById('typing-effect');
-const secretMessage = document.getElementById('secret-message');
+const typingEffectElement = document.getElementById('typing-effect');
+const secretMessageElement = document.getElementById('secret-message');
 const closeButton = document.getElementById('close-button');
-const message = "Congratulations on finding the secret message! Keep exploring and unlocking new possibilities. The future is yours to shape.";
-let index = 0;
-let typingSpeed = 50;
-function typeMessage() {
-if (index < message.lengt
-) { typingEffect.innerHTML += message.ch
-rAt(inde
-); index++; setTimeou
-(typeMes
-age, typingSpeed); } else { secretMessage.inner
-TML = "You've unlo
-k
-d
+
 interactiveLink.addEventListener('click', () => {
-interactiveOverlay.style.display = 'blo
-k'; interactiveContent.style.display =
-block'; setTimeout(typeMes
-age,
+    interactiveOverlay.style.display = 'block';
+    interactiveContent.style.display = 'block';
+    interactiveContent.classList.add('active');
+    startTypingEffect();
+});
+
 closeButton.addEventListener('click', () => {
-interactiveOverlay.style.display = 'no
-e'; interactiveContent.style.display =
-'none'; typingEffect.inn
-rHTML = ''; secretMessage
-innerHTML
-'';
+    interactiveOverlay.style.display = 'none';
+    interactiveContent.style.display = 'none';
+    interactiveContent.classList.remove('active');
+    typingEffectElement.textContent = '';
+    secretMessageElement.textContent = '';
+});
+
+function startTypingEffect() {
+    const text = "You've stumbled upon a secret! Congratulations on finding it. As a reward, here's a hidden message: Success is not final, failure is not fatal: it is the courage to continue that counts. Keep exploring and unraveling the mysteries!";
+    let i = 0;
+    const typingSpeed = 50;
+
+    function typeNextCharacter() {
+        if (i < text.length) {
+            typingEffectElement.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeNextCharacter, typingSpeed);
+        } else {
+            setTimeout(() => {
+                gsap.to(secretMessageElement, {
+                    duration: 1,
+                    opacity: 1,
+                    y: 0,
+                    ease: 'power2.out',
+                    onComplete: () => {
+                        confetti({
+                            particleCount: 100,
+                            spread: 70,
+                            origin: { y: 0.6 },
+                            zIndex: 9999
+                        });
+                    }
+                });
+                secretMessageElement.textContent = "🎉 Congratulations on discovering the secret message! 🎉";
+            }, 1000);
+        }
+    }
+
+    typeNextCharacter();
+}
+
+// Background particles effect
+particlesJS.load('background-particles', 'particles-config.json');
+
+// Cursor trail effect
+const cursorTrail = document.getElementById('cursor-trail');
+let mouseX = 0;
+let mouseY = 0;
+
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+function createTrailParticle() {
+    const particle = document.createElement('div');
+    particle.className = 'cursor-particle';
+    particle.style.left = mouseX + 'px';
+    particle.style.top = mouseY + 'px';
+    cursorTrail.appendChild(particle);
+
+    gsap.to(particle, {
+        duration: 1,
+        scale: 0,
+        opacity: 0,
+        ease: 'power2.out',
+        onComplete: () => {
+            particle.remove();
+        }
+    });
+}
+
+setInterval(createTrailParticle, 50);
+
+// Confetti effect on form submission
+const form = document.querySelector('form');
+const confettiCanvas = document.getElementById('confetti-canvas');
+const confettiSettings = { target: confettiCanvas };
+const confetti = new ConfettiGenerator(confettiSettings);
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    confetti.render();
+
+    setTimeout(() => {
+        confetti.clear();
+        form.reset();
+    }, 3000);
+});
+
 // Secret game modal
 const gameModal = document.getElementById('game-modal');
+const closeModalButton = gameModal.querySelector('.close');
 const decryptionKey = document.getElementById('decryption-key');
 const decryptedMessage = document.getElementById('decrypted-message');
 const modalConfettiCanvas = document.getElementById('modal-confetti-canvas');
-const modalConfettiSettings = {
-target: 'modal-confetti-canv
-s', m
-x: 100,
-size: 1,
-animate: true, props: ['circle', 'square',
-triangle', 'line'], colors: [[165, 104, 246], [230, 61, 135], [0, 199,
-228], [253
-214, 126]],
-clock: 25, rotate: true, wid
-h: modalConfettiCanvas.offsetWidth, h
-ight: modalConfettiCan
-as.offsetHeig
-t,
+const modalConfettiSettings = { target: modalConfettiCanvas };
 const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
+
 function openGameModal() {
-gameModal.style.display = 'blo
-k'
+    gameModal.style.display = 'flex';
+    gameModal.classList.add('show');
+    setTimeout(() => {
+        gameModal.querySelector('.modal-content').classList.add('show');
+    }, 100);
+}
+
 function closeGameModal() {
-gameModal.style.display = 'no
-e'; decryptionKey.val
-e = ''; decryptedMessage.textC
-ntent = ''; modalC
-nf
-function decryptMessage() {
-const encryptedMessage = "Uif tfdsfu up tvddftt jt dpotjtufodz.";
-const key = parseInt(decryptionKey.value);
-    
-    if (isNaN(key) || key < 1 || key > 25) {
-    decryptedMessage.textContent = "Invalid decryption key. Please enter a number between 1 and 25.";
-    return;
+    gameModal.querySelector('.modal-content').classList.remove('show');
+    setTimeout(() => {
+        gameModal.style.display = 'none';
+        gameModal.classList.remove('show');
+        decryptionKey.value = '';
+        decryptedMessage.textContent = '';
+    }, 500);
 }
 
-let decryptedText = '';
-for (let i = 0; i < encryptedMessage.length; i++) {
-    let charCode = encryptedMessage.charCodeAt(i);
-    if (charCode >= 65 && charCode <= 90) {
-        charCode = ((charCode - 65 - key + 26) % 26) + 65;
-    } else if (charCode >= 97 && charCode <= 122) {
-        charCode = ((charCode - 97 - key + 26) % 26) + 97;
+closeModalButton.addEventListener('click', closeGameModal);
+window.addEventListener('click', (e) => {
+    if (e.target === gameModal) {
+        closeGameModal();
     }
-    decryptedText += String.fromCharCode(charCode);
+});
+
+function decryptMessage() {
+    const key = decryptionKey.value.toLowerCase();
+    if (key === 'consistency') {
+        decryptedMessage.textContent = 'The secret to success is consistency.';
+        modalConfetti.render();
+
+        setTimeout(() => {
+            modalConfetti.clear();
+        }, 3000);
+    } else {
+        decryptedMessage.textContent = 'Wrong decryption key. Try again!';
+    }
 }
 
-decryptedMessage.textContent = decryptedText;
-modalConfetti.render();
+// Shake animation on wrong decryption key
+decryptionKey.addEventListener('input', () => {
+    if (decryptionKey.value.toLowerCase() !== 'consistency') {
+        gameModal.querySelector('.modal-content').classList.add('shake');
+        setTimeout(() => {
+            gameModal.querySelector('.modal-content').classList.remove('shake');
+        }, 500);
+    }
+});
+
+// Text animation for section titles
+const sectionTitles = document.querySelectorAll('h2');
+
+sectionTitles.forEach(title => {
+    const letters = title.textContent.split('');
+    title.textContent = '';
+
+    letters.forEach((letter, index) => {
+        const span = document.createElement('span');
+        span.textContent = letter;
+        span.style.animationDelay = `${index * 0.1}s`;
+        title.appendChild(span);
+    });
+});
+
+// Timeline animation
+const timelineBlocks = document.querySelectorAll('.timeline-block');
+
+function animateTimelineBlock(entries, observer) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+        }
+    });
+}
+
+const timelineObserver = new IntersectionObserver(animateTimelineBlock, {
+    root: null,
+    threshold: 0.5
+});
+
+timelineBlocks.forEach(block => {
+    timelineObserver.observe(block);
+});
+
+// Language translation animation
+const translatorLink = document.getElementById('translator-link');
+
+translatorLink.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    const translateAnimation = document.createElement('div');
+    translateAnimation.classList.add('translate-animation');
+    document.body.appendChild(translateAnimation);
+
+    setTimeout(() => {
+        translateAnimation.classList.add('active');
+    }, 100);
+
+    setTimeout(() => {
+        window.location.href = translatorLink.getAttribute('href');
+    }, 600);
+});

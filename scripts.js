@@ -193,6 +193,17 @@ const decryptedMessage = document.getElementById('decrypted-message');
 const modalConfettiCanvas = document.getElementById('modal-confetti-canvas');
 const modalConfettiSettings = { target: modalConfettiCanvas };
 const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
+// Add this function to open the game modal
+
+function openGameModal() {
+    gameModal.style.display = 'block';
+}
+
+function closeGameModal() {
+    gameModal.style.display = 'none';
+    decryptionKey.value = '';
+    decryptedMessage.textContent = '';
+}
 
 const openGameModal = () => {
     gameModal.style.display = 'flex';

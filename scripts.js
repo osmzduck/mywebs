@@ -87,7 +87,8 @@ const typingEffectElement = document.getElementById('typing-effect');
 const secretMessageElement = document.getElementById('secret-message');
 const closeButton = document.getElementById('close-button');
 
-interactiveLink.addEventListener('click', () => {
+interactiveLink.addEventListener('click', (e) => {
+    e.preventDefault();
     interactiveOverlay.style.display = 'block';
     interactiveContent.style.display = 'block';
     interactiveContent.classList.add('active');

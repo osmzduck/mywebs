@@ -87,8 +87,7 @@ const typingEffectElement = document.getElementById('typing-effect');
 const secretMessageElement = document.getElementById('secret-message');
 const closeButton = document.getElementById('close-button');
 
-interactiveLink.addEventListener('click', (e) => {
-    e.preventDefault();
+interactiveLink.addEventListener('click', () => {
     interactiveOverlay.style.display = 'flex';
     interactiveContent.style.display = 'block';
     interactiveContent.classList.add('active');
@@ -286,9 +285,10 @@ timelineBlocks.forEach(block => {
 
 // Language translation animation
 const translatorLink = document.getElementById('translator-link');
-const translatorBtn = document.getElementById('translator-btn');
 
-function translatePage() {
+translatorLink.addEventListener('click', function(e) {
+    e.preventDefault();
+
     const translateAnimation = document.createElement('div');
     translateAnimation.classList.add('translate-animation');
     document.body.appendChild(translateAnimation);
@@ -300,14 +300,12 @@ function translatePage() {
     setTimeout(() => {
         window.location.href = translatorLink.getAttribute('href');
     }, 600);
-}
-
-translatorLink.addEventListener('click', function(e) {
-    e.preventDefault();
-    translatePage();
 });
 
-translatorBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    translatePage();
+// Fix image URLs
+const certificateImages = document.querySelectorAll('.certificate img');
+certificateImages.forEach(img => {
+    const oldSrc = img.getAttribute('src');
+    const newSrc = oldSrc.replace('https://i.ibb.co/', 'https://i.ibb.co/');
+    img.setAttribute('src', newSrc);
 });

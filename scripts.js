@@ -88,7 +88,7 @@ const secretMessageElement = document.getElementById('secret-message');
 const closeButton = document.getElementById('close-button');
 
 interactiveLink.addEventListener('click', (e) => {
-    e.preventDefault();  // Prevents the page from scrolling to the top
+    e.preventDefault();
     interactiveOverlay.style.display = 'block';
     interactiveContent.style.display = 'block';
     interactiveContent.classList.add('active');
@@ -220,6 +220,12 @@ window.addEventListener('click', (e) => {
     }
 });
 
+decryptionKey.addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') {
+        decryptMessage();
+    }
+});
+
 function decryptMessage() {
     const key = decryptionKey.value.toLowerCase();
     if (key === 'consistency') {
@@ -231,18 +237,12 @@ function decryptMessage() {
         }, 3000);
     } else {
         decryptedMessage.textContent = 'Wrong decryption key. Try again!';
-    }
-}
-
-// Shake animation on wrong decryption key
-decryptionKey.addEventListener('input', () => {
-    if (decryptionKey.value.toLowerCase() !== 'consistency') {
         gameModal.querySelector('.modal-content').classList.add('shake');
         setTimeout(() => {
             gameModal.querySelector('.modal-content').classList.remove('shake');
         }, 500);
     }
-});
+}
 
 // Text animation for section titles
 const sectionTitles = document.querySelectorAll('h2');

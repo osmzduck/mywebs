@@ -1,143 +1,142 @@
+index.html :: 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>John Doe - CV</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Essam Turki's CV</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>John Doe</h1>
-            <h2>Web Developer</h2>
+            <h1 class="animate__animated animate__fadeInDown">Essam Turki</h1>
+            <p class="animate__animated animate__fadeInUp">Cybersecurity Enthusiast & IT Professional</p>
             <div class="header-icons">
-                <a href="https://www.linkedin.com/" target="_blank" class="icon"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/" target="_blank" class="icon"><i class="fab fa-github"></i></a>
-                <a href="mailto:johndoe@example.com" class="icon"><i class="fas fa-envelope"></i></a>
-                <a href="tel:+1234567890" class="icon"><i class="fas fa-phone"></i></a>
-            </div>
-            <div class="scroll-down">
-                <div class="scroll-circle">
-                    <i class="fas fa-chevron-down scroll-arrow"></i>
-                </div>
+                <a href="#" class="icon github" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                <a href="#" class="icon linkedin" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="icon twitter" title="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="icon secret-game game-link" title="Unlock the Secret!" onclick="openGameModal()"><i class="fas fa-user-secret"></i></a>
+                <a href="index-ar.html" id="translator-link" title="Translate to Arabic">
+                <i class="fas fa-language"></i></a>
             </div>
         </header>
-
-        <section id="about">
+        <div class="scroll-down">
+            <div class="scroll-circle">
+                <div class="scroll-arrow">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+        <section id="bio" class="section-reveal">
             <h2>About Me</h2>
-            <p>I am a passionate web developer with experience in creating responsive and user-friendly websites. I enjoy solving complex problems and constantly learning new technologies to enhance my skills.</p>
-        </section>
-
-        <section id="skills">
-            <h2>Skills</h2>
+            <p>Passionate about cybersecurity and experienced in IT infrastructure, I have completed several professional courses from Google, enhancing my skills in system administration, networking, and security.</p>
             <div class="skills">
-                <span class="skill">HTML</span>
-                <span class="skill">CSS</span>
-                <span class="skill">JavaScript</span>
-                <span class="skill">React</span>
+                <span class="skill">Cybersecurity</span>
+                <span class="skill">System Administration</span>
+                <span class="skill">Networking</span>
+                <span class="skill">IT Infrastructure</span>
             </div>
         </section>
-
-        <section id="experience">
-            <h2>Experience</h2>
-            <div class="timeline-container">
-                <div class="timeline-block">
-                    <div class="timeline-date">2020 - Present</div>
-                    <h3>Web Developer</h3>
-                    <p>Company Name</p>
-                    <p>Developed and maintained responsive websites using HTML, CSS, and JavaScript.</p>
-                </div>
-                <div class="timeline-block">
-                    <div class="timeline-date">2018 - 2020</div>
-                    <h3>Junior Web Developer</h3>
-                    <p>Company Name</p>
-                    <p>Assisted in the development of web applications and collaborated with senior developers.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="certificates">
+        <section id="certificates" class="section-reveal">
             <h2>Certificates</h2>
             <div class="certificate-gallery">
                 <div class="certificate">
-                    <img src="certificate1.jpg" alt="Certificate 1">
+                    <img src="https://i.ibb.co/Xtkqhr5/image.png" alt="System Administration and IT Infrastructure Services">
                     <div class="certificate-overlay">
-                        <div class="certificate-text">Certificate 1</div>
+                        <div class="certificate-text">System Administration and IT Infrastructure Services</div>
                     </div>
                 </div>
                 <div class="certificate">
-                    <img src="certificate2.jpg" alt="Certificate 2">
+                    <img src="https://i.ibb.co/T01m0DW/image.png" alt="Google IT Support Professional Certificate">
                     <div class="certificate-overlay">
-                        <div class="certificate-text">Certificate 2</div>
+                        <div class="certificate-text">Google IT Support Professional Certificate</div>
                     </div>
                 </div>
                 <div class="certificate">
-                    <img src="certificate3.jpg" alt="Certificate 3">
+                    <img src="https://i.ibb.co/SvJvY1z/image.png" alt="IT Security: Defense against the Digital Dark Arts">
                     <div class="certificate-overlay">
-                        <div class="certificate-text">Certificate 3</div>
+                        <div class="certificate-text">IT Security: Defense against the Digital Dark Arts</div>
                     </div>
                 </div>
                 <div class="certificate">
-                    <img src="certificate4.jpg" alt="Certificate 4">
+                    <img src="https://i.ibb.co/DYpGFkv/image.png" alt="Operating Systems and You: Becoming a Power User">
                     <div class="certificate-overlay">
-                        <div class="certificate-text">Certificate 4</div>
+                        <div class="certificate-text">Operating Systems and You: Becoming a Power User</div>
                     </div>
                 </div>
-            </div>
-            <div id="certificate-preview">
-                <img src="" alt="Certificate Preview">
-                <span class="close-preview">&times;</span>
             </div>
         </section>
-
-        <section id="contact">
+        <section id="contact" class="section-reveal">
             <h2>Contact Me</h2>
             <form>
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" placeholder="Your Message" required></textarea>
-                <button type="submit">Send Message</button>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message"></textarea>
+                <button type="submit">Send</button>
             </form>
         </section>
-
-        <section id="interactive">
-            <h2>Interactive Section</h2>
-            <p>Click the button below to see something cool!</p>
-            <a href="#" id="interactive-link">Click Me</a>
-        </section>
-
-        <div id="interactive-overlay">
-            <div id="interactive-content">
-                <div id="typing-effect"></div>
-                <div id="secret-message">Congratulations! You found the secret message!</div>
-                <button id="close-button">Close</button>
-            </div>
-        </div>
-
-        <button id="open-game-btn">Open Game</button>
-        <div id="game-modal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Decryption Game</h2>
-                <div class="input-area">
-                    <input type="text" id="encrypted-input" placeholder="Enter encrypted message">
-                    <button id="decrypt-btn">Decrypt</button>
+        <section id="timeline">
+            <h2>My Journey</h2>
+            <div class="timeline-container">
+                <div class="timeline-block">
+                    <p class="timeline-date">2023</p>
+                    <p>Started my journey in cybersecurity.</p>
                 </div>
-                <div id="decrypted-message"></div>
+                <div class="timeline-block">
+                    <p class="timeline-date">2024</p>
+                    <p>Completed my first professional certification.</p>
+                </div>
             </div>
-        </div>
-
-        <button id="translator-btn"><i class="fas fa-language"></i></button>
-        <div class="translate-animation"></div>
+        </section>
+        <footer>
+            <p>© 2024 Essam Turki. All rights reserved.</p>
+            <nav>
+                <ul>
+                    <li><a href="#" id="interactive-link">🎮 Ooh, a secret I see!? 🎮</a></li>
+                </ul>
+            </nav>
+        </footer>
     </div>
+    <div id="interactive-overlay"></div>
+    <div id="interactive-content">
+        <div id="typing-effect"></div>
+        <div id="secret-message"></div>
+        <button id="close-button">Close</button>
+    </div>
+    <div id="certificate-preview">
+        <button class="close-preview">X</button>
+        <img src="" alt="Certificate Preview">
+    </div>
+    <canvas id="background-particles"></canvas>
+    <div id="cursor-trail"></div>
+    <canvas id="confetti-canvas"></canvas>
 
-    <footer>
-        <p>&copy; 2023 John Doe. All rights reserved.</p>
-    </footer>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
     <script src="scripts.js"></script>
+
+    <div id="game-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeGameModal()">&times;</span>
+            <h2>Decrypt the Message!</h2>
+            <p>Find the correct key to decrypt the message.
+                = Uif tfdsfu up tvddftt jt dpotjtufodz. </p>
+            <div class="input-area">
+                <input type="text" id="decryption-key" placeholder="Enter decryption key...">
+                <button onclick="decryptMessage()">Decrypt</button>
+                <canvas id="modal-confetti-canvas"></canvas>
+            </div>
+            <p id="decrypted-message"></p>
+        </div>
+        <button id="translator-btn" title="Translate to Arabic">
+    <i class="fas fa-language"></i>
+</button>
+    </div>
 </body>
 </html>

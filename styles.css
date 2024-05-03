@@ -1,188 +1,35 @@
+
 body, html {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-    background: #2B2B38;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
     color: white;
     overflow-x: hidden;
 }
 
-.contenedor {
-    width: 100vw;
-    height: 100vh;
-    background: deeppink;
-    position: relative;
-    display: flex;
-    align-items: center;
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    animation: fadeIn 1s ease-in-out;
 }
 
-.contenedor form {
-    box-sizing: border-box;
-    text-align: center;
-    padding: 22px;
-    display: inline-flex;
-    flex-direction: column;
-    position: fixed;
-    height: 100vh;
-    justify-content: center;
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
-
-.contenedor form input {
-    height: 0;
-    margin: 12px 0;
-    z-index: 1;
-}
-
-.contenedor form input:checked {
-    outline: 0;
-    border: 0;
-}
-
-.contenedor form input:before {
-    content: "";
-    position: absolute;
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.81);
-    border-radius: 11px;
-    cursor: pointer;
-    transition: all .25s linear;
-}
-
-.contenedor form input:checked:before {
-    background-color: white;
-}
-
-.contenedor form input:after {
-    content: attr(titulo);
-    position: relative;
-    left: 30px;
-    opacity: 0;
-    color: white;
-    font-size: 9px;
-    display: block;
-    min-width: 80px;
-    transition: all .25s linear;
-}
-
-.contenedor form input:checked:after {
-    opacity: 1;
-    left: 20px;
-}
-
-.contenedor form input:hover:after:not(label) {
-    opacity: 1;
-}
-
-.contenedor form .labels {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.contenedor form .labels label {
-    min-width: 100vw;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #2B2B38;
-    z-index: 0;
-    transition: all .75s cubic-bezier(0.75, 0.25, 0, 1.05);
-}
-
-.contenedor form .labels label:nth-child(odd) {
-    background-color: #F5004F;
-    color: white !important;
-}
-
-.content {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0 110px;
-}
-
-.content .block {
-    width: inherit;
-    font-size: 11px;
-    font-weight: 400;
-    line-height: 1.5;
-    margin: 42px 0;
-    display: flex;
-    justify-content: center;
-}
-
-.content .block span {
-    margin: 0 42px;
-}
-
-.content .block span i {
-    margin-bottom: 22px;
-}
-
-.content .block span i:before {
-    font-size: 30px;
-}
-
-.Slide:nth-child(even) .content .block {
-    color: #717171;
-}
-
-.icon {
-    position: absolute;
-    bottom: 30px;
-    left: 0;
-    right: 0;
-    font-size: 11px;
-    text-align: center;
-    line-height: 1.5;
-    display: flex;
-    flex-direction: column;
-}
-
-.icon i {
-    font-size: 22px;
-}
-
-#Slide5 .content .block {
-    flex-direction: column;
-}
-
-#Slide5 .content .block i {
-    margin: 0 12px;
-    vertical-align: middle;
-}
-
-strong {
-    font-weight: 400;
-}
-
-h1 {
-    text-transform: uppercase;
-}
-
-ol {
-    text-align: left;
-    list-style-type: decimal;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-    transition: all .25s linear;
-}
-
-a:hover {
-    color: rebeccapurple;
-}
-
-/* Additional styles from the original STYLES.CSS */
 
 header {
     text-align: center;
@@ -222,6 +69,14 @@ header::before {
     }
 }
 
+h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: fadeInDown 1s ease-in-out forwards;
+}
+
 h2 {
     font-size: 36px;
     font-weight: 700;
@@ -231,6 +86,17 @@ h2 {
     opacity: 0;
     transform: translateX(-50px);
     animation: fadeInLeft 1s ease-in-out forwards;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes fadeInLeft {
@@ -728,4 +594,156 @@ section.active .timeline-block {
     width: 6px;
     height: calc(100% - 10px);
     background-color: white;
+}
+
+#game-modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.show {
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    animation: slideIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-100px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.input-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.input-area input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    flex-grow: 1;
+}
+
+.input-area button {
+    padding: 10px 20px;
+    background-color: #2575fc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.input-area button:hover {
+    background-color: #1c5ed8;
+}
+
+#decrypted-message {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #2575fc;
+    text-align: center;
+}
+
+#translator-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    background-color: #2575fc;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    z-index: 999;
+}
+
+#translator-btn:hover {
+    background-color: #1c5ed8;
+}
+
+.translate-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #2575fc 50%, white 50%);
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.translate-animation.active {
+    opacity: 1;
+}
+
+.translate-animation::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #2575fc 50%, white 50%);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.5s ease-in-out;
+}
+
+.translate-animation.active::before {
+    transform: scaleY(1);
 }

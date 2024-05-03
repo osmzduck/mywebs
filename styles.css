@@ -7,6 +7,7 @@ body, html {
     overflow-x: hidden;
 }
 
+/* Container Styles */
 .container {
     max-width: 1200px;
     margin: auto;
@@ -17,6 +18,10 @@ body, html {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     animation: fadeIn 1s ease-in-out;
+    /* Added for better scroll reveal functionality */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -30,6 +35,7 @@ body, html {
     }
 }
 
+/* Header Styles */
 header {
     text-align: center;
     padding: 40px 20px;
@@ -40,6 +46,7 @@ header {
     overflow: hidden;
 }
 
+/* Header Glow Animation */
 header::before {
     content: "";
     position: absolute;
@@ -68,6 +75,7 @@ header::before {
     }
 }
 
+/* Heading Styles */
 h1 {
     font-size: 48px;
     font-weight: 700;
@@ -109,6 +117,7 @@ h2 {
     }
 }
 
+/* Scroll Down Indicator */
 .scroll-down {
     position: absolute;
     bottom: 20px;
@@ -169,22 +178,26 @@ h2 {
     }
 }
 
+/* Section Styles (General) */
 section {
     margin: 40px 0;
     padding: 40px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Added for better scroll reveal functionality */
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
 
+/* Active Section Styles (Scroll Reveal) */
 section.active {
     opacity: 1;
     transform: translateY(0);
 }
 
+/* Skill Section Styles */
 .skills {
     display: flex;
     flex-wrap: wrap;
@@ -204,6 +217,7 @@ section.active {
     transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
 
+/* Skill Animation Delay */
 .skill:nth-child(1) {
     transition-delay: 0.1s;
 }
@@ -225,6 +239,7 @@ section.active .skill {
     transform: translateY(0);
 }
 
+/* Certificate Gallery Styles */
 .certificate-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -243,6 +258,7 @@ section.active .skill {
     transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
 
+/* Certificate Animation Delay */
 .certificate:nth-child(1) {
     transition-delay: 0.1s;
 }
@@ -301,6 +317,7 @@ section.active .certificate {
     padding: 20px;
 }
 
+/* Certificate Preview Modal */
 #certificate-preview {
     position: fixed;
     top: 0;
@@ -335,6 +352,7 @@ section.active .certificate {
     transform: rotate(90deg);
 }
 
+/* Form Styles */
 form {
     display: grid;
     gap: 20px;
@@ -359,6 +377,7 @@ form textarea:focus {
     box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.5);
 }
 
+/* Button Styles */
 button {
     background-color: #2575fc;
     color: white;
@@ -375,6 +394,7 @@ button:hover {
     background-color: #1c5ed8;
 }
 
+/* Interactive Link Styles */
 #interactive-link {
     display: inline-block;
     padding: 10px 20px;
@@ -390,6 +410,7 @@ button:hover {
     background-color: #ff0058;
 }
 
+/* Interactive Overlay Styles */
 #interactive-overlay {
     position: fixed;
     top: 0;
@@ -403,6 +424,7 @@ button:hover {
     z-index: 9998;
 }
 
+/* Interactive Content Styles */
 #interactive-content {
     background-color: white;
     padding: 20px;
@@ -411,6 +433,13 @@ button:hover {
     display: none;
     position: relative;
     z-index: 9999;
+    /* Changed to position the secret message better */
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
 
 #interactive-content.active {
@@ -427,29 +456,27 @@ button:hover {
 #secret-message {
     font-size: 18px;
     color: #ff4081;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-    transition-delay: 1s;
-}
-
-#interactive-content.active #secret-message {
-    opacity: 1;
-    transform: translateY(0);
+    /* Removed transform and opacity properties */
 }
 
 #close-button {
     margin-top: 20px;
 }
 
+/* Footer Styles */
 footer {
     text-align: center;
     padding: 20px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     margin-top: 40px;
+    /* Added for scroll reveal */ 
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
 
+/* Header Icons Styles */
 .header-icons {
     display: flex;
     justify-content: center;
@@ -468,6 +495,7 @@ footer {
     transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
 
+/* Icon Animation Delay */
 .icon:nth-child(1) {
     transition-delay: 0.1s;
 }
@@ -493,11 +521,13 @@ header.active .icon {
     color: #ff4081;
 }
 
+/* Timeline Container Styles */
 .timeline-container {
     position: relative;
     padding: 40px 0;
 }
 
+/* Timeline Block Styles */
 .timeline-block {
     position: relative;
     margin-bottom: 40px;
@@ -510,6 +540,7 @@ header.active .icon {
     transform: translateX(50px);
 }
 
+/* Timeline Block Animation Delay */
 .timeline-block:nth-child(1) {
     transition-delay: 0.1s;
 }
@@ -523,6 +554,7 @@ section.active .timeline-block {
     transform: translateX(0);
 }
 
+/* Timeline Line and Circle */
 .timeline-block::before {
     content: "";
     position: absolute;
@@ -534,24 +566,6 @@ section.active .timeline-block {
 }
 
 .timeline-block::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -34px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #2575fc;
-}
-
-.timeline-date {
-    font-size: 18px;
-    font-weight: 700;
-    color: #ff4081;
-    margin-bottom: 10px;
-}
-
-.timeline-block::before {
     content: "";
     position: absolute;
     top: 0;
@@ -595,6 +609,15 @@ section.active .timeline-block {
     background-color: white;
 }
 
+/* Timeline Date Styles */
+.timeline-date {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ff4081;
+    margin-bottom: 10px;
+}
+
+/* Game Modal Styles */
 #game-modal {
     display: none;
     position: fixed;
@@ -625,15 +648,6 @@ section.active .timeline-block {
     animation: slideIn 0.5s ease-in-out;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
 @keyframes slideIn {
     from {
         transform: translateY(-100px);
@@ -658,6 +672,7 @@ section.active .timeline-block {
     text-decoration: none;
 }
 
+/* Input Area Styles */
 .input-area {
     display: flex;
     justify-content: center;
@@ -687,6 +702,7 @@ section.active .timeline-block {
     background-color: #1c5ed8;
 }
 
+/* Decrypted Message Styles */
 #decrypted-message {
     margin-top: 20px;
     font-weight: bold;
@@ -694,6 +710,7 @@ section.active .timeline-block {
     text-align: center;
 }
 
+/* Translator Button Styles */
 #translator-btn {
     position: fixed;
     bottom: 20px;
@@ -713,6 +730,7 @@ section.active .timeline-block {
     background-color: #1c5ed8;
 }
 
+/* Translate Animation Styles */
 .translate-animation {
     position: fixed;
     top: 0;

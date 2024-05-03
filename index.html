@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <header>
-            <h1 class="animate__animated animate__fadeInDown">Essam Turki</h1>
+            <h1>Essam Turki</h1>
             <p class="animate__animated animate__fadeInUp">Cybersecurity Enthusiast & IT Professional</p>
             <div class="header-icons">
                 <a href="#" class="icon github" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
@@ -19,7 +19,8 @@
                 <a href="#" class="icon twitter" title="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
                 <a href="#" class="icon secret-game game-link" title="Unlock the Secret!" onclick="openGameModal()"><i class="fas fa-user-secret"></i></a>
                 <a href="index-ar.html" id="translator-link" title="Translate to Arabic">
-                <i class="fas fa-language"></i></a>
+                    <i class="fas fa-language"></i>
+                </a>
             </div>
         </header>
         <div class="scroll-down">
@@ -117,15 +118,14 @@
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
     <script src="scripts.js"></script>
 
     <div id="game-modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeGameModal()">&times;</span>
             <h2>Decrypt the Message!</h2>
-            <p>Find the correct key to decrypt the message.
-                = Uif tfdsfu up tvddftt jt dpotjtufodz. </p>
+            <p>Find the correct key to decrypt the message.</p>
+            <p>= Uif tfdsfu up tvddftt jt dpotjtufodz. </p>
             <div class="input-area">
                 <input type="text" id="decryption-key" placeholder="Enter decryption key...">
                 <button onclick="decryptMessage()">Decrypt</button>
@@ -133,9 +133,6 @@
             </div>
             <p id="decrypted-message"></p>
         </div>
-        <button id="translator-btn" title="Translate to Arabic">
-    <i class="fas fa-language"></i>
-</button>
     </div>
 </body>
 </html>

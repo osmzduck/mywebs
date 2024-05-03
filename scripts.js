@@ -1,4 +1,3 @@
-
 // Scroll down arrow animation
 const scrollArrow = document.querySelector('.scroll-arrow');
 const scrollCircle = document.querySelector('.scroll-circle');

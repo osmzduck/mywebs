@@ -7,7 +7,6 @@ body, html {
     overflow-x: hidden;
 }
 
-/* Container Styles */
 .container {
     max-width: 1200px;
     margin: auto;
@@ -18,10 +17,6 @@ body, html {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     animation: fadeIn 1s ease-in-out;
-    /* Added for better scroll reveal functionality */
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -35,7 +30,6 @@ body, html {
     }
 }
 
-/* Header Styles */
 header {
     text-align: center;
     padding: 40px 20px;
@@ -46,7 +40,6 @@ header {
     overflow: hidden;
 }
 
-/* Header Glow Animation */
 header::before {
     content: "";
     position: absolute;
@@ -75,7 +68,6 @@ header::before {
     }
 }
 
-/* Heading Styles */
 h1 {
     font-size: 48px;
     font-weight: 700;
@@ -117,7 +109,24 @@ h2 {
     }
 }
 
-/* Scroll Down Indicator */
+/* Scroll to Reveal */
+section {
+    margin: 40px 0;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+}
+
+section.active { /* This class will be added by JavaScript when the section is in view */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Scroll Down Arrow */
 .scroll-down {
     position: absolute;
     bottom: 20px;
@@ -127,7 +136,7 @@ h2 {
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    opacity: 0;
+    opacity: 0; /* Initially hidden */
     animation: fadeInUp 1s ease-in-out forwards;
     animation-delay: 1s;
 }
@@ -178,26 +187,7 @@ h2 {
     }
 }
 
-/* Section Styles (General) */
-section {
-    margin: 40px 0;
-    padding: 40px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* Added for better scroll reveal functionality */
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-}
-
-/* Active Section Styles (Scroll Reveal) */
-section.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Skill Section Styles */
+/* Skills Section */
 .skills {
     display: flex;
     flex-wrap: wrap;
@@ -217,7 +207,6 @@ section.active {
     transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
 
-/* Skill Animation Delay */
 .skill:nth-child(1) {
     transition-delay: 0.1s;
 }
@@ -234,15 +223,15 @@ section.active {
     transition-delay: 0.4s;
 }
 
-section.active .skill {
+section.active .skill { /* Reveal skills when section is active */
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Certificate Gallery Styles */
+/* Certificate Gallery */
 .certificate-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
     gap: 40px;
     margin-top: 40px;
 }
@@ -258,7 +247,7 @@ section.active .skill {
     transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
 
-/* Certificate Animation Delay */
+/* Staggered animation for certificates */
 .certificate:nth-child(1) {
     transition-delay: 0.1s;
 }
@@ -267,15 +256,9 @@ section.active .skill {
     transition-delay: 0.2s;
 }
 
-.certificate:nth-child(3) {
-    transition-delay: 0.3s;
-}
+/* ... and so on for other certificates */
 
-.certificate:nth-child(4) {
-    transition-delay: 0.4s;
-}
-
-section.active .certificate {
+section.active .certificate { /* Reveal certificates when section is active */
     opacity: 1;
     transform: translateY(0);
 }

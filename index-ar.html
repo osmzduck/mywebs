@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="styles-ar.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1 class="animate__animated animate__fadeInDown">عصام تركي</h1>
+            <h1>عصام تركي</h1>
             <p class="animate__animated animate__fadeInUp">مهتم بالأمن السيبراني ومحترف تكنولوجيا المعلومات</p>
             <div class="header-icons">
                 <a href="#" class="icon github" title="جيت هاب" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
@@ -122,20 +122,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
     <script src="scripts.js"></script>
-    <script src="translation.js"></script>
 
-      <div id="game-modal" class="modal">
+    <div id="game-modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeGameModal()">&times;</span>
             <h2>فك تشفير الرسالة!</h2>
             <p>ابحث عن المفتاح الصحيح لفك تشفير الرسالة.</p>
-            <p>= Uif tfdsfu up tvddftt jt dpotjtufodz.</p>
             <div class="input-area">
                 <input type="text" id="decryption-key" placeholder="أدخل مفتاح فك التشفير...">
                 <button onclick="decryptMessage()">فك التشفير</button>
                 <canvas id="modal-confetti-canvas"></canvas>
             </div>
             <p id="decrypted-message"></p>
+            <p id="encrypted-message">Uif tfdsfu up tvddftt jt dpotjtufodz.</p>
         </div>
     </div>
 </body>

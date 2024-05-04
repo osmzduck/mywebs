@@ -17,15 +17,14 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Reveal sections on scroll with improved functionality
+// Reveal sections on scroll
 const sections = document.querySelectorAll('.section-reveal');
 
 function revealSection(entries, observer) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('active');
-            // Stop observing the section once it's revealed to improve performance
-            observer.unobserve(entry.target); 
+            observer.unobserve(entry.target);
         }
     });
 }
@@ -37,8 +36,7 @@ const sectionObserver = new IntersectionObserver(revealSection, {
 
 sections.forEach(section => {
     sectionObserver.observe(section);
-    // Ensure sections are hidden initially for the reveal effect
-    section.classList.add('section-hidden'); 
+    section.classList.add('section-hidden');
 });
 
 // Certificate hover effect
@@ -81,7 +79,7 @@ closePreviewButton.addEventListener('click', () => {
     certificatePreview.classList.remove('active');
 });
 
-// Interactive secret message with positioning fix
+// Interactive secret message
 const interactiveLink = document.getElementById('interactive-link');
 const interactiveOverlay = document.getElementById('interactive-overlay');
 const interactiveContent = document.getElementById('interactive-content');
@@ -93,11 +91,6 @@ interactiveLink.addEventListener('click', () => {
     interactiveOverlay.style.display = 'block';
     interactiveContent.style.display = 'block';
     interactiveContent.classList.add('active');
-
-    // Center the secret message vertically
-    interactiveContent.style.top = '50%';
-    interactiveContent.style.transform = 'translateY(-50%)';
-
     startTypingEffect();
 });
 
@@ -124,7 +117,7 @@ function startTypingEffect() {
                 gsap.to(secretMessageElement, {
                     duration: 1,
                     opacity: 1,
-                    y: 0, 
+                    y: 0,
                     ease: 'power2.out',
                     onComplete: () => {
                         confetti({
@@ -143,9 +136,8 @@ function startTypingEffect() {
     typeNextCharacter();
 }
 
-// Background particles effect 
-particlesJS.load('background-particles', 'particles-config.json'); 
-}
+// Background particles effect
+particlesJS.load('background-particles', 'particles-config.json');
 
 // Cursor trail effect
 const cursorTrail = document.getElementById('cursor-trail');
@@ -184,16 +176,16 @@ const confettiSettings = { target: confettiCanvas };
 const confetti = new ConfettiGenerator(confettiSettings);
 
 form.addEventListener('submit', (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
     confetti.render();
 
     setTimeout(() => {
         confetti.clear();
-        form.reset(); // Reset form fields after confetti effect
+        form.reset();
     }, 3000);
 });
 
-// Secret game modal with pop-up blocker handling and animation improvements
+// Secret game modal
 const gameModal = document.getElementById('game-modal');
 const closeModalButton = gameModal.querySelector('.close');
 const decryptionKey = document.getElementById('decryption-key');
@@ -201,22 +193,15 @@ const decryptedMessage = document.getElementById('decrypted-message');
 const modalConfettiCanvas = document.getElementById('modal-confetti-canvas');
 const modalConfettiSettings = { target: modalConfettiCanvas };
 const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
+const encryptedMessageElement = document.getElementById('encrypted-message');
 
-// Function to open the modal and handle pop-up blockers
 function openGameModal() {
-    // Try opening the modal directly
     gameModal.style.display = 'flex';
     gameModal.classList.add('show');
-
-    // Check if the modal was blocked
     setTimeout(() => {
-        if (gameModal.style.display === 'none') {
-            // Pop-up likely blocked, alert the user
-            alert("It seems like pop-ups are blocked. Please allow pop-ups for this site to play the game.");
-        } else {
-            gameModal.querySelector('.modal-content').classList.add('show');
-        }
+        gameModal.querySelector('.modal-content').classList.add('show');
     }, 100);
+    encryptedMessageElement.style.display = 'none';
 }
 
 function closeGameModal() {
@@ -226,6 +211,7 @@ function closeGameModal() {
         gameModal.classList.remove('show');
         decryptionKey.value = '';
         decryptedMessage.textContent = '';
+        encryptedMessageElement.style.display = 'block';
     }, 500);
 }
 
@@ -246,20 +232,21 @@ function decryptMessage() {
             modalConfetti.clear();
         }, 3000);
     } else {
-        // Improved shake animation
-        gsap.fromTo(gameModal.querySelector('.modal-content'), { x: -10 }, {
-            x: 10,
-            duration: 0.1,
-            repeat: 3,
-            yoyo: true,
-            onComplete: () => {
-                decryptedMessage.textContent = 'Wrong decryption key. Try again!';
-            }
-        });
+        decryptedMessage.textContent = 'Wrong decryption key. Try again!';
     }
 }
 
-// Text animation for section titles 
+// Shake animation on wrong decryption key
+decryptionKey.addEventListener('input', () => {
+    if (decryptionKey.value.toLowerCase() !== 'consistency') {
+        gameModal.querySelector('.modal-content').classList.add('shake');
+        setTimeout(() => {
+            gameModal.querySelector('.modal-content').classList.remove('shake');
+        }, 500);
+    }
+});
+
+// Text animation for section titles
 const sectionTitles = document.querySelectorAll('h2');
 
 sectionTitles.forEach(title => {
@@ -288,5 +275,28 @@ function animateTimelineBlock(entries, observer) {
 
 const timelineObserver = new IntersectionObserver(animateTimelineBlock, {
     root: null,
-    threshold: 0.5 
-}); 
+    threshold: 0.5
+});
+
+timelineBlocks.forEach(block => {
+    timelineObserver.observe(block);
+});
+
+// Language translation animation
+const translatorLink = document.getElementById('translator-link');
+
+translatorLink.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    const translateAnimation = document.createElement('div');
+    translateAnimation.classList.add('translate-animation');
+    document.body.appendChild(translateAnimation);
+
+    setTimeout(() => {
+        translateAnimation.classList.add('active');
+    }, 100);
+
+    setTimeout(() => {
+        window.location.href = translatorLink.getAttribute('href');
+    }, 600);
+});

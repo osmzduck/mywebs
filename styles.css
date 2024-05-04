@@ -109,24 +109,6 @@ h2 {
     }
 }
 
-/* Scroll to Reveal */
-section {
-    margin: 40px 0;
-    padding: 40px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-}
-
-section.active { /* This class will be added by JavaScript when the section is in view */
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Scroll Down Arrow */
 .scroll-down {
     position: absolute;
     bottom: 20px;
@@ -136,7 +118,7 @@ section.active { /* This class will be added by JavaScript when the section is i
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    opacity: 0; /* Initially hidden */
+    opacity: 0;
     animation: fadeInUp 1s ease-in-out forwards;
     animation-delay: 1s;
 }
@@ -187,7 +169,22 @@ section.active { /* This class will be added by JavaScript when the section is i
     }
 }
 
-/* Skills Section */
+section {
+    margin: 40px 0;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+}
+
+section.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .skills {
     display: flex;
     flex-wrap: wrap;
@@ -223,15 +220,14 @@ section.active { /* This class will be added by JavaScript when the section is i
     transition-delay: 0.4s;
 }
 
-section.active .skill { /* Reveal skills when section is active */
+section.active .skill {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Certificate Gallery */
 .certificate-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px;
     margin-top: 40px;
 }
@@ -247,7 +243,6 @@ section.active .skill { /* Reveal skills when section is active */
     transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
 
-/* Staggered animation for certificates */
 .certificate:nth-child(1) {
     transition-delay: 0.1s;
 }
@@ -256,9 +251,15 @@ section.active .skill { /* Reveal skills when section is active */
     transition-delay: 0.2s;
 }
 
-/* ... and so on for other certificates */
+.certificate:nth-child(3) {
+    transition-delay: 0.3s;
+}
 
-section.active .certificate { /* Reveal certificates when section is active */
+.certificate:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+section.active .certificate {
     opacity: 1;
     transform: translateY(0);
 }
@@ -300,7 +301,6 @@ section.active .certificate { /* Reveal certificates when section is active */
     padding: 20px;
 }
 
-/* Certificate Preview Modal */
 #certificate-preview {
     position: fixed;
     top: 0;
@@ -312,6 +312,10 @@ section.active .certificate { /* Reveal certificates when section is active */
     justify-content: center;
     align-items: center;
     z-index: 9999;
+}
+
+#certificate-preview.active {
+    display: flex;
 }
 
 #certificate-preview img {
@@ -335,7 +339,6 @@ section.active .certificate { /* Reveal certificates when section is active */
     transform: rotate(90deg);
 }
 
-/* Form Styles */
 form {
     display: grid;
     gap: 20px;
@@ -360,7 +363,6 @@ form textarea:focus {
     box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.5);
 }
 
-/* Button Styles */
 button {
     background-color: #2575fc;
     color: white;
@@ -377,7 +379,6 @@ button:hover {
     background-color: #1c5ed8;
 }
 
-/* Interactive Link Styles */
 #interactive-link {
     display: inline-block;
     padding: 10px 20px;
@@ -393,7 +394,6 @@ button:hover {
     background-color: #ff0058;
 }
 
-/* Interactive Overlay Styles */
 #interactive-overlay {
     position: fixed;
     top: 0;
@@ -407,7 +407,6 @@ button:hover {
     z-index: 9998;
 }
 
-/* Interactive Content Styles */
 #interactive-content {
     background-color: white;
     padding: 20px;
@@ -416,12 +415,8 @@ button:hover {
     display: none;
     position: relative;
     z-index: 9999;
-    /* Changed to position the secret message better */
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
     opacity: 0;
+    transform: translateY(50px);
     transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
 
@@ -439,27 +434,29 @@ button:hover {
 #secret-message {
     font-size: 18px;
     color: #ff4081;
-    /* Removed transform and opacity properties */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    transition-delay: 1s;
+}
+
+#interactive-content.active #secret-message {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 #close-button {
     margin-top: 20px;
 }
 
-/* Footer Styles */
 footer {
     text-align: center;
     padding: 20px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     margin-top: 40px;
-    /* Added for scroll reveal */ 
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
 
-/* Header Icons Styles */
 .header-icons {
     display: flex;
     justify-content: center;
@@ -478,7 +475,6 @@ footer {
     transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
 
-/* Icon Animation Delay */
 .icon:nth-child(1) {
     transition-delay: 0.1s;
 }
@@ -495,6 +491,10 @@ footer {
     transition-delay: 0.4s;
 }
 
+.icon:nth-child(5) {
+    transition-delay: 0.5s;
+}
+
 header.active .icon {
     opacity: 1;
     transform: translateY(0);
@@ -504,13 +504,11 @@ header.active .icon {
     color: #ff4081;
 }
 
-/* Timeline Container Styles */
 .timeline-container {
     position: relative;
     padding: 40px 0;
 }
 
-/* Timeline Block Styles */
 .timeline-block {
     position: relative;
     margin-bottom: 40px;
@@ -523,7 +521,6 @@ header.active .icon {
     transform: translateX(50px);
 }
 
-/* Timeline Block Animation Delay */
 .timeline-block:nth-child(1) {
     transition-delay: 0.1s;
 }
@@ -537,7 +534,6 @@ section.active .timeline-block {
     transform: translateX(0);
 }
 
-/* Timeline Line and Circle */
 .timeline-block::before {
     content: "";
     position: absolute;
@@ -549,6 +545,24 @@ section.active .timeline-block {
 }
 
 .timeline-block::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -34px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #2575fc;
+}
+
+.timeline-date {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ff4081;
+    margin-bottom: 10px;
+}
+
+.timeline-block::before {
     content: "";
     position: absolute;
     top: 0;
@@ -592,15 +606,6 @@ section.active .timeline-block {
     background-color: white;
 }
 
-/* Timeline Date Styles */
-.timeline-date {
-    font-size: 18px;
-    font-weight: 700;
-    color: #ff4081;
-    margin-bottom: 10px;
-}
-
-/* Game Modal Styles */
 #game-modal {
     display: none;
     position: fixed;
@@ -616,59 +621,70 @@ section.active .timeline-block {
     align-items: center;
 }
 
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    transform: translateY(-30px);
+    transition: transform 0.5s ease-out;
+}
+
+.modal-content::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: linear-gradient(45deg, #2575fc, #ff4081);
+    border-radius: 20px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+.modal-content.show::before {
+    opacity: 1;
+}
+
 .modal.show {
     opacity: 1;
 }
 
-.modal-content {
-    background-color: white;
-    margin: 15% auto;
-    padding: 20px;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 600px;
-    position: relative;
-    animation: slideIn 0.5s ease-in-out;
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateY(-100px);
-    }
-    to {
-        transform: translateY(0);
-    }
+.modal-content.show {
+    transform: translateY(0);
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #999;
     cursor: pointer;
-    transition: color 0.3s ease-in-out;
+    transition: color 0.3s ease;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
+.close:hover {
+    color: #333;
 }
 
-/* Input Area Styles */
 .input-area {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin-top: 20px;
 }
 
 .input-area input {
+    flex: 1;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 2px solid #2575fc;
     border-radius: 5px;
-    margin-right: 10px;
-    flex-grow: 1;
+    font-size: 16px;
 }
 
 .input-area button {
@@ -677,23 +693,38 @@ section.active .timeline-block {
     color: white;
     border: none;
     border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
 }
 
 .input-area button:hover {
     background-color: #1c5ed8;
 }
 
-/* Decrypted Message Styles */
 #decrypted-message {
     margin-top: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: #2575fc;
-    text-align: center;
 }
 
-/* Translator Button Styles */
+#encrypted-message {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content:hover #encrypted-message {
+    opacity: 1;
+}
+
 #translator-btn {
     position: fixed;
     bottom: 20px;
@@ -705,7 +736,7 @@ section.active .timeline-block {
     border-radius: 50%;
     font-size: 20px;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease;
     z-index: 999;
 }
 
@@ -713,7 +744,6 @@ section.active .timeline-block {
     background-color: #1c5ed8;
 }
 
-/* Translate Animation Styles */
 .translate-animation {
     position: fixed;
     top: 0;
@@ -724,7 +754,7 @@ section.active .timeline-block {
     z-index: 9999;
     pointer-events: none;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease;
 }
 
 .translate-animation.active {
@@ -741,7 +771,7 @@ section.active .timeline-block {
     background: linear-gradient(to bottom, #2575fc 50%, white 50%);
     transform: scaleY(0);
     transform-origin: top;
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.5s ease;
 }
 
 .translate-animation.active::before {

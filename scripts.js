@@ -24,6 +24,7 @@ function revealSection(entries, observer) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('active');
+            observer.unobserve(entry.target);
         }
     });
 }
@@ -49,6 +50,9 @@ certificates.forEach(certificate => {
         const imageSrc = certificate.querySelector('img').getAttribute('src');
         certificatePreviewImage.setAttribute('src', imageSrc);
         certificatePreview.style.display = 'flex';
+        certificatePreviewImage.addEventListener('click', () => {
+            window.open(imageSrc, '_blank');
+        });
     });
 
     certificate.addEventListener('mouseenter', () => {
@@ -98,7 +102,7 @@ closeButton.addEventListener('click', () => {
 });
 
 function startTypingEffect() {
-    const text = "لقد عثرت على سر! تهانينا على اكتشافه. كمكافأة، إليك رسالة مخفية: النجاح ليس نهائيًا، الفشل ليس قاتلًا: إنها الشجاعة للاستمرار هي ما تهم. استمر في الاستكشاف وحل الألغاز!";
+    const text = "You've stumbled upon a secret! Congratulations on finding it. As a reward, here's a hidden message: Success is not final, failure is not fatal: it is the courage to continue that counts. Keep exploring and unraveling the mysteries!";
     let i = 0;
     const typingSpeed = 50;
 
@@ -109,7 +113,9 @@ function startTypingEffect() {
             setTimeout(typeNextCharacter, typingSpeed);
         } else {
             setTimeout(() => {
-                secretMessageElement.textContent = "🎉 تهانينا على اكتشاف الرسالة السرية! 🎉";
+                secretMessageElement.textContent = "🎉 Congratulations on discovering the secret message! 🎉";
+                secretMessageElement.style.opacity = 1;
+                secretMessageElement.style.transform = 'translateY(0)';
             }, 1000);
         }
     }
@@ -123,8 +129,31 @@ particlesJS.load('background-particles', 'particles-config.json');
 // Cursor trail effect
 const cursorTrail = document.getElementById('cursor-trail');
 document.addEventListener('mousemove', (e) => {
-    cursorTrail.style.left = e.clientX + 'px';
-    cursorTrail.style.top = e.clientY + 'px';
+    const x = e.clientX;
+    const y = e.clientY;
+
+    gsap.to(cursorTrail, {
+        duration: 0.5,
+        left: x,
+        top: y,
+        ease: 'power2.out'
+    });
+
+    const particle = document.createElement('div');
+    particle.className = 'cursor-particle';
+    particle.style.left = x + 'px';
+    particle.style.top = y + 'px';
+    cursorTrail.appendChild(particle);
+
+    gsap.to(particle, {
+        duration: 1,
+        scale: 0,
+        opacity: 0,
+        ease: 'power2.out',
+        onComplete: () => {
+            particle.remove();
+        }
+    });
 });
 
 // Confetti effect on form submission
@@ -150,13 +179,19 @@ const modalConfettiCanvas = document.getElementById('modal-confetti-canvas');
 const modalConfetti = new ConfettiGenerator({ target: modalConfettiCanvas });
 
 function openGameModal() {
-    gameModal.style.display = 'block';
+    gameModal.style.display = 'flex';
+    setTimeout(() => {
+        gameModal.classList.add('show');
+    }, 100);
 }
 
 function closeGameModal() {
-    gameModal.style.display = 'none';
-    decryptionKey.value = '';
-    decryptedMessage.textContent = '';
+    gameModal.classList.remove('show');
+    setTimeout(() => {
+        gameModal.style.display = 'none';
+        decryptionKey.value = '';
+        decryptedMessage.textContent = '';
+    }, 500);
 }
 
 closeModalButton.addEventListener('click', closeGameModal);
@@ -169,13 +204,13 @@ window.addEventListener('click', (e) => {
 function decryptMessage() {
     const key = decryptionKey.value.toLowerCase();
     if (key === 'consistency') {
-        decryptedMessage.textContent = 'سر النجاح هو الاتساق.';
+        decryptedMessage.textContent = 'The secret to success is consistency.';
         modalConfetti.render();
         setTimeout(() => {
             modalConfetti.clear();
         }, 3000);
     } else {
-        decryptedMessage.textContent = 'مفتاح فك التشفير خاطئ. حاول مرة أخرى!';
+        decryptedMessage.textContent = 'Wrong decryption key. Try again!';
     }
 }
 

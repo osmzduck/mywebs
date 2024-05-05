@@ -312,6 +312,12 @@ section.active .certificate {
     justify-content: center;
     align-items: center;
     z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+#certificate-preview.active {
+    opacity: 1;
 }
 
 #certificate-preview img {
@@ -319,12 +325,12 @@ section.active .certificate {
     max-height: 90%;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
+    transform: scale(0);
     transition: transform 0.3s ease-in-out;
 }
 
-#certificate-preview img:hover {
-    transform: scale(1.1);
+#certificate-preview.active img {
+    transform: scale(1);
 }
 
 .close-preview {
@@ -418,8 +424,8 @@ button:hover {
     position: relative;
     z-index: 9999;
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
 
 #interactive-content.active {
@@ -563,197 +569,276 @@ section.active .timeline-block {
 .timeline-block::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: -34px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #2575fc;
-    border: 2px solid white;
-    box-shadow: 0 0 0 4px rgba(37, 117, 252, 0.2);
-    animation: pulseEffect 2s infinite;
+top: 0;
+left: -34px;
+width: 10px;
+height: 10px;
+border-radius: 50%;
+background-color: #2575fc;
+border: 2px solid white;
+box-shadow: 0 0 0 4px rgba(37, 117, 252, 0.2);
+animation: pulseEffect 2s infinite;
 }
 
 @keyframes pulseEffect {
-    0% {
-        transform: scale(0.8);
-        opacity: 0.7;
-    }
-    50% {
-        transform: scale(1.2);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(0.8);
-        opacity: 0.7;
-    }
+0% {
+transform: scale(0.8);
+opacity: 0.7;
+}
+50% {
+transform: scale(1.2);
+opacity: 1;
+}
+100% {
+transform: scale(0.8);
+opacity: 0.7;
+}
 }
 
 .timeline-block:nth-child(odd)::before {
-    background-color: #ff4081;
-    box-shadow: 0 0 0 4px rgba(255, 64, 129, 0.2);
+background-color: #ff4081;
+box-shadow: 0 0 0 4px rgba(255, 64, 129, 0.2);
 }
 
 .timeline-block:last-child::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: -32px;
-    width: 6px;
-    height: calc(100% - 10px);
-    background-color: white;
+content: "";
+position: absolute;
+bottom: 0;
+left: -32px;
+width: 6px;
+height: calc(100% - 10px);
+background-color: white;
 }
 
 #game-modal {
-    display: none;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transform: scale(0.8);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-#game-modal.show {
-    opacity: 1;
-    transform: scale(1);
+display: none;
+position: fixed;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.8);
+z-index: 1000;
+opacity: 0;
+transition: opacity 0.5s ease;
+justify-content: center;
+align-items: center;
 }
 
 .modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 600px;
-    position: relative;
-    opacity: 0;
-    transform: translateY(-50px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+background-color: white;
+padding: 30px;
+width: 90%;
+max-width: 500px;
+border-radius: 20px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+transform: translateY(-30px);
+transition: transform 0.5s ease-out;
+position: relative;
 }
 
-#game-modal.show .modal-content {
-    opacity: 1;
-    transform: translateY(0);
+.modal-content::before {
+content: "";
+position: absolute;
+top: -20px;
+left: -20px;
+right: -20px;
+bottom: -20px;
+background: linear-gradient(45deg, #ff0058, #0056b3);
+border-radius: 40px;
+z-index: -1;
+}
+
+.modal.show {
+display: flex;
+opacity: 1;
+}
+
+.modal-content.show {
+transform: translateY(0);
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.3s ease-in-out;
+position: absolute;
+top: 15px;
+right: 15px;
+font-size: 28px;
+cursor: pointer;
+color: #aaa;
+transition: color 0.3s ease;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
+.close:hover {
+color: #333;
 }
 
 .input-area {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+display: flex;
+justify-content: space-between;
+margin-top: 20px;
 }
 
 .input-area input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 10px;
-    flex-grow: 1;
+width: 70%;
+padding: 10px;
+border: 2px solid #007BFF;
+border-radius: 10px;
 }
 
 .input-area button {
-    padding: 10px 20px;
-    background-color: #2575fc;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+width: 25%;
+background-color: #007BFF;
+color: white;
+border: none;
+border-radius: 10px;
+cursor: pointer;
+transition: background-color 0.3s ease;
 }
 
 .input-area button:hover {
-    background-color: #1c5ed8;
+background-color: #0056b3;
 }
 
 #decrypted-message {
-    margin-top: 20px;
-    font-weight: bold;
-    color: #2575fc;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+margin-top: 20px;
+color: #007BFF;
 }
 
-#game-modal.show #decrypted-message {
-    opacity: 1;
-    transform: translateY(0);
+.game-link {
+position: relative;
+transition: transform 0.3s ease;
 }
 
-#translator-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 10px;
-    background-color: #2575fc;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-    z-index: 999;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.8s ease-in-out forwards;
-    animation-delay: 1s;
+.game-link:hover {
+transform: scale(1.2);
 }
 
-#translator-btn:hover {
-    background-color: #1c5ed8;
+.game-link::after {
+content: 'Decrypt the hidden game!';
+position: absolute;
+top: 100%;
+left: 50%;
+transform: translateX(-50%);
+padding: 6px 10px;
+background-color: #007BFF;
+color: white;
+border-radius: 4px;
+opacity: 0;
+transition: opacity 0.2s ease;
+white-space: nowrap;
+pointer-events: none;
+}
+
+.game-link:hover::after {
+opacity: 1;
+}
+
+#modal-confetti-canvas {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+pointer-events: none;
+z-index: 10;
+}
+
+.modal-content.shake {
+animation: shake 0.5s;
+}
+
+@keyframes shake {
+0%, 100% {
+transform: translateX(0);
+}
+10%, 30%, 50%, 70%, 90% {
+transform: translateX(-10px);
+}
+20%, 40%, 60%, 80% {
+transform: translateX(10px);
+}
+}
+
+h2 span {
+display: inline-block;
+opacity: 0;
+transform: translateY(20px);
+animation: fadeInUp 0.5s ease forwards;
+}
+
+h2 span:nth-child(1) {
+animation-delay: 0.1s;
+}
+
+h2 span:nth-child(2) {
+animation-delay: 0.2s;
+}
+
+h2 span:nth-child(3) {
+animation-delay: 0.3s;
+}
+
+h2 span:nth-child(4) {
+animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+#translator-link {
+position: fixed;
+bottom: 20px;
+right: 20px;
+background-color: #007BFF;
+color: white;
+border: none;
+padding: 10px;
+border-radius: 50%;
+font-size: 20px;
+cursor: pointer;
+z-index: 1000;
+transition: transform 0.3s ease;
+}
+
+#translator-link:hover {
+transform: scale(1.1);
 }
 
 .translate-animation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, #2575fc 50%, white 50%);
-    z-index: 9999;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: linear-gradient(to bottom, #007BFF 50%, white 50%);
+z-index: 9999;
+pointer-events: none;
+opacity: 0;
+transition: opacity 0.5s ease;
 }
 
 .translate-animation.active {
-    opacity: 1;
+opacity: 1;
 }
 
 .translate-animation::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, #2575fc 50%, white 50%);
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: transform 0.5s ease-in-out;
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: linear-gradient(to bottom, #007BFF 50%, white 50%);
+transform: scaleY(0);
+transform-origin: top;
+transition: transform 0.5s ease;
 }
 
 .translate-animation.active::before {
-    transform: scaleY(1);
+transform: scaleY(1);
 }
+    

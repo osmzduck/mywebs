@@ -417,6 +417,9 @@ button:hover {
     display: none;
     position: relative;
     z-index: 9999;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
 #interactive-content.active {
@@ -610,15 +613,16 @@ section.active .timeline-block {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 1000;
-    opacity: 0;
-    transition: opacity 0.5s ease;
     justify-content: center;
     align-items: center;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 #game-modal.show {
-    display: flex;
     opacity: 1;
+    transform: scale(1);
 }
 
 .modal-content {
@@ -628,23 +632,19 @@ section.active .timeline-block {
     width: 80%;
     max-width: 600px;
     position: relative;
-    animation: slideIn 0.5s ease-in-out;
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-@keyframes slideIn {
-    from {
-        transform: translateY(-100px);
-    }
-    to {
-        transform: translateY(0);
-    }
+#game-modal.show .modal-content {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .close {
     color: #aaa;
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    float: right;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
@@ -691,6 +691,14 @@ section.active .timeline-block {
     font-weight: bold;
     color: #2575fc;
     text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+}
+
+#game-modal.show #decrypted-message {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 #translator-btn {
@@ -706,6 +714,10 @@ section.active .timeline-block {
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
     z-index: 999;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease-in-out forwards;
+    animation-delay: 1s;
 }
 
 #translator-btn:hover {

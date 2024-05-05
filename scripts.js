@@ -1,176 +1,134 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const header = document.querySelector('header');
-    const sections = document.querySelectorAll('section');
-    const scrollDownBtn = document.querySelector('.scroll-down');
-    const certificateImages = document.querySelectorAll('.certificate img');
-    const certificatePreview = document.getElementById('certificate-preview');
-    const closePreviewBtn = document.querySelector('.close-preview');
-    const interactiveLink = document.getElementById('interactive-link');
-    const interactiveOverlay = document.getElementById('interactive-overlay');
-    const interactiveContent = document.getElementById('interactive-content');
-    const closeButton = document.getElementById('close-button');
-    const gameModal = document.getElementById('game-modal');
-    const modalCloseBtn = document.querySelector('.close');
-    const encryptedMessage = "Pbatenghyngvbaf! Lbh unir fhpprffshyyl qrpelcgrq gur zrffntr.";
-    const inputField = document.getElementById('encrypted-input');
-    const decryptButton = document.getElementById('decrypt-btn');
-    const decryptedMessageElement = document.getElementById('decrypted-message');
-    const translatorBtn = document.getElementById('translator-btn');
-    const translateAnimation = document.querySelector('.translate-animation');
+// Scroll reveal animation
+window.addEventListener('scroll', function() {
+    var sections = document.querySelectorAll('section');
+    var header = document.querySelector('header');
 
-    // Scroll reveal animation
-    const revealSection = function () {
-        sections.forEach(section => {
-            const sectionTop = section.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
+    sections.forEach(function(section) {
+        var sectionTop = section.getBoundingClientRect().top;
+        var windowHeight = window.innerHeight;
 
-            if (sectionTop < windowHeight * 0.8) {
-                section.classList.add('active');
-            }
-        });
-    };
+        if (sectionTop < windowHeight * 0.8) {
+            section.classList.add('active');
+        }
+    });
 
-    // Header animation
-    const animateHeader = function () {
+    if (window.scrollY > 0) {
         header.classList.add('active');
-    };
+    } else {
+        header.classList.remove('active');
+    }
+});
 
-    // Smooth scroll to section
-    const smoothScroll = function (target) {
-        const targetSection = document.querySelector(target);
-        const targetPosition = targetSection.offsetTop;
-        const startPosition = window.pageYOffset;
-        const distance = targetPosition - startPosition;
-        const duration = 1000;
-        let start = null;
+// Certificate preview
+var certificateImages = document.querySelectorAll('.certificate img');
+var certificatePreview = document.getElementById('certificate-preview');
+var certificatePreviewImage = document.getElementById('certificate-preview-image');
+var closePreviewBtn = document.querySelector('.close-preview');
 
-        const animation = function (currentTime) {
-            if (start === null) start = currentTime;
-            const timeElapsed = currentTime - start;
-            const run = ease(timeElapsed, startPosition, distance, duration);
-            window.scrollTo(0, run);
-            if (timeElapsed < duration) requestAnimationFrame(animation);
-        };
-
-        const ease = function (t, b, c, d) {
-            t /= d / 2;
-            if (t < 1) return c / 2 * t * t + b;
-            t--;
-            return -c / 2 * (t * (t - 2) - 1) + b;
-        };
-
-        requestAnimationFrame(animation);
-    };
-
-    // Certificate preview
-    const openCertificatePreview = function (event) {
-        const clickedImage = event.target;
-        const imageSrc = clickedImage.getAttribute('src');
-        const previewImage = certificatePreview.querySelector('img');
-        previewImage.setAttribute('src', imageSrc);
+certificateImages.forEach(function(image) {
+    image.addEventListener('click', function() {
+        var imageSrc = this.getAttribute('src');
+        certificatePreviewImage.setAttribute('src', imageSrc);
         certificatePreview.style.display = 'flex';
-    };
+    });
+});
 
-    const closeCertificatePreview = function () {
-        certificatePreview.style.display = 'none';
-    };
+closePreviewBtn.addEventListener('click', function() {
+    certificatePreview.style.display = 'none';
+});
 
-    // Interactive content
-    const openInteractiveContent = function (event) {
-        event.preventDefault();
-        interactiveOverlay.style.display = 'flex';
-        setTimeout(function () {
-            interactiveContent.style.display = 'block';
-            typeWriter();
-        }, 500);
-    };
+certificatePreviewImage.addEventListener('click', function() {
+    window.open(this.getAttribute('src'), '_blank');
+});
 
-    const closeInteractiveContent = function () {
+// Interactive link
+var interactiveLink = document.getElementById('interactive-link');
+var interactiveOverlay = document.getElementById('interactive-overlay');
+var interactiveContent = document.getElementById('interactive-content');
+var closeButton = document.getElementById('close-button');
+var typingEffect = document.getElementById('typing-effect');
+var secretMessage = document.getElementById('secret-message');
+
+interactiveLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    interactiveOverlay.style.display = 'flex';
+    setTimeout(function() {
+        interactiveContent.style.display = 'block';
+        interactiveContent.classList.add('active');
+        typeWriter();
+    }, 500);
+});
+
+closeButton.addEventListener('click', function() {
+    interactiveContent.classList.remove('active');
+    setTimeout(function() {
         interactiveContent.style.display = 'none';
-        setTimeout(function () {
-            interactiveOverlay.style.display = 'none';
-        }, 500);
-    };
+        interactiveOverlay.style.display = 'none';
+        typingEffect.textContent = '';
+        secretMessage.style.opacity = '0';
+        secretMessage.style.transform = 'translateY(20px)';
+    }, 500);
+});
 
-    const typeWriter = function () {
-        const text = "Congratulations! You have discovered the hidden message.";
-        const typingEffectElement = document.getElementById('typing-effect');
-        let i = 0;
+function typeWriter() {
+    var text = "Congratulations! You've discovered a hidden message.";
+    var i = 0;
+    var speed = 50;
 
-        const typing = function () {
-            if (i < text.length) {
-                typingEffectElement.innerHTML += text.charAt(i);
-                i++;
-                setTimeout(typing, 50);
-            } else {
-                const secretMessage = document.getElementById('secret-message');
+    function type() {
+        if (i < text.length) {
+            typingEffect.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        } else {
+            setTimeout(function() {
                 secretMessage.style.opacity = '1';
                 secretMessage.style.transform = 'translateY(0)';
-            }
-        };
-
-        typing();
-    };
-
-    // Decrypt game
-    const openGameModal = function () {
-        gameModal.style.display = 'flex';
-        setTimeout(function () {
-            gameModal.classList.add('show');
-        }, 100);
-    };
-
-    const closeGameModal = function () {
-        gameModal.classList.remove('show');
-        setTimeout(function () {
-            gameModal.style.display = 'none';
-        }, 500);
-    };
-
-    const decryptMessage = function () {
-        const encryptedText = inputField.value.toLowerCase();
-        let decryptedText = "";
-
-        for (let i = 0; i < encryptedText.length; i++) {
-            let charCode = encryptedText.charCodeAt(i);
-            if (charCode >= 97 && charCode <= 122) {
-                charCode = ((charCode - 97 + 13) % 26) + 97;
-            }
-            decryptedText += String.fromCharCode(charCode);
+            }, 500);
         }
+    }
 
-        decryptedMessageElement.textContent = decryptedText;
+    type();
+}
 
-        if (encryptedText === encryptedMessage.toLowerCase()) {
-            decryptedMessageElement.textContent = "Congratulations! You have successfully decrypted the message.";
-        }
-    };
+// Decrypt game
+var gameModal = document.getElementById('game-modal');
+var gameButton = document.getElementById('game-button');
+var closeModal = document.getElementsByClassName('close')[0];
+var encryptedMessage = document.getElementById('encrypted-message');
+var decryptedMessage = document.getElementById('decrypted-message');
+var decryptButton = document.getElementById('decrypt-button');
 
-    // Language translator
-    const translatePage = function () {
-        translateAnimation.classList.add('active');
-        setTimeout(function () {
-            // Replace the content with the translated version
-            document.body.innerHTML = `
-                <!-- Translated content goes here -->
-            `;
-            translateAnimation.classList.remove('active');
-        }, 1000);
-    };
+gameButton.addEventListener('click', function() {
+    gameModal.style.display = 'flex';
+    setTimeout(function() {
+        gameModal.classList.add('show');
+    }, 50);
+});
 
-    // Event listeners
-    window.addEventListener('scroll', revealSection);
-    window.addEventListener('load', animateHeader);
-    scrollDownBtn.addEventListener('click', function () {
-        smoothScroll('#about');
-    });
-    certificateImages.forEach(image => {
-        image.addEventListener('click', openCertificatePreview);
-    });
-    closePreviewBtn.addEventListener('click', closeCertificatePreview);
-    interactiveLink.addEventListener('click', openInteractiveContent);
-    closeButton.addEventListener('click', closeInteractiveContent);
-    modalCloseBtn.addEventListener('click', closeGameModal);
-    decryptButton.addEventListener('click', decryptMessage);
-    translatorBtn.addEventListener('click', translatePage);
+closeModal.addEventListener('click', function() {
+    gameModal.classList.remove('show');
+    setTimeout(function() {
+        gameModal.style.display = 'none';
+        encryptedMessage.value = '';
+        decryptedMessage.textContent = '';
+    }, 500);
+});
+
+decryptButton.addEventListener('click', function() {
+    var message = encryptedMessage.value;
+    var decrypted = atob(message);
+    decryptedMessage.textContent = decrypted;
+});
+
+// Language translator
+var translatorBtn = document.getElementById('translator-btn');
+var translateAnimation = document.querySelector('.translate-animation');
+
+translatorBtn.addEventListener('click', function() {
+    translateAnimation.classList.add('active');
+    setTimeout(function() {
+        window.open('https://translate.google.com/', '_blank');
+        translateAnimation.classList.remove('active');
+    }, 1000);
 });

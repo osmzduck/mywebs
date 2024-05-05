@@ -1,104 +1,95 @@
-/* Reset default browser styles */
+/* Basic Reset */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Set up custom CSS variables */
-:root {
-  --primary-color: #4a7c59;
-  --secondary-color: #8ca07e;
-  --background-color: #f0f5f3;
-  --text-color: #333;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  line-height: 1.6;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #fff;
+    line-height: 1.6;
 }
 
 header {
-  background-color: var(--primary-color);
-  padding: 1rem;
-  text-align: center;
+    background-color: #20232a;
+    color: #61dafb;
+    padding: 20px 10%;
+    text-align: center;
 }
 
-h1 {
-  color: white;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+header h1 {
+    margin: 0 0 10px;
 }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-}
-
-nav ul li {
-  margin: 0 1rem;
-}
-
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.2rem;
-  transition: color 0.3s;
-}
-
-nav ul li a:hover {
-  color: var(--secondary-color);
+header p {
+    font-size: 1.2em;
+    color: #a9a9a9;
 }
 
 main {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 1rem;
+    padding: 20px 10%;
 }
 
-section {
-  margin-bottom: 2rem;
+.artwork {
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
 }
 
-h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: var(--primary-color);
+.artwork:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.artwork img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.description {
+    padding: 10px;
+    color: #555;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+#learn-more {
+    margin-top: 50px;
+}
+
+#learn-more h2 {
+    text-align: center;
+    color: #20232a;
+}
+
+#learn-more p {
+    font-size: 1.1em;
+    margin: 20px 0;
+    text-align: center;
 }
 
 footer {
-  background-color: var(--primary-color);
-  color: white;
-  text-align: center;
-  padding: 1rem;
+    background-color: #20232a;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 }
 
-/* Zen Garden styles */
-#garden-container {
-  width: 100%;
-  height: 400px;
-  background-color: #e8e8e8;
-  border-radius: 5px;
-  margin-top: 1rem;
-}
+/* Responsive Design */
+@media (max-width: 768px) {
+    header, main, footer {
+        padding: 20px 5%;
+    }
 
-/* Music Player styles */
-#player-container {
-  width: 100%;
-  height: 100px;
-  background-color: #e8e8e8;
-  border-radius: 5px;
-  margin-top: 1rem;
-}
-
-/* Breathing Exercise styles */
-#breathing-container {
-  width: 100%;
-  height: 300px;
-  background-color: #e8e8e8;
-  border-radius: 5px;
-  margin-top: 1rem;
+    header h1, header p {
+        text-align: center;
+    }
 }

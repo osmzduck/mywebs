@@ -1,234 +1,176 @@
-// Scroll down arrow animation
-const scrollArrow = document.querySelector('.scroll-arrow');
-const scrollCircle = document.querySelector('.scroll-circle');
+document.addEventListener('DOMContentLoaded', function () {
+    const header = document.querySelector('header');
+    const sections = document.querySelectorAll('section');
+    const scrollDownBtn = document.querySelector('.scroll-down');
+    const certificateImages = document.querySelectorAll('.certificate img');
+    const certificatePreview = document.getElementById('certificate-preview');
+    const closePreviewBtn = document.querySelector('.close-preview');
+    const interactiveLink = document.getElementById('interactive-link');
+    const interactiveOverlay = document.getElementById('interactive-overlay');
+    const interactiveContent = document.getElementById('interactive-content');
+    const closeButton = document.getElementById('close-button');
+    const gameModal = document.getElementById('game-modal');
+    const modalCloseBtn = document.querySelector('.close');
+    const encryptedMessage = "Pbatenghyngvbaf! Lbh unir fhpprffshyyl qrpelcgrq gur zrffntr.";
+    const inputField = document.getElementById('encrypted-input');
+    const decryptButton = document.getElementById('decrypt-btn');
+    const decryptedMessageElement = document.getElementById('decrypted-message');
+    const translatorBtn = document.getElementById('translator-btn');
+    const translateAnimation = document.querySelector('.translate-animation');
 
-scrollArrow.addEventListener('click', () => {
-    window.scrollBy({
-        top: window.innerHeight,
-        behavior: 'smooth'
-    });
-});
+    // Scroll reveal animation
+    const revealSection = function () {
+        sections.forEach(section => {
+            const sectionTop = section.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 0) {
-        scrollCircle.style.opacity = 0;
-    } else {
-        scrollCircle.style.opacity = 1;
-    }
-});
+            if (sectionTop < windowHeight * 0.8) {
+                section.classList.add('active');
+            }
+        });
+    };
 
-// Reveal sections on scroll
-const sections = document.querySelectorAll('.section-reveal');
+    // Header animation
+    const animateHeader = function () {
+        header.classList.add('active');
+    };
 
-function revealSection(entries, observer) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            observer.unobserve(entry.target);
-        }
-    });
-}
+    // Smooth scroll to section
+    const smoothScroll = function (target) {
+        const targetSection = document.querySelector(target);
+        const targetPosition = targetSection.offsetTop;
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        const duration = 1000;
+        let start = null;
 
-const sectionObserver = new IntersectionObserver(revealSection, {
-    root: null,
-    threshold: 0.15
-});
+        const animation = function (currentTime) {
+            if (start === null) start = currentTime;
+            const timeElapsed = currentTime - start;
+            const run = ease(timeElapsed, startPosition, distance, duration);
+            window.scrollTo(0, run);
+            if (timeElapsed < duration) requestAnimationFrame(animation);
+        };
 
-sections.forEach(section => {
-    sectionObserver.observe(section);
-    section.classList.add('section-hidden');
-});
+        const ease = function (t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t + b;
+            t--;
+            return -c / 2 * (t * (t - 2) - 1) + b;
+        };
 
-// Certificate hover effect
-const certificates = document.querySelectorAll('.certificate');
-const certificatePreview = document.getElementById('certificate-preview');
-const certificatePreviewImage = certificatePreview.querySelector('img');
-const closePreviewButton = certificatePreview.querySelector('.close-preview');
+        requestAnimationFrame(animation);
+    };
 
-certificates.forEach(certificate => {
-    certificate.addEventListener('click', () => {
-        const imageSrc = certificate.querySelector('img').getAttribute('src');
-        certificatePreviewImage.setAttribute('src', imageSrc);
+    // Certificate preview
+    const openCertificatePreview = function (event) {
+        const clickedImage = event.target;
+        const imageSrc = clickedImage.getAttribute('src');
+        const previewImage = certificatePreview.querySelector('img');
+        previewImage.setAttribute('src', imageSrc);
         certificatePreview.style.display = 'flex';
-        certificatePreviewImage.addEventListener('click', () => {
-            window.open(imageSrc, '_blank');
-        });
-    });
+    };
 
-    certificate.addEventListener('mouseenter', () => {
-        gsap.to(certificate, {
-            duration: 0.3,
-            scale: 1.05,
-            rotationX: 10,
-            rotationY: 10,
-            ease: 'power1.inOut'
-        });
-    });
+    const closeCertificatePreview = function () {
+        certificatePreview.style.display = 'none';
+    };
 
-    certificate.addEventListener('mouseleave', () => {
-        gsap.to(certificate, {
-            duration: 0.3,
-            scale: 1,
-            rotationX: 0,
-            rotationY: 0,
-            ease: 'power1.inOut'
-        });
-    });
-});
+    // Interactive content
+    const openInteractiveContent = function (event) {
+        event.preventDefault();
+        interactiveOverlay.style.display = 'flex';
+        setTimeout(function () {
+            interactiveContent.style.display = 'block';
+            typeWriter();
+        }, 500);
+    };
 
-closePreviewButton.addEventListener('click', () => {
-    certificatePreview.style.display = 'none';
-});
+    const closeInteractiveContent = function () {
+        interactiveContent.style.display = 'none';
+        setTimeout(function () {
+            interactiveOverlay.style.display = 'none';
+        }, 500);
+    };
 
-// Interactive secret message
-const interactiveLink = document.getElementById('interactive-link');
-const interactiveOverlay = document.getElementById('interactive-overlay');
-const interactiveContent = document.getElementById('interactive-content');
-const typingEffectElement = document.getElementById('typing-effect');
-const secretMessageElement = document.getElementById('secret-message');
-const closeButton = document.getElementById('close-button');
+    const typeWriter = function () {
+        const text = "Congratulations! You have discovered the hidden message.";
+        const typingEffectElement = document.getElementById('typing-effect');
+        let i = 0;
 
-interactiveLink.addEventListener('click', () => {
-    interactiveOverlay.style.display = 'block';
-    interactiveContent.style.display = 'block';
-    startTypingEffect();
-});
+        const typing = function () {
+            if (i < text.length) {
+                typingEffectElement.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typing, 50);
+            } else {
+                const secretMessage = document.getElementById('secret-message');
+                secretMessage.style.opacity = '1';
+                secretMessage.style.transform = 'translateY(0)';
+            }
+        };
 
-closeButton.addEventListener('click', () => {
-    interactiveOverlay.style.display = 'none';
-    interactiveContent.style.display = 'none';
-    typingEffectElement.textContent = '';
-    secretMessageElement.textContent = '';
-});
+        typing();
+    };
 
-function startTypingEffect() {
-    const text = "You've stumbled upon a secret! Congratulations on finding it. As a reward, here's a hidden message: Success is not final, failure is not fatal: it is the courage to continue that counts. Keep exploring and unraveling the mysteries!";
-    let i = 0;
-    const typingSpeed = 50;
+    // Decrypt game
+    const openGameModal = function () {
+        gameModal.style.display = 'flex';
+        setTimeout(function () {
+            gameModal.classList.add('show');
+        }, 100);
+    };
 
-    function typeNextCharacter() {
-        if (i < text.length) {
-            typingEffectElement.textContent += text.charAt(i);
-            i++;
-            setTimeout(typeNextCharacter, typingSpeed);
-        } else {
-            setTimeout(() => {
-                secretMessageElement.textContent = "🎉 Congratulations on discovering the secret message! 🎉";
-                secretMessageElement.style.opacity = 1;
-                secretMessageElement.style.transform = 'translateY(0)';
-            }, 1000);
+    const closeGameModal = function () {
+        gameModal.classList.remove('show');
+        setTimeout(function () {
+            gameModal.style.display = 'none';
+        }, 500);
+    };
+
+    const decryptMessage = function () {
+        const encryptedText = inputField.value.toLowerCase();
+        let decryptedText = "";
+
+        for (let i = 0; i < encryptedText.length; i++) {
+            let charCode = encryptedText.charCodeAt(i);
+            if (charCode >= 97 && charCode <= 122) {
+                charCode = ((charCode - 97 + 13) % 26) + 97;
+            }
+            decryptedText += String.fromCharCode(charCode);
         }
-    }
 
-    typeNextCharacter();
-}
+        decryptedMessageElement.textContent = decryptedText;
 
-// Background particles effect
-particlesJS.load('background-particles', 'particles-config.json');
-
-// Cursor trail effect
-const cursorTrail = document.getElementById('cursor-trail');
-document.addEventListener('mousemove', (e) => {
-    const x = e.clientX;
-    const y = e.clientY;
-
-    gsap.to(cursorTrail, {
-        duration: 0.5,
-        left: x,
-        top: y,
-        ease: 'power2.out'
-    });
-
-    const particle = document.createElement('div');
-    particle.className = 'cursor-particle';
-    particle.style.left = x + 'px';
-    particle.style.top = y + 'px';
-    cursorTrail.appendChild(particle);
-
-    gsap.to(particle, {
-        duration: 1,
-        scale: 0,
-        opacity: 0,
-        ease: 'power2.out',
-        onComplete: () => {
-            particle.remove();
+        if (encryptedText === encryptedMessage.toLowerCase()) {
+            decryptedMessageElement.textContent = "Congratulations! You have successfully decrypted the message.";
         }
-    });
-});
+    };
 
-// Confetti effect on form submission
-const form = document.querySelector('form');
-const confettiCanvas = document.getElementById('confetti-canvas');
-const confetti = new ConfettiGenerator({ target: confettiCanvas });
-
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    confetti.render();
-    setTimeout(() => {
-        confetti.clear();
-        form.reset();
-    }, 3000);
-});
-
-// Secret game modal
-const gameModal = document.getElementById('game-modal');
-const closeModalButton = gameModal.querySelector('.close');
-const decryptionKey = document.getElementById('decryption-key');
-const decryptedMessage = document.getElementById('decrypted-message');
-const modalConfettiCanvas = document.getElementById('modal-confetti-canvas');
-const modalConfetti = new ConfettiGenerator({ target: modalConfettiCanvas });
-
-function openGameModal() {
-    gameModal.style.display = 'flex';
-    setTimeout(() => {
-        gameModal.classList.add('show');
-    }, 100);
-}
-
-function closeGameModal() {
-    gameModal.classList.remove('show');
-    setTimeout(() => {
-        gameModal.style.display = 'none';
-        decryptionKey.value = '';
-        decryptedMessage.textContent = '';
-    }, 500);
-}
-
-closeModalButton.addEventListener('click', closeGameModal);
-window.addEventListener('click', (e) => {
-    if (e.target === gameModal) {
-        closeGameModal();
-    }
-});
-
-function decryptMessage() {
-    const key = decryptionKey.value.toLowerCase();
-    if (key === 'consistency') {
-        decryptedMessage.textContent = 'The secret to success is consistency.';
-        modalConfetti.render();
-        setTimeout(() => {
-            modalConfetti.clear();
-        }, 3000);
-    } else {
-        decryptedMessage.textContent = 'Wrong decryption key. Try again!';
-    }
-}
-
-// Language translation animation
-const translatorLink = document.getElementById('translator-link');
-
-translatorLink.addEventListener('click', function(e) {
-    e.preventDefault();
-
-    const translateAnimation = document.createElement('div');
-    translateAnimation.classList.add('translate-animation');
-    document.body.appendChild(translateAnimation);
-
-    setTimeout(() => {
+    // Language translator
+    const translatePage = function () {
         translateAnimation.classList.add('active');
-    }, 100);
+        setTimeout(function () {
+            // Replace the content with the translated version
+            document.body.innerHTML = `
+                <!-- Translated content goes here -->
+            `;
+            translateAnimation.classList.remove('active');
+        }, 1000);
+    };
 
-    setTimeout(() => {
-        window.location.href = translatorLink.getAttribute('href');
-    }, 600);
+    // Event listeners
+    window.addEventListener('scroll', revealSection);
+    window.addEventListener('load', animateHeader);
+    scrollDownBtn.addEventListener('click', function () {
+        smoothScroll('#about');
+    });
+    certificateImages.forEach(image => {
+        image.addEventListener('click', openCertificatePreview);
+    });
+    closePreviewBtn.addEventListener('click', closeCertificatePreview);
+    interactiveLink.addEventListener('click', openInteractiveContent);
+    closeButton.addEventListener('click', closeInteractiveContent);
+    modalCloseBtn.addEventListener('click', closeGameModal);
+    decryptButton.addEventListener('click', decryptMessage);
+    translatorBtn.addEventListener('click', translatePage);
 });

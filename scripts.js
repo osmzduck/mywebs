@@ -103,7 +103,7 @@ closeButton.addEventListener('click', () => {
 });
 
 function startTypingEffect() {
-    const text = "You've stumbled upon a secret! Congratulations on finding it. As a reward, here's a hidden message: Success is not final, failure is not fatal: it is the courage to continue that counts. Keep exploring and unraveling the mysteries!";
+    const text = "Wow, you have really digged down didn't ya?. well here's a secert: Success is not final, failure is not fatal: it is the courage to continue that counts. Keep exploring and unraveling the mysteries!";
     let i = 0;
     const typingSpeed = 50;
 

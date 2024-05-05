@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Miko Chu's Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>My Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Miko Chu</h1>
-            <p>Full Stack Web Developer</p>
+            <h1>Essam Turki</h1>
+            <p>Web Developer & Designer</p>
             <div class="header-icons">
-                <a href="https://github.com/yourusername" target="_blank" class="icon"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/in/yourusername" target="_blank" class="icon"><i class="fab fa-linkedin"></i></a>
-                <a href="mailto:youremail@example.com" class="icon"><i class="fas fa-envelope"></i></a>
-                <a href="tel:+1234567890" class="icon"><i class="fas fa-phone"></i></a>
+                <a href="https://github.com/johndoe" target="_blank" class="icon"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/johndoe" target="_blank" class="icon"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:johndoe@example.com" class="icon"><i class="fas fa-envelope"></i></a>
+                <a href="https://twitter.com/johndoe" target="_blank" class="icon"><i class="fab fa-twitter"></i></a>
             </div>
             <div class="scroll-down">
                 <div class="scroll-circle">
@@ -26,9 +26,13 @@
             </div>
         </header>
 
-        <section id="about">
+        <section>
             <h2>About Me</h2>
-            <p>I am a passionate full stack web developer with expertise in creating responsive and interactive websites. I love solving complex problems and bringing ideas to life through clean and efficient code.</p>
+            <p>I am a passionate web developer and designer with a strong focus on creating engaging and user-friendly experiences. With expertise in HTML, CSS, JavaScript, and various web development frameworks, I strive to build innovative and responsive websites that leave a lasting impression.</p>
+        </section>
+
+        <section>
+            <h2>Skills</h2>
             <div class="skills">
                 <span class="skill">HTML</span>
                 <span class="skill">CSS</span>
@@ -37,7 +41,7 @@
             </div>
         </section>
 
-        <section id="certificates" class="section-reveal">
+             <section id="certificates" class="section-reveal">
             <h2>Certificates</h2>
             <div class="certificate-gallery">
                 <div class="certificate">
@@ -63,83 +67,78 @@
                     <div class="certificate-overlay">
                         <div class="certificate-text">Operating Systems and You: Becoming a Power User</div>
                     </div>
-                </div>
+            <div id="certificate-preview">
+                <span class="close-preview">&times;</span>
+                <img id="certificate-preview-image" src="" alt="Certificate Preview">
             </div>
         </section>
 
-        <section id="experience">
+        <section>
             <h2>Experience</h2>
             <div class="timeline-container">
                 <div class="timeline-block">
                     <div class="timeline-date">2020 - Present</div>
-                    <h3>Senior Web Developer</h3>
+                    <h3>Web Developer</h3>
                     <p>Company Name</p>
-                    <ul>
-                        <li>Developed and maintained responsive websites using HTML, CSS, and JavaScript</li>
-                        <li>Collaborated with cross-functional teams to deliver high-quality products</li>
-                        <li>Implemented modern web development practices and frameworks</li>
-                    </ul>
+                    <p>Developed and maintained responsive websites using HTML, CSS, and JavaScript.</p>
                 </div>
                 <div class="timeline-block">
                     <div class="timeline-date">2018 - 2020</div>
-                    <h3>Web Developer</h3>
+                    <h3>Front-end Developer</h3>
                     <p>Company Name</p>
-                    <ul>
-                        <li>Assisted in the development of web applications using React and Node.js</li>
-                        <li>Participated in code reviews and provided constructive feedback</li>
-                        <li>Contributed to the optimization and performance improvement of websites</li>
-                    </ul>
+                    <p>Collaborated with designers and back-end developers to create intuitive user interfaces.</p>
                 </div>
             </div>
         </section>
 
-        <section id="contact">
+        <section>
             <h2>Contact Me</h2>
             <form>
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" placeholder="Your Message" required></textarea>
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <textarea placeholder="Message" required></textarea>
                 <button type="submit">Send Message</button>
             </form>
         </section>
 
-        <section id="interactive">
+        <section>
             <h2>Interactive Section</h2>
-            <p>Click the button below to discover a hidden message!</p>
-            <a href="#" id="interactive-link">Click Me</a>
+            <p>Click the button below to reveal a hidden message:</p>
+            <a href="#" id="interactive-link">Reveal Message</a>
             <div id="interactive-overlay">
                 <div id="interactive-content">
                     <div id="typing-effect"></div>
-                    <div id="secret-message">You found the secret message!</div>
+                    <div id="secret-message">You discovered the hidden message!</div>
                     <button id="close-button">Close</button>
                 </div>
             </div>
         </section>
 
-        <section id="decrypt-game">
+        <section>
             <h2>Decrypt Game</h2>
-            <p>Can you decrypt the hidden message?</p>
-            <button id="start-game">Start Game</button>
+            <p>Click the button below to play the decryption game:</p>
+            <button id="game-button">Play Game</button>
             <div id="game-modal">
                 <div class="modal-content">
                     <span class="close">&times;</span>
                     <h3>Decrypt the Message</h3>
                     <div class="input-area">
-                        <input type="text" id="encrypted-input" placeholder="Enter the encrypted message">
-                        <button id="decrypt-btn">Decrypt</button>
+                        <input type="text" id="encrypted-message" placeholder="Enter encrypted message">
+                        <button id="decrypt-button">Decrypt</button>
                     </div>
                     <div id="decrypted-message"></div>
                 </div>
             </div>
         </section>
-
     </div>
 
-    <button id="translator-btn"><i class="fas fa-language"></i></button>
+    <button id="translator-btn">
+        <i class="fas fa-language"></i>
+    </button>
     <div class="translate-animation"></div>
 
     <footer>
-        <p>&copy; 2024 Essam Turki All rights reserved.</p>
+        <p>&copy; 2024 Essam Turki. All rights reserved.</p>
     </footer>
 
     <script src="scripts.js"></script>

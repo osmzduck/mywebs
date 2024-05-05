@@ -94,7 +94,7 @@ closeButton.addEventListener('click', () => {
 });
 
 function startTypingEffect() {
-    const text = "Wow, you have really digged down didn't ya?. well here's a secert: Success is not final, failure is not fatal: it is the courage to continue that counts. Keep exploring and unraveling the mysteries!";
+    const text = "Wow, you have really digged down didn't ya?. well here's a secert: Success is not final, failure is not fatal: it is the courage to continue that counts!. now go! search smth!";
     let i = 0;
     const typingSpeed = 50;
 

@@ -1,3 +1,20 @@
+document.addEventListener('DOMContentLoaded', function() {
+    document.body.style.opacity = '0';
+    document.body.style.overflow = 'hidden';
+});
+
+function showContent() {
+    document.body.style.opacity = '1';
+    document.body.style.overflow = 'auto';
+}
+
+scrollArrow.addEventListener('click', showContent);
+
+window.addEventListener('scroll', function() {
+    if (window.scrollY > 0) {
+        showContent();
+    }
+});
 // Scroll down arrow animation
 const scrollArrow = document.querySelector('.scroll-arrow');
 const scrollCircle = document.querySelector('.scroll-circle');

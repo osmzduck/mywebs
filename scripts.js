@@ -1,30 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-    document.body.style.opacity = '0';
-    document.body.style.overflow = 'hidden';
-});
-
-function showContent() {
-    document.body.style.opacity = '1';
-    document.body.style.overflow = 'auto';
-}
-
-scrollArrow.addEventListener('click', showContent);
-
-window.addEventListener('scroll', function() {
-    if (window.scrollY > 0) {
-        showContent();
-    }
-});
-// Scroll down arrow animation
-const scrollArrow = document.querySelector('.scroll-arrow');
-const scrollCircle = document.querySelector('.scroll-circle');
-
-scrollArrow.addEventListener('click', () => {
-    window.scrollBy({
-        top: window.innerHeight,
-        behavior: 'smooth'
-    });
-});
 
 window.addEventListener('scroll', () => {
     if (window.scrollY > 0) {
@@ -65,11 +38,12 @@ const closePreviewButton = certificatePreview.querySelector('.close-preview');
 certificates.forEach(certificate => {
     certificate.addEventListener('click', () => {
         const imageSrc = certificate.querySelector('img').getAttribute('src');
+                window.open(imageSrc, '_blank');
         certificatePreviewImage.setAttribute('src', imageSrc);
         certificatePreview.style.display = 'flex';
         certificatePreview.classList.add('active');
     });
-
+    
     certificate.addEventListener('mouseenter', () => {
         gsap.to(certificate, {
             duration: 0.3,

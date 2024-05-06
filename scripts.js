@@ -36,17 +36,21 @@ const certificatePreviewImage = certificatePreview.querySelector('img');
 const closePreviewButton = certificatePreview.querySelector('.close-preview');
 
 certificates.forEach(certificate => {
-    certificate.addEventListener('click', () => {
+    certificate.addEventListener('click', (e) => {
+        e.preventDefault();
         const imageSrc = certificate.querySelector('img').getAttribute('src');
-        const cleanedSrc = imageSrc.replace('https://i.ibb.co/', 'https://ibb.co/').split('/')[0];
-        window.open(cleanedSrc, '_blank');
+        certificatePreviewImage.setAttribute('src', imageSrc);
+        certificatePreview.style.display = 'flex';
+        certificatePreview.classList.add('active');
     });
-    
-    certificatePreviewImage.addEventListener('click', () => {
-    const imageSrc = certificatePreviewImage.getAttribute('src');
-    const sourceUrl = imageSrc.replace('https://i.ibb.co/', 'https://ibb.co/').split('/')[0];
-    window.open(sourceUrl, '_blank');
 });
+
+certificatePreviewImage.addEventListener('click', () => {
+    const imageSrc = certificatePreviewImage.getAttribute('src');
+    const cleanedSrc = imageSrc.replace(/^https:\/\/i\.ibb\.co\/\w+\//, 'https://ibb.co/');
+    window.open(cleanedSrc, '_blank');
+});
+
 
     
     certificate.addEventListener('mouseenter', () => {

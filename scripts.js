@@ -186,18 +186,18 @@ const modalConfettiSettings = { target: modalConfettiCanvas };
 const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
 
 function openGameModal() {
-    gameModal.style.display = 'flex';
-    gameModal.classList.add('show');
+    gameModal.style.display = 'block';
     setTimeout(() => {
+        gameModal.classList.add('show');
         gameModal.querySelector('.modal-content').classList.add('show');
     }, 100);
 }
 
 function closeGameModal() {
+    gameModal.classList.remove('show');
     gameModal.querySelector('.modal-content').classList.remove('show');
     setTimeout(() => {
         gameModal.style.display = 'none';
-        gameModal.classList.remove('show');
         decryptionKey.value = '';
         decryptedMessage.textContent = '';
     }, 500);

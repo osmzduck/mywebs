@@ -21,14 +21,12 @@ function revealSection(entries, observer) {
 
 const sectionObserver = new IntersectionObserver(revealSection, {
     root: null,
-    threshold: 0.15
+    threshold: 0.1
 });
 
 sections.forEach(section => {
     sectionObserver.observe(section);
-    section.classList.add('section-hidden');
 });
-
 // Certificate hover effect
 const certificates = document.querySelectorAll('.certificate');
 const certificatePreview = document.getElementById('certificate-preview');
@@ -44,15 +42,7 @@ certificates.forEach(certificate => {
         certificatePreview.classList.add('active');
     });
 });
-
-certificatePreviewImage.addEventListener('click', () => {
-    const imageSrc = certificatePreviewImage.getAttribute('src');
-    const cleanedSrc = imageSrc.replace(/^https:\/\/i\.ibb\.co\/\w+\//, 'https://ibb.co/');
-    window.open(cleanedSrc, '_blank');
-});
-
-
-    
+ 
     certificate.addEventListener('mouseenter', () => {
         gsap.to(certificate, {
             duration: 0.3,
@@ -274,7 +264,7 @@ function animateTimelineBlock(entries, observer) {
 
 const timelineObserver = new IntersectionObserver(animateTimelineBlock, {
     root: null,
-    threshold: 0.5
+    threshold: 0.1
 });
 
 timelineBlocks.forEach(block => {

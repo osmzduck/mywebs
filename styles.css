@@ -621,10 +621,15 @@ section.active .timeline-block {
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 1000;
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.3s ease;
     justify-content: center;
     align-items: center;
 }
+
+#game-modal.show {
+    opacity: 1;
+}
+
 
 .modal-content {
     background-color: white;
@@ -634,8 +639,9 @@ section.active .timeline-block {
     border-radius: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transform: translateY(-30px);
-    transition: transform 0.5s ease-out;
+    transition: transform 0.3s ease-out;
     position: relative;
+    opacity: 0;
 }
 
 .modal-content::before {
@@ -656,6 +662,7 @@ section.active .timeline-block {
 }
 
 .modal-content.show {
+    opacity: 1;
     transform: translateY(0);
 }
 

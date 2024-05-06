@@ -14,7 +14,8 @@ function revealSection(entries, observer) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('active');
-            observer.unobserve(entry.target);
+        } else {
+            entry.target.classList.remove('active');
         }
     });
 }
@@ -24,9 +25,7 @@ const sectionObserver = new IntersectionObserver(revealSection, {
     threshold: 0.1
 });
 
-sections.forEach(section => {
-    sectionObserver.observe(section);
-});
+
 // Certificate hover effect
 const certificates = document.querySelectorAll('.certificate');
 const certificatePreview = document.getElementById('certificate-preview');
@@ -257,7 +256,8 @@ function animateTimelineBlock(entries, observer) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('active');
-            observer.unobserve(entry.target);
+        } else {
+            entry.target.classList.remove('active');
         }
     });
 }
@@ -267,9 +267,6 @@ const timelineObserver = new IntersectionObserver(animateTimelineBlock, {
     threshold: 0.1
 });
 
-timelineBlocks.forEach(block => {
-    timelineObserver.observe(block);
-});
 
 // Language translation animation
 const translatorLink = document.getElementById('translator-link');

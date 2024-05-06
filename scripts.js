@@ -38,11 +38,10 @@ const closePreviewButton = certificatePreview.querySelector('.close-preview');
 certificates.forEach(certificate => {
     certificate.addEventListener('click', () => {
         const imageSrc = certificate.querySelector('img').getAttribute('src');
-        certificatePreviewImage.setAttribute('src', imageSrc);
-        certificatePreview.style.display = 'flex';
-        certificatePreview.classList.add('active');
+        const cleanedSrc = imageSrc.replace('https://i.ibb.co/', 'https://ibb.co/').split('/')[0];
+        window.open(cleanedSrc, '_blank');
     });
-
+    
     certificatePreviewImage.addEventListener('click', () => {
     const imageSrc = certificatePreviewImage.getAttribute('src');
     const sourceUrl = imageSrc.replace('https://i.ibb.co/', 'https://ibb.co/').split('/')[0];

@@ -1,9 +1,8 @@
-
 window.addEventListener('scroll', () => {
     if (window.scrollY > 0) {
-        scrollCircle.style.opacity = 0;
+        document.querySelector('.scroll-down').style.opacity = 0;
     } else {
-        scrollCircle.style.opacity = 1;
+        document.querySelector('.scroll-down').style.opacity = 1;
     }
 });
 
@@ -14,17 +13,20 @@ function revealSection(entries, observer) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('active');
-        } else {
-            entry.target.classList.remove('active');
+            observer.unobserve(entry.target);
         }
     });
 }
 
 const sectionObserver = new IntersectionObserver(revealSection, {
     root: null,
-    threshold: 0.1
+    threshold: 0.15
 });
 
+sections.forEach(section => {
+    sectionObserver.observe(section);
+    section.classList.add('section-hidden');
+});
 
 // Certificate hover effect
 const certificates = document.querySelectorAll('.certificate');
@@ -33,15 +35,14 @@ const certificatePreviewImage = certificatePreview.querySelector('img');
 const closePreviewButton = certificatePreview.querySelector('.close-preview');
 
 certificates.forEach(certificate => {
-    certificate.addEventListener('click', (e) => {
-        e.preventDefault();
+    certificate.addEventListener('click', () => {
         const imageSrc = certificate.querySelector('img').getAttribute('src');
+        window.open(imageSrc, '_blank');
         certificatePreviewImage.setAttribute('src', imageSrc);
         certificatePreview.style.display = 'flex';
         certificatePreview.classList.add('active');
     });
-});
- 
+
     certificate.addEventListener('mouseenter', () => {
         gsap.to(certificate, {
             duration: 0.3,
@@ -182,8 +183,6 @@ const decryptedMessage = document.getElementById('decrypted-message');
 const modalConfettiCanvas = document.getElementById('modal-confetti-canvas');
 const modalConfettiSettings = { target: modalConfettiCanvas };
 const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
-const secretGameIcon = document.querySelector('.icon.secret-game');
-secretGameIcon.addEventListener('click', openGameModal);
 
 function openGameModal() {
     gameModal.style.display = 'flex';
@@ -256,17 +255,19 @@ function animateTimelineBlock(entries, observer) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('active');
-        } else {
-            entry.target.classList.remove('active');
+            observer.unobserve(entry.target);
         }
     });
 }
 
 const timelineObserver = new IntersectionObserver(animateTimelineBlock, {
     root: null,
-    threshold: 0.1
+    threshold: 0.5
 });
 
+timelineBlocks.forEach(block => {
+    timelineObserver.observe(block);
+});
 
 // Language translation animation
 const translatorLink = document.getElementById('translator-link');
@@ -285,4 +286,48 @@ translatorLink.addEventListener('click', function(e) {
     setTimeout(() => {
         window.location.href = translatorLink.getAttribute('href');
     }, 600);
+});
+
+// Header icons animation
+const headerIcons = document.querySelectorAll('.header-icons .icon');
+
+headerIcons.forEach((icon, index) => {
+    icon.style.animationDelay = `${index * 0.2}s`;
+});
+
+// Bento grid animation
+const bentoItems = document.querySelectorAll('.bento-item');
+
+bentoItems.forEach((item, index) => {
+    gsap.fromTo(item, {
+        opacity: 0,
+        y: 50
+    }, {
+        duration: 1,
+        opacity: 1,
+        y: 0,
+        ease: 'power2.out',
+        delay: index * 0.2
+    });
+});
+
+// Glossy and glowing effect on bento grid items
+bentoItems.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+        gsap.to(item, {
+            duration: 0.3,
+            scale: 1.05,
+            boxShadow: '0 0 20px rgba(255, 255, 255, 0.5)',
+            ease: 'power2.out'
+        });
+    });
+
+    item.addEventListener('mouseleave', () => {
+        gsap.to(item, {
+            duration: 0.3,
+            scale: 1,
+            boxShadow: 'none',
+            ease: 'power2.out'
+        });
+    });
 });

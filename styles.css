@@ -9,7 +9,6 @@ body, html {
 
 .container {
     max-width: 1200px;
-    position: relative;
     margin: auto;
     padding: 20px;
     background: rgba(255, 255, 255, 0.1);
@@ -17,7 +16,6 @@ body, html {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    z-index: 1;
     animation: fadeIn 1s ease-in-out;
 }
 
@@ -328,7 +326,6 @@ section.active .certificate {
     max-height: 90%;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
 }
 
 .close-preview {
@@ -569,266 +566,118 @@ section.active .timeline-block {
     margin-bottom: 10px;
 }
 
-.timeline-block::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -34px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #2575fc;
-    border: 2px solid white;
-    box-shadow: 0 0 0 4px rgba(37, 117, 252, 0.2);
-    animation: pulseEffect 2s infinite;
+.timeline-text {
+    font-size: 16px;
+    line-height: 1.6;
 }
 
-@keyframes pulseEffect {
-    0% {
-        transform: scale(0.8);
-        opacity: 0.7;
-    }
-    50% {
-        transform: scale(1.2);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(0.8);
-        opacity: 0.7;
-    }
-}
-
-.timeline-block:nth-child(odd)::before {
-    background-color: #ff4081;
-    box-shadow: 0 0 0 4px rgba(255, 64, 129, 0.2);
-}
-
-.timeline-block:last-child::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: -32px;
-    width: 6px;
-    height: calc(100% - 10px);
-    background-color: white;
-}
-
-#game-modal {
-    display: none;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 1000;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    justify-content: center;
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 20px;
+    justify-items: center;
     align-items: center;
+    margin-top: 40px;
 }
 
-#game-modal.show {
-    opacity: 1;
-}
-
-
-.modal-content {
-    background-color: white;
-    padding: 30px;
-    width: 90%;
-    max-width: 500px;
-    border-radius: 20px;
+.bento-item {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    overflow: hidden;
+    border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transform: translateY(-30px);
-    transition: transform 0.3s ease-out;
-    position: relative;
-    opacity: 0;
-}
-
-.modal-content::before {
-    content: "";
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    right: -20px;
-    bottom: -20px;
-    background: linear-gradient(45deg, #ff0058, #0056b3);
-    border-radius: 40px;
-    z-index: 9999999;
-}
-
-.modal.show {
-    display: flex;
-    opacity: 1;
-}
-
-.modal-content.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.input-area {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.input-area input {
-    width: 70%;
-    padding: 10px;
-    border: 2px solid #007BFF;
-    border-radius: 10px;
-}
-
-.input-area button {
-    width: 25%;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: transform 0.3s ease-in-out;
 }
 
-#decrypted-message {
-    margin-top: 20px;
-    color: #007BFF;
+.bento-item:hover {
+    transform: translateY(-10px);
 }
 
-.input-area button:hover {
-    background-color: #0056b3;
-}
-
-.close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 28px;
-    cursor: pointer;
-    color: #aaa;
-    transition: color 0.3s ease;
-}
-
-.close:hover {
-    color: #333;
-}
-
-.game-link {
-    position: relative;
-    transition: transform 0.3s ease;
-}
-
-.game-link:hover {
-    transform: scale(1.2);
-}
-
-.game-link::after {
-    content: 'Decrypt the hidden game!';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 6px 10px;
-    background-color: #007BFF;
-    color: white;
-    border-radius: 4px;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-    white-space: nowrap;
-    pointer-events: none;
-}
-
-.game-link:hover::after {
-    opacity: 1;
-}
-
-#modal-confetti-canvas {
+.bento-item img {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
-    z-index: 10;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
 }
 
-@keyframes slideInFromSide {
-    0% {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-.icon.github {
-    animation-delay: 1.2s;
-}
-
-.icon.linkedin {
-    animation-delay: 1.4s;
-}
-
-.icon.twitter {
-    animation-delay: 1.6s;
-}
-
-.icon.secret-game {
-    animation-delay: 1.8s;
-}
-
-#translator-link {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 50%;
-    font-size: 20px;
-    cursor: pointer;
-    z-index: 1000;
-    transition: transform 0.3s ease;
-}
-
-#translator-link:hover {
+.bento-item:hover img {
     transform: scale(1.1);
 }
 
-.translate-animation {
-    position: fixed;
+.bento-item .certificate-overlay {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, black 50%, white 50%);
-    z-index: 9999;
-    pointer-events: none;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.3s ease-in-out;
 }
 
-.translate-animation.active {
+.bento-item:hover .certificate-overlay {
     opacity: 1;
 }
 
-.translate-animation::before {
+.bento-item .certificate-text {
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    padding: 20px;
+}
+
+.bento-item::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, black 50%, white 50%);
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: transform 0.5s ease;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1;
 }
 
-.translate-animation.active::before {
-    transform: scaleY(1);
+.bento-item:hover::before {
+    opacity: 1;
+}
+
+.bento-item::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 2;
+}
+
+.bento-item:hover::after {
+    opacity: 1;
+    animation: glowEffect 2s ease-in-out infinite;
+}
+
+@keyframes glowEffect {
+    0% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.3;
+    }
 }

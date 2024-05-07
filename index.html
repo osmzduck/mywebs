@@ -42,26 +42,26 @@
         </section>
         <section id="certificates" class="section-reveal">
             <h2>Certificates</h2>
-            <div class="certificate-gallery">
-                <div class="certificate">
+            <div class="certificate-gallery bento-grid">
+                <div class="certificate bento-item">
                     <img src="https://i.ibb.co/Xtkqhr5/image.png" alt="System Administration and IT Infrastructure Services"  target="_blank" >
                     <div class="certificate-overlay">
                         <div class="certificate-text">System Administration and IT Infrastructure Services</div>
                     </div>
                 </div>
-                <div class="certificate">
+                <div class="certificate bento-item">
                     <img src="https://i.ibb.co/T01m0DW/image.png" alt="Google IT Support Professional Certificate"  target="_blank" >
                     <div class="certificate-overlay">
                         <div class="certificate-text">Google IT Support Professional Certificate</div>
                     </div>
                 </div>
-                <div class="certificate">
+                <div class="certificate bento-item">
                     <img src="https://i.ibb.co/SvJvY1z/image.png" alt="IT Security: Defense against the Digital Dark Arts" target="_blank" >
                     <div class="certificate-overlay">
                         <div class="certificate-text">IT Security: Defense against the Digital Dark Arts</div>
                     </div>
                 </div>
-                <div class="certificate">
+                <div class="certificate bento-item">
                     <img src="https://i.ibb.co/DYpGFkv/image.png" alt="Operating Systems and You: Becoming a Power User" target="_blank">
                     <div class="certificate-overlay">
                         <div class="certificate-text">Operating Systems and You: Becoming a Power User</div>
@@ -122,17 +122,17 @@
     <script src="scripts.js"></script>
 
     <div id="game-modal" class="modal">
-   <div class="modal-content">
-    <span class="close" onclick="closeGameModal()">&times;</span>
-    <h2>Decrypt the Message!</h2>
-    <p>Find the correct key to decrypt the message.</p>
-    <div class="input-area">
-        <input type="text" id="decryption-key" placeholder="Enter decryption key...">
-        <button onclick="decryptMessage()">Decrypt</button>
-        <canvas id="modal-confetti-canvas"></canvas>
-    </div>
-    <p id="decrypted-message"></p>
-</div>
+        <div class="modal-content">
+            <span class="close" onclick="closeGameModal()">&times;</span>
+            <h2>Decrypt the Message!</h2>
+            <p>Find the correct key to decrypt the message.</p>
+            <div class="input-area">
+                <input type="text" id="decryption-key" placeholder="Enter decryption key...">
+                <button onclick="decryptMessage()">Decrypt</button>
+                <canvas id="modal-confetti-canvas"></canvas>
+            </div>
+            <p id="decrypted-message"></p>
+        </div>
     </div>
 </body>
 </html>

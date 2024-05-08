@@ -898,3 +898,23 @@ section.active .timeline-block {
     transform: translate(-50%, -50%) scale(0.8);
     background-color: rgba(255, 255, 255, 0.6);
 }
+
+.custom-cursor.certificate-hover {
+    transform: translate(-50%, -50%) scale(2);
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.custom-cursor.input-hover {
+    transform: translate(-50%, -50%) scale(1.2);
+    background-color: rgba(255, 255, 255, 0.4);
+    border-style: dashed;
+    animation: cursorTyping 1s infinite;
+}
+
+@keyframes cursorTyping {
+    0%, 100% {
+        border-color: rgba(255, 255, 255, 0.4);
+    }
+    50% {
+        border-color: rgba(255, 255, 255, 0.8);
+    }

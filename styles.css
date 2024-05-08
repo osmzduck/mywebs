@@ -11,11 +11,11 @@ body, html {
     max-width: 1200px;
     margin: auto;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.2); /* Increased opacity for glossiness */
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased shadow for depth */
+    backdrop-filter: blur(15px); /* Increased blur for glossy effect */
+    -webkit-backdrop-filter: blur(15px);
     animation: fadeIn 1s ease-in-out;
 }
 
@@ -226,10 +226,14 @@ section.active .skill {
 }
 
 .certificate-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
+   display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusted for a tighter grid */
+    gap: 20px; /* Reduced gap for a more compact look */
     margin-top: 40px;
+    padding: 20px; /* Added padding for inner spacing */
+    background: rgba(255, 255, 255, 0.1); /* Added background for glossy tiles */
+    border-radius: 10px; /* Rounded corners for tiles */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for each tile */
     perspective: 1000px; /* Added for 3D effect */
 }
 
@@ -809,4 +813,15 @@ section.active .timeline-block {
 
 .translate-animation.active::before {
     transform: scaleY(1);
+}
+
+a, button {
+    background: linear-gradient(145deg, #ffffff, #e6e6e6); /* Glossy button background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Shadow for buttons */
+    border: none; /* Remove borders for buttons */
+}
+
+a:hover, button:hover {
+    background: linear-gradient(155deg, #e6e6e6, #ffffff); /* Hover effect for buttons */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* Increased shadow on hover */
 }

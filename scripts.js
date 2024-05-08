@@ -1,4 +1,3 @@
-
 // Custom cursor
 const cursor = document.createElement('div');
 cursor.classList.add('custom-cursor');
@@ -28,14 +27,9 @@ links.forEach(link => {
 
 const certificates = document.querySelectorAll('.certificate');
 certificates.forEach(certificate => {
-    certificate.addEventListener('click', (e) => {
-        e.preventDefault();
-        const imageSrc = certificate.querySelector('img').getAttribute('src');
-        const imageId = imageSrc.split('/')[3];
-        window.open(`https://ibb.co/${imageId}`, '_blank');
+    certificate.addEventListener('mouseover', () => {
+        cursor.classList.add('certificate-hover');
     });
-
-
     certificate.addEventListener('mouseleave', () => {
         cursor.classList.remove('certificate-hover');
     });

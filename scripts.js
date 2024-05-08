@@ -45,6 +45,8 @@ contactInputs.forEach(input => {
     });
 });
 
+// Rest of the scripts.js code...
+
 window.addEventListener('scroll', () => {
     if (window.scrollY > 0) {
         document.querySelector('.scroll-circle').style.opacity = 0;
@@ -74,9 +76,6 @@ sections.forEach(section => {
     sectionObserver.observe(section);
     section.classList.add('section-hidden');
 });
-
-// Certificate hover effect
-const certificates = document.querySelectorAll('.certificate');
 
 // Certificate hover effect
 certificates.forEach(certificate => {
@@ -165,7 +164,6 @@ function startTypingEffect() {
     typeNextCharacter();
 }
 
-
 // Background particles effect
 particlesJS.load('background-particles', 'particles-config.json');
 
@@ -173,7 +171,6 @@ particlesJS.load('background-particles', 'particles-config.json');
 const cursorTrail = document.getElementById('cursor-trail');
 let mouseX = 0;
 let mouseY = 0;
-
 
 document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
@@ -224,7 +221,6 @@ const decryptedMessage = document.getElementById('decrypted-message');
 const modalConfettiCanvas = document.getElementById('modal-confetti-canvas');
 const modalConfettiSettings = { target: modalConfettiCanvas };
 const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
-
 
 function openGameModal() {
     gameModal.style.display = 'flex';

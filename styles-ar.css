@@ -244,7 +244,7 @@ section.active {
 }
 
 .skill:hover {
-    background-color: #2575fc;
+    background-color: #e24500;
     color: white;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     transform: translateY(-5px);
@@ -848,8 +848,8 @@ section.active .timeline-block {
 #translator-link {
     position: fixed;
     top: 20px;
-    right: 50px;
-    background-color: #ffffff;
+    right: 20px;
+    background-color: #FFFF;
     color: black;
     border: none;
     padding: 10px;
@@ -862,7 +862,7 @@ section.active .timeline-block {
 }
 
 #translator-link:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
     box-shadow: 0 6px 8px rgba(0, 123, 255, 0.6);
 }
 

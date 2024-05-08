@@ -30,9 +30,10 @@ certificates.forEach(certificate => {
     certificate.addEventListener('click', (e) => {
         e.preventDefault();
         const imageSrc = certificate.querySelector('img').getAttribute('src');
-        window.open(imageSrc, '_blank');
+        const imageId = imageSrc.split('/')[3];
+        window.open(`https://ibb.co/${imageId}`, '_blank');
     });
-
+    
 
 
     certificate.addEventListener('mouseleave', () => {

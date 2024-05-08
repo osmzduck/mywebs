@@ -27,12 +27,14 @@ links.forEach(link => {
 
 const certificates = document.querySelectorAll('.certificate');
 certificates.forEach(certificate => {
-    certificate.addEventListener('click', (e) => {
-        e.preventDefault();
-        const imageSrc = certificate.querySelector('img').getAttribute('src');
-        const imageId = imageSrc.split('/')[3];
-        window.open(`https://ibb.co/${imageId}`, '_blank');
+    certificate.addEventListener('mouseover', () => {
+        cursor.classList.add('certificate-hover');
     });
+    certificate.addEventListener('mouseleave', () => {
+        cursor.classList.remove('certificate-hover');
+    });
+});
+
     
 
 
@@ -100,6 +102,7 @@ certificates.forEach(certificate => {
         });
     });
 
+
     certificate.addEventListener('mouseleave', () => {
         gsap.to(certificate, {
             duration: 0.3,
@@ -126,6 +129,7 @@ interactiveLink.addEventListener('click', () => {
     interactiveContent.classList.add('active');
     startTypingEffect();
 });
+
 
 closeButton.addEventListener('click', () => {
     interactiveOverlay.style.display = 'none';

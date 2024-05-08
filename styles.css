@@ -74,6 +74,7 @@ h1 {
     margin-bottom: 10px;
     opacity: 0;
     animation: fadeInDown 1s ease-in-out forwards;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 h2 {
@@ -132,12 +133,14 @@ h2 {
     justify-content: center;
     align-items: center;
     animation: scrollCircle 2s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 .scroll-arrow {
     color: white;
     font-size: 24px;
     animation: scrollArrow 2s ease-in-out infinite;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 @keyframes fadeInUp {
@@ -178,6 +181,26 @@ section {
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+section::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border-radius: 20px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+section:hover::before {
+    opacity: 1;
 }
 
 section.active {
@@ -202,6 +225,7 @@ section.active {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .skill:nth-child(1) {
@@ -226,15 +250,11 @@ section.active .skill {
 }
 
 .certificate-gallery {
-   display: grid;
+    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px; /* Reduced gap for a more compact look */
+    gap: 40px;
     margin-top: 40px;
-    padding: 20px; /* Added padding for inner spacing */
-    background: rgba(255, 255, 255, 0.1); /* Added background for glossy tiles */
-    border-radius: 10px; /* Rounded corners for tiles */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for each tile */
-    perspective: 1000px; /* Added for 3D effect */
+    perspective: 1000px;
 }
 
 .certificate {
@@ -244,9 +264,8 @@ section.active .skill {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     opacity: 0;
-    transform: translateY(50px);
+    transform: rotateY(30deg) translateY(50px);
     transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-    background: #fff; /* Add a white background for the glossy effect */
 }
 
 .certificate:nth-child(1) {
@@ -267,7 +286,7 @@ section.active .skill {
 
 section.active .certificate {
     opacity: 1;
-    transform: translateY(0) rotateX(0); /* Updated for 3D effect */
+    transform: rotateY(0) translateY(0);
 }
 
 .certificate img {
@@ -276,18 +295,6 @@ section.active .certificate {
     display: block;
     transition: transform 0.3s ease-in-out;
 }
-
-.certificate::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
-    opacity: 0.5; /* Adjust opacity for desired glossiness */
-}
-
 
 .certificate:hover img {
     transform: scale(1.1);
@@ -317,6 +324,7 @@ section.active .certificate {
     font-weight: 700;
     text-align: center;
     padding: 20px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 #certificate-preview {
@@ -354,6 +362,7 @@ section.active .certificate {
     font-size: 36px;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 .close-preview:hover {
@@ -393,11 +402,13 @@ button {
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
     background-color: #1c5ed8;
+    transform: translateY(-2px);
 }
 
 #interactive-link {
@@ -408,11 +419,13 @@ button:hover {
     text-decoration: none;
     border-radius: 50px;
     font-weight: 700;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #interactive-link:hover {
     background-color: #ff0058;
+    transform: translateY(-2px);
 }
 
 #interactive-overlay {
@@ -439,6 +452,7 @@ button:hover {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #interactive-content.active {
@@ -477,6 +491,7 @@ footer {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     margin-top: 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .header-icons {
@@ -491,10 +506,11 @@ footer {
 .icon {
     color: white;
     font-size: 24px;
-    transition: color 0.3s ease-in-out;
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 .icon:nth-child(1) {
@@ -524,6 +540,8 @@ header.active .icon {
 
 .icon:hover {
     color: #ff4081;
+    transform: scale(1.2);
+    text-shadow: 0 0 10px rgba(255, 64, 129, 0.8);
 }
 
 .timeline-container {
@@ -564,6 +582,7 @@ section.active .timeline-block {
     width: 2px;
     height: 100%;
     background-color: white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 .timeline-block::after {
@@ -575,6 +594,7 @@ section.active .timeline-block {
     height: 10px;
     border-radius: 50%;
     background-color: #2575fc;
+    box-shadow: 0 0 10px rgba(37, 117, 252, 0.8);
 }
 
 .timeline-date {
@@ -582,27 +602,52 @@ section.active .timeline-block {
     font-weight: 700;
     color: #ff4081;
     margin-bottom: 10px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    text-shadow: 0 0 10px rgba(255, 64, 129, 0.8);
 }
 
-.timeline-block.active .timeline-date {
-    opacity: 1;
-    transform: translateY(0);
+.timeline-block::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -34px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #2575fc;
+    border: 2px solid white;
+    box-shadow: 0 0 0 4px rgba(37, 117, 252, 0.2), 0 0 10px rgba(37, 117, 252, 0.8);
+    animation: pulseEffect 2s infinite;
 }
 
-.timeline-block p {
-    margin: 0;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-    transition-delay: 0.2s;
+@keyframes pulseEffect {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.8);
+        opacity: 0.7;
+    }
 }
 
-.timeline-block.active p {
-    opacity: 1;
-    transform: translateY(0);
+.timeline-block:nth-child(odd)::before {
+    background-color: #ff4081;
+    box-shadow: 0 0 0 4px rgba(255, 64, 129, 0.2), 0 0 10px rgba(255, 64, 129, 0.8);
+}
+
+.timeline-block:last-child::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -32px;
+    width: 6px;
+    height: calc(100% - 10px);
+    background-color: white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 #game-modal {
@@ -626,7 +671,7 @@ section.active .timeline-block {
     width: 90%;
     max-width: 500px;
     border-radius: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 20px rgba(255, 255, 255, 0.8);
     transform: translateY(-30px);
     transition: transform 0.5s ease-out;
     position: relative;
@@ -639,15 +684,11 @@ section.active .timeline-block {
     left: -20px;
     right: -20px;
     bottom: -20px;
-    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    background: linear-gradient(45deg, #ff0058, #0056b3);
     border-radius: 40px;
     z-index: -1;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-.modal-content.show::before {
-    opacity: 1;
+    opacity: 0.8;
+    filter: blur(20px);
 }
 
 .modal.show {
@@ -668,27 +709,32 @@ section.active .timeline-block {
 .input-area input {
     width: 70%;
     padding: 10px;
-    border: 2px solid #2575fc;
+    border: 2px solid #007BFF;
     border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.8);
 }
 
 .input-area button {
     width: 25%;
-    background-color: #2575fc;
+    background-color: #007BFF;
     color: white;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.4);
 }
 
 #decrypted-message {
     margin-top: 20px;
-    color: #2575fc;
+    color: #007BFF;
+    text-shadow: 0 0 10px rgba(0, 123, 255, 0.8);
 }
 
 .input-area button:hover {
-    background-color: #1c5ed8;
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 123, 255, 0.6);
 }
 
 .close {
@@ -698,11 +744,12 @@ section.active .timeline-block {
     font-size: 28px;
     cursor: pointer;
     color: #aaa;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .close:hover {
     color: #333;
+    transform: rotate(90deg);
 }
 
 .game-link {
@@ -721,13 +768,14 @@ section.active .timeline-block {
     left: 50%;
     transform: translateX(-50%);
     padding: 6px 10px;
-    background-color: #2575fc;
+    background-color: #007BFF;
     color: white;
     border-radius: 4px;
     opacity: 0;
     transition: opacity 0.2s ease;
     white-space: nowrap;
     pointer-events: none;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 .game-link:hover::after {
@@ -756,22 +804,18 @@ section.active .timeline-block {
 }
 
 .icon.github {
-    animation: slideInFromSide 0.5s ease-in-out forwards;
     animation-delay: 1.2s;
 }
 
 .icon.linkedin {
-    animation: slideInFromSide 0.5s ease-in-out forwards;
     animation-delay: 1.4s;
 }
 
 .icon.twitter {
-    animation: slideInFromSide 0.5s ease-in-out forwards;
     animation-delay: 1.6s;
 }
 
 .icon.secret-game {
-    animation: slideInFromSide 0.5s ease-in-out forwards;
     animation-delay: 1.8s;
 }
 
@@ -779,7 +823,7 @@ section.active .timeline-block {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #2575fc;
+    background-color: #007BFF;
     color: white;
     border: none;
     padding: 10px;
@@ -788,10 +832,12 @@ section.active .timeline-block {
     cursor: pointer;
     z-index: 1000;
     transition: transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.4);
 }
 
 #translator-link:hover {
     transform: scale(1.1);
+    box-shadow: 0 6px 8px rgba(0, 123, 255, 0.6);
 }
 
 .translate-animation {
@@ -800,7 +846,7 @@ section.active .timeline-block {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, #6a11cb 50%, #2575fc 50%);
+    background: linear-gradient(to bottom, black 50%, white 50%);
     z-index: 9999;
     pointer-events: none;
     opacity: 0;
@@ -818,7 +864,7 @@ section.active .timeline-block {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, #6a11cb 50%, #2575fc 50%);
+    background: linear-gradient(to bottom, black 50%, white 50%);
     transform: scaleY(0);
     transform-origin: top;
     transition: transform 0.5s ease;
@@ -826,15 +872,4 @@ section.active .timeline-block {
 
 .translate-animation.active::before {
     transform: scaleY(1);
-}
-
-a, button {
-    background: linear-gradient(145deg, #ffffff, #e6e6e6); /* Glossy button background */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Shadow for buttons */
-    border: none; /* Remove borders for buttons */
-}
-
-a:hover, button:hover {
-    background: linear-gradient(155deg, #e6e6e6, #ffffff); /* Hover effect for buttons */
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* Increased shadow on hover */
 }

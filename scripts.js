@@ -27,7 +27,8 @@ links.forEach(link => {
 
 const certificates = document.querySelectorAll('.certificate');
 certificates.forEach(certificate => {
-    certificate.addEventListener('click', () => {
+    certificate.addEventListener('click', (e) => {
+        e.preventDefault();
         const imageSrc = certificate.querySelector('img').getAttribute('src');
         const imageId = imageSrc.split('/')[3];
         window.open(`https://ibb.co/${imageId}`, '_blank');

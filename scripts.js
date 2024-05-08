@@ -87,7 +87,6 @@ sections.forEach(section => {
 certificates.forEach(certificate => {
     certificate.addEventListener('click', () => {
         const imageSrc = certificate.querySelector('img').getAttribute('src');
-        window.open(imageSrc, '_blank');
     });
     
     certificate.addEventListener('mouseenter', () => {

@@ -33,6 +33,8 @@ certificates.forEach(certificate => {
         const imageId = imageSrc.split('/')[3];
         window.open(`https://ibb.co/${imageId}`, '_blank');
     });
+
+
     certificate.addEventListener('mouseleave', () => {
         cursor.classList.remove('certificate-hover');
     });

@@ -939,12 +939,15 @@ a, button, input, textarea {
 
 #parallax {
     position: relative;
-    height: 400px;
     overflow: hidden;
+    height: 500px;
     background-color: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+}
+
+.parallax-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 .parallax-layer {
@@ -953,20 +956,51 @@ a, button, input, textarea {
     left: 0;
     width: 100%;
     height: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    transition: transform 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.parallax-layer[data-depth="0.2"] {
-    background-image: url('path/to/layer1-image.png');
+.parallax-layer img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    opacity: 0.8;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.parallax-layer[data-depth="0.6"] {
-    background-image: url('path/to/layer2-image.png');
+.parallax-layer:hover img {
+    opacity: 1;
+    transform: scale(1.1);
 }
 
-.parallax-layer[data-depth="1.0"] {
-    background-image: url('path/to/layer3-image.png');
+.parallax-light {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.parallax-light::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#parallax:hover .parallax-light {
+    opacity: 1;
+}
+
+#parallax:hover .parallax-light::before {
+    opacity: 1;
 }

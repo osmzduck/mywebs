@@ -27,8 +27,10 @@ links.forEach(link => {
 
 const certificates = document.querySelectorAll('.certificate');
 certificates.forEach(certificate => {
-    certificate.addEventListener('mouseover', () => {
-        cursor.classList.add('certificate-hover');
+    certificate.addEventListener('click', () => {
+        const imageSrc = certificate.querySelector('img').getAttribute('src');
+        const imageId = imageSrc.split('/')[3];
+        window.open(`https://ibb.co/${imageId}`, '_blank');
     });
     certificate.addEventListener('mouseleave', () => {
         cursor.classList.remove('certificate-hover');

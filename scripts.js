@@ -1,8 +1,8 @@
 window.addEventListener('scroll', () => {
     if (window.scrollY > 0) {
-        document.querySelector('.scroll-down').style.opacity = 0;
+        document.querySelector('.scroll-circle').style.opacity = 0;
     } else {
-        document.querySelector('.scroll-down').style.opacity = 1;
+        document.querySelector('.scroll-circle').style.opacity = 1;
     }
 });
 
@@ -30,26 +30,21 @@ sections.forEach(section => {
 
 // Certificate hover effect
 const certificates = document.querySelectorAll('.certificate');
-const certificatePreview = document.getElementById('certificate-preview');
-const certificatePreviewImage = certificatePreview.querySelector('img');
-const closePreviewButton = certificatePreview.querySelector('.close-preview');
 
 certificates.forEach(certificate => {
     certificate.addEventListener('click', () => {
         const imageSrc = certificate.querySelector('img').getAttribute('src');
         window.open(imageSrc, '_blank');
-        certificatePreviewImage.setAttribute('src', imageSrc);
-        certificatePreview.style.display = 'flex';
-        certificatePreview.classList.add('active');
     });
-
+    
     certificate.addEventListener('mouseenter', () => {
         gsap.to(certificate, {
             duration: 0.3,
             scale: 1.05,
             rotationX: 10,
             rotationY: 10,
-            ease: 'power1.inOut'
+            ease: 'power1.inOut',
+            boxShadow: '0 8px 12px rgba(0, 0, 0, 0.2)',
         });
     });
 
@@ -59,14 +54,10 @@ certificates.forEach(certificate => {
             scale: 1,
             rotationX: 0,
             rotationY: 0,
-            ease: 'power1.inOut'
+            ease: 'power1.inOut',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
         });
     });
-});
-
-closePreviewButton.addEventListener('click', () => {
-    certificatePreview.style.display = 'none';
-    certificatePreview.classList.remove('active');
 });
 
 // Interactive secret message
@@ -220,18 +211,12 @@ function decryptMessage() {
         }, 3000);
     } else {
         decryptedMessage.textContent = 'Wrong decryption key. Try again!';
-    }
-}
-
-// Shake animation on wrong decryption key
-decryptionKey.addEventListener('input', () => {
-    if (decryptionKey.value.toLowerCase() !== 'consistency') {
         gameModal.querySelector('.modal-content').classList.add('shake');
         setTimeout(() => {
             gameModal.querySelector('.modal-content').classList.remove('shake');
         }, 500);
     }
-});
+}
 
 // Text animation for section titles
 const sectionTitles = document.querySelectorAll('h2');
@@ -267,67 +252,4 @@ const timelineObserver = new IntersectionObserver(animateTimelineBlock, {
 
 timelineBlocks.forEach(block => {
     timelineObserver.observe(block);
-});
-
-// Language translation animation
-const translatorLink = document.getElementById('translator-link');
-
-translatorLink.addEventListener('click', function(e) {
-    e.preventDefault();
-
-    const translateAnimation = document.createElement('div');
-    translateAnimation.classList.add('translate-animation');
-    document.body.appendChild(translateAnimation);
-
-    setTimeout(() => {
-        translateAnimation.classList.add('active');
-    }, 100);
-
-    setTimeout(() => {
-        window.location.href = translatorLink.getAttribute('href');
-    }, 600);
-});
-
-// Header icons animation
-const headerIcons = document.querySelectorAll('.header-icons .icon');
-
-headerIcons.forEach((icon, index) => {
-    icon.style.animationDelay = `${index * 0.2}s`;
-});
-
-// Bento grid animation
-const bentoItems = document.querySelectorAll('.bento-item');
-
-bentoItems.forEach((item, index) => {
-    gsap.fromTo(item, {
-        opacity: 0,
-        y: 50
-    }, {
-        duration: 1,
-        opacity: 1,
-        y: 0,
-        ease: 'power2.out',
-        delay: index * 0.2
-    });
-});
-
-// Glossy and glowing effect on bento grid items
-bentoItems.forEach(item => {
-    item.addEventListener('mouseenter', () => {
-        gsap.to(item, {
-            duration: 0.3,
-            scale: 1.05,
-            boxShadow: '0 0 20px rgba(255, 255, 255, 0.5)',
-            ease: 'power2.out'
-        });
-    });
-
-    item.addEventListener('mouseleave', () => {
-        gsap.to(item, {
-            duration: 0.3,
-            scale: 1,
-            boxShadow: 'none',
-            ease: 'power2.out'
-        });
-    });
 });

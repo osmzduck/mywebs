@@ -240,7 +240,7 @@ section.active {
 }
 
 .skill:hover {
-    background-color: #2575fc;
+    background-color: #d23200;
     color: white;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     transform: translateY(-5px);

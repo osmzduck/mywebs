@@ -11,11 +11,11 @@ body, html {
     max-width: 1200px;
     margin: auto;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.2); /* Increased opacity for glossiness */
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased shadow for depth */
-    backdrop-filter: blur(15px); /* Increased blur for glossy effect */
-    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     animation: fadeIn 1s ease-in-out;
 }
 
@@ -227,7 +227,7 @@ section.active .skill {
 
 .certificate-gallery {
    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusted for a tighter grid */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px; /* Reduced gap for a more compact look */
     margin-top: 40px;
     padding: 20px; /* Added padding for inner spacing */
@@ -244,8 +244,9 @@ section.active .skill {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     opacity: 0;
-    transform: translateY(50px) rotateX(45deg); /* Updated for 3D effect */
+    transform: translateY(50px);
     transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    background: #fff; /* Add a white background for the glossy effect */
 }
 
 .certificate:nth-child(1) {
@@ -275,6 +276,18 @@ section.active .certificate {
     display: block;
     transition: transform 0.3s ease-in-out;
 }
+
+.certificate::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+    opacity: 0.5; /* Adjust opacity for desired glossiness */
+}
+
 
 .certificate:hover img {
     transform: scale(1.1);

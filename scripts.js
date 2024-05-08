@@ -1,3 +1,32 @@
+// Custom cursor
+const cursor = document.createElement('div');
+cursor.classList.add('custom-cursor');
+document.body.appendChild(cursor);
+
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+});
+
+document.addEventListener('click', () => {
+    cursor.classList.add('click');
+    setTimeout(() => {
+        cursor.classList.remove('click');
+    }, 300);
+});
+
+const links = document.querySelectorAll('a');
+links.forEach(link => {
+    link.addEventListener('mouseover', () => {
+        cursor.classList.add('hover');
+    });
+    link.addEventListener('mouseleave', () => {
+        cursor.classList.remove('hover');
+    });
+});
+
+// Rest of the scripts.js code...
+
 window.addEventListener('scroll', () => {
     if (window.scrollY > 0) {
         document.querySelector('.scroll-circle').style.opacity = 0;

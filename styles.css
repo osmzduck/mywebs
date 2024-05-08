@@ -873,3 +873,27 @@ section.active .timeline-block {
 .translate-animation.active::before {
     transform: scaleY(1);
 }
+.custom-cursor {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.3s ease;
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.custom-cursor.hover {
+    transform: translate(-50%, -50%) scale(1.5);
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.custom-cursor.click {
+    transform: translate(-50%, -50%) scale(0.8);
+    background-color: rgba(255, 255, 255, 0.6);
+}

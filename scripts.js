@@ -1,3 +1,4 @@
+
 // Custom cursor
 const cursor = document.createElement('div');
 cursor.classList.add('custom-cursor');
@@ -27,15 +28,12 @@ links.forEach(link => {
 
 const certificates = document.querySelectorAll('.certificate');
 certificates.forEach(certificate => {
-    certificate.addEventListener('mouseover', () => {
-        cursor.classList.add('certificate-hover');
+    certificate.addEventListener('click', (e) => {
+        e.preventDefault();
+        const imageSrc = certificate.querySelector('img').getAttribute('src');
+        const imageId = imageSrc.split('/')[3];
+        window.open(`https://ibb.co/${imageId}`, '_blank');
     });
-    certificate.addEventListener('mouseleave', () => {
-        cursor.classList.remove('certificate-hover');
-    });
-});
-
-    
 
 
     certificate.addEventListener('mouseleave', () => {
@@ -89,6 +87,7 @@ sections.forEach(section => {
 certificates.forEach(certificate => {
     certificate.addEventListener('click', () => {
         const imageSrc = certificate.querySelector('img').getAttribute('src');
+        window.open(imageSrc, '_blank');
     });
     
     certificate.addEventListener('mouseenter', () => {
@@ -101,7 +100,6 @@ certificates.forEach(certificate => {
             boxShadow: '0 8px 12px rgba(0, 0, 0, 0.2)',
         });
     });
-
 
     certificate.addEventListener('mouseleave', () => {
         gsap.to(certificate, {
@@ -129,7 +127,6 @@ interactiveLink.addEventListener('click', () => {
     interactiveContent.classList.add('active');
     startTypingEffect();
 });
-
 
 closeButton.addEventListener('click', () => {
     interactiveOverlay.style.display = 'none';
@@ -308,31 +305,4 @@ const timelineObserver = new IntersectionObserver(animateTimelineBlock, {
 
 timelineBlocks.forEach(block => {
     timelineObserver.observe(block);
-});
-
-const parallaxSection = document.getElementById('parallax');
-const parallaxLayers = document.querySelectorAll('.parallax-layer');
-const parallaxLight = document.querySelector('.parallax-light');
-
-parallaxSection.addEventListener('mousemove', (e) => {
-    const x = (e.clientX - parallaxSection.offsetLeft) / parallaxSection.offsetWidth;
-    const y = (e.clientY - parallaxSection.offsetTop) / parallaxSection.offsetHeight;
-
-    parallaxLayers.forEach(layer => {
-        const depth = layer.getAttribute('data-depth');
-        const translateX = (x - 0.5) * 30 * depth;
-        const translateY = (y - 0.5) * 30 * depth;
-        layer.style.transform = `translate3d(${translateX}px, ${translateY}px, 0)`;
-    });
-
-    parallaxLight.style.opacity = 1;
-    parallaxLight.style.backgroundPosition = `${x * 100}% ${y * 100}%`;
-});
-
-parallaxSection.addEventListener('mouseleave', () => {
-    parallaxLayers.forEach(layer => {
-        layer.style.transform = 'translate3d(0, 0, 0)';
-    });
-
-    parallaxLight.style.opacity = 0;
 });

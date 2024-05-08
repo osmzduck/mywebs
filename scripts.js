@@ -306,7 +306,6 @@ timelineBlocks.forEach(block => {
     timelineObserver.observe(block);
 });
 
-// Parallax effect
 const parallaxSection = document.getElementById('parallax');
 const parallaxLayers = document.querySelectorAll('.parallax-layer');
 
@@ -321,4 +320,3 @@ parallaxSection.addEventListener('mousemove', (e) => {
         layer.style.transform = `translate(${translateX}px, ${translateY}px)`;
     });
 });
-

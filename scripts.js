@@ -25,7 +25,25 @@ links.forEach(link => {
     });
 });
 
-// Rest of the scripts.js code...
+const certificates = document.querySelectorAll('.certificate');
+certificates.forEach(certificate => {
+    certificate.addEventListener('mouseover', () => {
+        cursor.classList.add('certificate-hover');
+    });
+    certificate.addEventListener('mouseleave', () => {
+        cursor.classList.remove('certificate-hover');
+    });
+});
+
+const contactInputs = document.querySelectorAll('form input, form textarea');
+contactInputs.forEach(input => {
+    input.addEventListener('mouseover', () => {
+        cursor.classList.add('input-hover');
+    });
+    input.addEventListener('mouseleave', () => {
+        cursor.classList.remove('input-hover');
+    });
+});
 
 window.addEventListener('scroll', () => {
     if (window.scrollY > 0) {
@@ -60,6 +78,7 @@ sections.forEach(section => {
 // Certificate hover effect
 const certificates = document.querySelectorAll('.certificate');
 
+// Certificate hover effect
 certificates.forEach(certificate => {
     certificate.addEventListener('click', () => {
         const imageSrc = certificate.querySelector('img').getAttribute('src');
@@ -146,6 +165,7 @@ function startTypingEffect() {
     typeNextCharacter();
 }
 
+
 // Background particles effect
 particlesJS.load('background-particles', 'particles-config.json');
 
@@ -153,6 +173,7 @@ particlesJS.load('background-particles', 'particles-config.json');
 const cursorTrail = document.getElementById('cursor-trail');
 let mouseX = 0;
 let mouseY = 0;
+
 
 document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
@@ -203,6 +224,7 @@ const decryptedMessage = document.getElementById('decrypted-message');
 const modalConfettiCanvas = document.getElementById('modal-confetti-canvas');
 const modalConfettiSettings = { target: modalConfettiCanvas };
 const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
+
 
 function openGameModal() {
     gameModal.style.display = 'flex';

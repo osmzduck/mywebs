@@ -308,15 +308,19 @@ timelineBlocks.forEach(block => {
 
 const parallaxSection = document.getElementById('parallax');
 const parallaxLayers = document.querySelectorAll('.parallax-layer');
+const parallaxLight = document.querySelector('.parallax-light');
 
 parallaxSection.addEventListener('mousemove', (e) => {
-    const x = (e.clientX - parallaxSection.offsetLeft) / parallaxSection.offsetWidth;
-    const y = (e.clientY - parallaxSection.offsetTop) / parallaxSection.offsetHeight;
+    const mouseX = e.clientX;
+    const mouseY = e.clientY;
 
     parallaxLayers.forEach(layer => {
         const depth = layer.getAttribute('data-depth');
-        const translateX = (x - 0.5) * 30 * depth;
-        const translateY = (y - 0.5) * 30 * depth;
-        layer.style.transform = `translate(${translateX}px, ${translateY}px)`;
+        const x = (mouseX - parallaxSection.offsetWidth / 2) * depth;
+        const y = (mouseY - parallaxSection.offsetHeight / 2) * depth;
+        layer.style.transform = `translate3d(${x}px, ${y}px, 0)`;
     });
+
+    parallaxLight.style.setProperty('--mouse-x', mouseX + 'px');
+    parallaxLight.style.setProperty('--mouse-y', mouseY + 'px');
 });

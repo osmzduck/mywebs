@@ -229,7 +229,7 @@ section.active {
 
 .skill {
     background-color: rgba(255, 255, 255, 0.8);
-    color: #000000;
+    color: #2575fc;
     padding: 10px 20px;
     border-radius: 50px;
     font-weight: 700;
@@ -240,7 +240,7 @@ section.active {
 }
 
 .skill:hover {
-    background-color: #d23200;
+    background-color: #2575fc;
     color: white;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     transform: translateY(-5px);

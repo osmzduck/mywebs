@@ -217,6 +217,7 @@ section.active .skill {
     opacity: 0;
     transform: rotateY(30deg) translateY(50px);
     transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    cursor: pointer;
 }
 
 .certificate:nth-child(1) {
@@ -249,7 +250,7 @@ section.active .certificate {
 
 .certificate:hover img {
     transform: scale(1.1);
-    cursor: none;
+    cursor: pointer;
 }
 
 .certificate-overlay {
@@ -264,11 +265,12 @@ section.active .certificate {
     align-items: center;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
+    cursor: pointer;
 }
 
 .certificate:hover .certificate-overlay {
     opacity: 1;
-    cursor: none;
+    cursor: pointer;
 }
 
 .certificate-text {
@@ -680,24 +682,15 @@ section.active .timeline-block {
     position: relative;
 }
 
-.modal-content::before {
-    content: "";
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    right: -20px;
-    bottom: -20px;
-    background: linear-gradient(45deg, #ff0058, #0056b3);
-    border-radius: 40px;
-    z-index: -1;
-    opacity: 0.8;
-    filter: blur(20px);
-}
-
 .modal.show {
     display: flex;
     opacity: 1;
 }
+
+.modal-content.show {
+    transform: translateY(0);
+}
+
 
 .modal-content.show {
     transform: translateY(0);
@@ -802,6 +795,59 @@ section.active .timeline-block {
     pointer-events: none;
     z-index: 10;
 }
+
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.party-mode {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9998;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.party-mode.active {
+    opacity: 1;
+}
+
+.party-light {
+    position: absolute;
+    bottom: 0;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.party-light.left {
+    left: 0;
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.party-light.right {
+    right: 0;
+    transform: translateX(50%) rotate(-45deg);
+}
+
+.party-mode.active .party-light {
+    opacity: 1;
+}
+
 
 @keyframes slideInFromSide {
     0% {

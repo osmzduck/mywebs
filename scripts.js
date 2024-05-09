@@ -39,8 +39,16 @@ certificates.forEach(certificate => {
             window.open(cleanedSrc, '_blank');
         }
     });
- 
-    function openCertificatePreview(imageSrc) {
+
+    certificate.addEventListener('mouseenter', () => {
+        cursor.classList.add('certificate-hover');
+    });
+    certificate.addEventListener('mouseleave', () => {
+        cursor.classList.remove('certificate-hover');
+    });
+});
+
+function openCertificatePreview(imageSrc) {
     const certificatePreviewModal = document.getElementById('certificate-preview-modal');
     const certificatePreviewImage = document.getElementById('certificate-preview-image');
     certificatePreviewImage.src = imageSrc;
@@ -51,14 +59,6 @@ certificates.forEach(certificate => {
         certificatePreviewImage.classList.add('show');
     }, 100);
 }
-
-    certificate.addEventListener('mouseenter', () => {
-        cursor.classList.add('certificate-hover');
-    });
-    certificate.addEventListener('mouseleave', () => {
-        cursor.classList.remove('certificate-hover');
-    });
-});
 
 // Close certificate preview
 function closeCertificatePreview() {
@@ -71,7 +71,6 @@ function closeCertificatePreview() {
         certificatePreviewModal.classList.remove('show');
     }, 500);
 }
-
 const contactInputs = document.querySelectorAll('form input, form textarea');
 contactInputs.forEach(input => {
     input.addEventListener('mouseover', () => {

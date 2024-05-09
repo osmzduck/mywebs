@@ -427,12 +427,15 @@ form textarea {
     font-size: 16px;
     font-weight: 700;
     transition: box-shadow 0.3s ease-in-out;
+    cursor: none;
+
 }
 
 form input:focus,
 form textarea:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.5);
+    cursor: none;
 }
 
 button {
@@ -748,6 +751,7 @@ section.active .timeline-block {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+    cursor: none;
 }
 
 .input-area input {
@@ -756,6 +760,7 @@ section.active .timeline-block {
     border: 2px solid #007BFF;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 123, 255, 0.8);
+    cursor: none;
 }
 
 .input-area button {
@@ -767,6 +772,7 @@ section.active .timeline-block {
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 123, 255, 0.4);
+    cursor: none;
 }
 
 #decrypted-message {
@@ -823,6 +829,7 @@ section.active .timeline-block {
     white-space: nowrap;
     pointer-events: none;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    cursor: none;
 }
 
 .game-link:hover::after {

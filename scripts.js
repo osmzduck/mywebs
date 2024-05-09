@@ -1,3 +1,34 @@
+function openGameModal() {
+    gameModal.style.display = 'flex';
+    gameModal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    document.body.style.filter = 'blur(5px)';
+    setTimeout(() => {
+        gameModal.querySelector('.modal-content').classList.add('show');
+    }, 100);
+}
+
+function closeGameModal() {
+    gameModal.querySelector('.modal-content').classList.remove('show');
+    document.body.style.overflow = 'auto';
+    document.body.style.filter = 'none';
+    setTimeout(() => {
+        gameModal.style.display = 'none';
+        gameModal.classList.remove('show');
+        decryptionKey.value = '';
+        decryptedMessage.textContent = '';
+    }, 500);
+}
+
+openGameModalButton.addEventListener('click', openGameModal);
+closeModalButton.addEventListener('click', closeGameModal);
+window.addEventListener('click', (e) => {
+    if (e.target === gameModal) {
+        closeGameModal();
+    }
+});
+
+
 // Custom cursor
 const cursor = document.createElement('div');
 cursor.classList.add('custom-cursor');
@@ -205,36 +236,6 @@ const decryptedMessage = document.getElementById('decrypted-message');
 const modalConfettiCanvas = document.getElementById('modal-confetti-canvas');
 const modalConfettiSettings = { target: modalConfettiCanvas };
 const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
-
-function openGameModal() {
-    gameModal.style.display = 'flex';
-    gameModal.classList.add('show');
-    document.body.style.overflow = 'hidden';
-    document.body.style.filter = 'blur(5px)';
-    setTimeout(() => {
-        gameModal.querySelector('.modal-content').classList.add('show');
-    }, 100);
-}
-
-function closeGameModal() {
-    gameModal.querySelector('.modal-content').classList.remove('show');
-    document.body.style.overflow = 'auto';
-    document.body.style.filter = 'none';
-    setTimeout(() => {
-        gameModal.style.display = 'none';
-        gameModal.classList.remove('show');
-        decryptionKey.value = '';
-        decryptedMessage.textContent = '';
-    }, 500);
-}
-
-openGameModalButton.addEventListener('click', openGameModal);
-closeModalButton.addEventListener('click', closeGameModal);
-window.addEventListener('click', (e) => {
-    if (e.target === gameModal) {
-        closeGameModal();
-    }
-});
 
 function decryptMessage() {
     const key = decryptionKey.value.toLowerCase();

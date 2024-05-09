@@ -1,14 +1,3 @@
-
-function openGameModal() {
-    gameModal.style.display = 'flex';
-    gameModal.classList.add('show');
-    document.body.style.overflow = 'hidden';
-    document.body.style.filter = 'blur(5px)';
-    setTimeout(() => {
-        gameModal.querySelector('.modal-content').classList.add('show');
-    }, 100);
-}
-
 // Custom cursor
 const cursor = document.createElement('div');
 cursor.classList.add('custom-cursor');
@@ -71,19 +60,18 @@ function openCertificatePreview(imageSrc) {
     }, 100);
 }
 
-certificates.forEach(certificate => {
-    certificate.addEventListener('click', (e) => {
-        e.preventDefault();
-        const imageSrc = certificate.querySelector('img').getAttribute('src');
-        const cleanedSrc = imageSrc.replace('https://i.ibb.co/', 'https://ibb.co/').split('/')[0];
-        
-        if (e.target.tagName !== 'A') {
-            openCertificatePreview(imageSrc);
-        } else {
-            window.open(cleanedSrc, '_blank');
-        }
-    });
-    
+// Close certificate preview
+function closeCertificatePreview() {
+    const certificatePreviewModal = document.getElementById('certificate-preview-modal');
+    const certificatePreviewImage = document.getElementById('certificate-preview-image');
+    certificatePreviewModal.querySelector('.modal-content').classList.remove('show');
+    certificatePreviewImage.classList.remove('show');
+    setTimeout(() => {
+        certificatePreviewModal.style.display = 'none';
+        certificatePreviewModal.classList.remove('show');
+    }, 500);
+}
+
 const contactInputs = document.querySelectorAll('form input, form textarea');
 contactInputs.forEach(input => {
     input.addEventListener('mouseover', () => {
@@ -222,6 +210,15 @@ const modalConfettiCanvas = document.getElementById('modal-confetti-canvas');
 const modalConfettiSettings = { target: modalConfettiCanvas };
 const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
 
+function openGameModal() {
+    gameModal.style.display = 'flex';
+    gameModal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    document.body.style.filter = 'blur(5px)';
+    setTimeout(() => {
+        gameModal.querySelector('.modal-content').classList.add('show');
+    }, 100);
+}
 
 function closeGameModal() {
     gameModal.querySelector('.modal-content').classList.remove('show');

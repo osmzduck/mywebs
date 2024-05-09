@@ -26,12 +26,25 @@ links.forEach(link => {
 });
 
 const certificates = document.querySelectorAll('.certificate');
+
 certificates.forEach(certificate => {
     certificate.addEventListener('click', (e) => {
         e.preventDefault();
         const imageSrc = certificate.querySelector('img').getAttribute('src');
         const cleanedSrc = imageSrc.replace('https://i.ibb.co/', 'https://ibb.co/').split('/')[0];
-        showCertificatePreview(cleanedSrc);
+        
+        if (e.target.tagName !== 'A') {
+            const certificatePreviewModal = document.getElementById('certificate-preview-modal');
+            const certificatePreviewImage = document.getElementById('certificate-preview-image');
+            certificatePreviewImage.src = imageSrc;
+            certificatePreviewModal.style.display = 'flex';
+            certificatePreviewModal.classList.add('show');
+            setTimeout(() => {
+                certificatePreviewModal.querySelector('.modal-content').classList.add('show');
+            }, 100);
+        } else {
+            window.open(cleanedSrc, '_blank');
+        }
     });
 });
 
@@ -51,15 +64,13 @@ function showCertificatePreview(imageSrc) {
 // Close certificate preview
 function closeCertificatePreview() {
     const certificatePreviewModal = document.getElementById('certificate-preview-modal');
-    const certificatePreviewImage = document.getElementById('certificate-preview-image');
-
-    certificatePreviewModal.classList.remove('show');
-    certificatePreviewImage.classList.remove('show');
-
+    certificatePreviewModal.querySelector('.modal-content').classList.remove('show');
     setTimeout(() => {
         certificatePreviewModal.style.display = 'none';
+        certificatePreviewModal.classList.remove('show');
     }, 500);
 }
+
 const contactInputs = document.querySelectorAll('form input, form textarea');
 contactInputs.forEach(input => {
     input.addEventListener('mouseover', () => {
@@ -129,6 +140,15 @@ certificates.forEach(certificate => {
             ease: 'power1.inOut',
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
         });
+    });
+});
+
+   certificates.forEach(certificate => {
+    certificate.addEventListener('mouseenter', () => {
+        cursor.classList.add('certificate-hover');
+    });
+    certificate.addEventListener('mouseleave', () => {
+        cursor.classList.remove('certificate-hover');
     });
 });
 
@@ -225,9 +245,24 @@ setInterval(createTrailParticle, 50);
 // Confetti effect on form submission
 const form = document.querySelector('form');
 const confettiCanvas = document.getElementById('confetti-canvas');
-const confettiSettings = { target: confettiCanvas };
+const confettiSettings = { 
+    target: confettiCanvas,
+    size: 1.5,
+    max: 150,
+};
 const confetti = new ConfettiGenerator(confettiSettings);
 
+function triggerConfetti() {
+    confetti.render();
+    document.body.classList.add('party-mode');
+    document.body.classList.add('active');
+
+    setTimeout(() => {
+        confetti.clear();
+        document.body.classList.remove('party-mode');
+        document.body.classList.remove('active');
+    }, 5000);
+}
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     confetti.render();
@@ -250,6 +285,8 @@ const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
 function openGameModal() {
     gameModal.style.display = 'flex';
     gameModal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    document.body.style.filter = 'blur(5px)';
     setTimeout(() => {
         gameModal.querySelector('.modal-content').classList.add('show');
     }, 100);
@@ -257,6 +294,8 @@ function openGameModal() {
 
 function closeGameModal() {
     gameModal.querySelector('.modal-content').classList.remove('show');
+    document.body.style.overflow = 'auto';
+    document.body.style.filter = 'none';
     setTimeout(() => {
         gameModal.style.display = 'none';
         gameModal.classList.remove('show');
@@ -277,6 +316,7 @@ function decryptMessage() {
     if (key === 'consistency') {
         decryptedMessage.textContent = 'The secret to success is consistency.';
         modalConfetti.render();
+        triggerConfetti();
 
         setTimeout(() => {
             modalConfetti.clear();

@@ -48,6 +48,7 @@ certificates.forEach(certificate => {
     });
 });
 
+
 function showCertificatePreview(imageSrc) {
     const certificatePreviewModal = document.getElementById('certificate-preview-modal');
     const certificatePreviewImage = document.getElementById('certificate-preview-image');
@@ -310,6 +311,7 @@ window.addEventListener('click', (e) => {
         closeGameModal();
     }
 });
+
 
 function decryptMessage() {
     const key = decryptionKey.value.toLowerCase();

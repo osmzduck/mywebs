@@ -47,6 +47,8 @@ function showCertificatePreview(imageSrc) {
         certificatePreviewImage.classList.add('show');
     }, 100);
 }
+
+// Close certificate preview
 function closeCertificatePreview() {
     const certificatePreviewModal = document.getElementById('certificate-preview-modal');
     const certificatePreviewImage = document.getElementById('certificate-preview-image');
@@ -58,7 +60,6 @@ function closeCertificatePreview() {
         certificatePreviewModal.style.display = 'none';
     }, 500);
 }
-
 const contactInputs = document.querySelectorAll('form input, form textarea');
 contactInputs.forEach(input => {
     input.addEventListener('mouseover', () => {

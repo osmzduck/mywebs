@@ -286,8 +286,6 @@ const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
 function openGameModal() {
     gameModal.style.display = 'flex';
     gameModal.classList.add('show');
-    document.body.style.overflow = 'hidden';
-    document.body.style.filter = 'blur(5px)';
     setTimeout(() => {
         gameModal.querySelector('.modal-content').classList.add('show');
     }, 100);
@@ -295,13 +293,9 @@ function openGameModal() {
 
 function closeGameModal() {
     gameModal.querySelector('.modal-content').classList.remove('show');
-    document.body.style.overflow = 'auto';
-    document.body.style.filter = 'none';
     setTimeout(() => {
         gameModal.style.display = 'none';
         gameModal.classList.remove('show');
-        decryptionKey.value = '';
-        decryptedMessage.textContent = '';
     }, 500);
 }
 

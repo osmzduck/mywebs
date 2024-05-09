@@ -300,7 +300,7 @@ section.active .certificate {
 }
 
 .modal-content {
-    background-color: white;
+    background-color: black;
     padding: 30px;
     width: 90%;
     max-width: 800px;

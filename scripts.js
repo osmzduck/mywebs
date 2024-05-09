@@ -1,3 +1,13 @@
+function openGameModal() {
+    gameModal.style.display = 'flex';
+    gameModal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    document.body.style.filter = 'blur(5px)';
+    setTimeout(() => {
+        gameModal.querySelector('.modal-content').classList.add('show');
+    }, 100);
+}
+
 // Custom cursor
 const cursor = document.createElement('div');
 cursor.classList.add('custom-cursor');
@@ -26,14 +36,6 @@ links.forEach(link => {
 });
 
 const certificates = document.querySelectorAll('.certificate');
-
-window.addEventListener('load', () => {
-    const firstCertificate = document.querySelector('.certificate');
-    if (firstCertificate) {
-        const imageSrc = firstCertificate.querySelector('img').getAttribute('src');
-        openCertificatePreview(imageSrc);
-    }
-});
 
     certificate.addEventListener('mouseenter', () => {
         cursor.classList.add('certificate-hover');
@@ -205,16 +207,6 @@ const modalConfettiCanvas = document.getElementById('modal-confetti-canvas');
 const modalConfettiSettings = { target: modalConfettiCanvas };
 const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
 
-function openGameModal() {
-    gameModal.style.display = 'flex';
-    gameModal.classList.add('show');
-    document.body.style.overflow = 'hidden';
-    document.body.style.filter = 'blur(5px)';
-    setTimeout(() => {
-        gameModal.querySelector('.modal-content').classList.add('show');
-    }, 100);
-}
-
 function closeGameModal() {
     gameModal.querySelector('.modal-content').classList.remove('show');
     document.body.style.overflow = 'auto';
@@ -288,4 +280,12 @@ const timelineObserver = new IntersectionObserver(animateTimelineBlock, {
 
 timelineBlocks.forEach(block => {
     timelineObserver.observe(block);
+});
+
+window.addEventListener('load', () => {
+    const firstCertificate = document.querySelector('.certificate');
+    if (firstCertificate) {
+        const imageSrc = firstCertificate.querySelector('img').getAttribute('src');
+        openCertificatePreview(imageSrc);
+    }
 });

@@ -18,6 +18,7 @@
                 <a href="#" class="icon linkedin animate__animated animate__fadeInUp" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
                 <a href="#" class="icon twitter animate__animated animate__fadeInUp" title="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
                 <a href="#" class="icon secret-game game-link animate__animated animate__fadeInUp" title="Unlock the Secret!" onclick="openGameModal()"><i class="fas fa-user-secret"></i></a>
+                
             </div>
         </header>
         <div class="scroll-down">
@@ -101,10 +102,12 @@
         <div id="secret-message"></div>
         <button id="close-button">Close</button>
     </div>
-    <div id="certificate-preview">
-        <button class="close-preview">X</button>
-        <img src="" alt="Certificate Preview">
+<div id="certificate-preview-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeCertificatePreview()">&times;</span>
+        <img id="certificate-preview-image" src="" alt="Certificate Preview">
     </div>
+</div>
     <canvas id="background-particles"></canvas>
     <div id="cursor-trail"></div>
     <canvas id="confetti-canvas"></canvas>

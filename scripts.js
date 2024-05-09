@@ -9,6 +9,7 @@ function openGameModal() {
 }
 
 // Custom cursor
+// Custom cursor
 const cursor = document.createElement('div');
 cursor.classList.add('custom-cursor');
 document.body.appendChild(cursor);
@@ -37,6 +38,27 @@ links.forEach(link => {
 
 const certificates = document.querySelectorAll('.certificate');
 
+certificates.forEach(certificate => {
+    certificate.addEventListener('click', (e) => {
+        e.preventDefault();
+        const imageSrc = certificate.querySelector('img').getAttribute('src');
+        const cleanedSrc = imageSrc.replace('https://i.ibb.co/', 'https://ibb.co/').split('/')[0];
+        
+        if (e.target.tagName !== 'A') {
+            const certificatePreviewModal = document.getElementById('certificate-preview-modal');
+            const certificatePreviewImage = document.getElementById('certificate-preview-image');
+            certificatePreviewImage.src = imageSrc;
+            certificatePreviewModal.style.display = 'flex';
+            certificatePreviewModal.classList.add('show');
+            setTimeout(() => {
+                certificatePreviewModal.querySelector('.modal-content').classList.add('show');
+                certificatePreviewImage.classList.add('show');
+            }, 100);
+        } else {
+            window.open(cleanedSrc, '_blank');
+        }
+    });
+
     certificate.addEventListener('mouseenter', () => {
         cursor.classList.add('certificate-hover');
     });
@@ -44,18 +66,6 @@ const certificates = document.querySelectorAll('.certificate');
         cursor.classList.remove('certificate-hover');
     });
 });
-
-function openCertificatePreview(imageSrc) {
-    const certificatePreviewModal = document.getElementById('certificate-preview-modal');
-    const certificatePreviewImage = document.getElementById('certificate-preview-image');
-    certificatePreviewImage.src = imageSrc;
-    certificatePreviewModal.style.display = 'flex';
-    certificatePreviewModal.classList.add('show');
-    setTimeout(() => {
-        certificatePreviewModal.querySelector('.modal-content').classList.add('show');
-        certificatePreviewImage.classList.add('show');
-    }, 100);
-}
 
 // Close certificate preview
 function closeCertificatePreview() {
@@ -199,13 +209,22 @@ form.addEventListener('submit', (e) => {
 
 // Secret game modal
 const gameModal = document.getElementById('game-modal');
-const openGameModalButton = document.querySelector('.open-game-modal');
 const closeModalButton = gameModal.querySelector('.close');
 const decryptionKey = document.getElementById('decryption-key');
 const decryptedMessage = document.getElementById('decrypted-message');
 const modalConfettiCanvas = document.getElementById('modal-confetti-canvas');
 const modalConfettiSettings = { target: modalConfettiCanvas };
 const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
+
+function openGameModal() {
+    gameModal.style.display = 'flex';
+    gameModal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    document.body.style.filter = 'blur(5px)';
+    setTimeout(() => {
+        gameModal.querySelector('.modal-content').classList.add('show');
+    }, 100);
+}
 
 function closeGameModal() {
     gameModal.querySelector('.modal-content').classList.remove('show');
@@ -219,7 +238,6 @@ function closeGameModal() {
     }, 500);
 }
 
-openGameModalButton.addEventListener('click', openGameModal);
 closeModalButton.addEventListener('click', closeGameModal);
 window.addEventListener('click', (e) => {
     if (e.target === gameModal) {

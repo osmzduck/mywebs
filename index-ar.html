@@ -113,26 +113,28 @@
     <div id="cursor-trail"></div>
     <canvas id="confetti-canvas"></canvas>
 
+    <div id="game-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeGameModal()">&times;</span>
+        <h2 data-translate="game-title">فك تشفير الرسالة!</h2>
+        <p data-translate="game-description">ابحث عن المفتاح الصحيح لفك تشفير الرسالة.</p>
+
+        <div class="input-area">
+            <input type="text" id="decryption-key" data-translate-placeholder="game-placeholder" placeholder= "أدخل مفتاح فك التشفير...">
+            <button onclick="decryptMessage()" data-translate="game-button">فك التشفير<</button>
+            <canvas id="modal-confetti-canvas"></canvas>
+        </div>
+        <p id="decrypted-message"></p>
+        <p id="encrypted-message">Uif tfdsfu up tvddftt jt dpotjtufodz.</p>
+    </div>
+</div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js"></script>
     <script src="scripts.js"></script>
     <script src="translation.js"></script>
 
-    <div id="game-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeGameModal()">&times;</span>
-            <h2>فك تشفير الرسالة!</h2>
-            <p> ابحث عن المفتاح الصحيح لفك تشفير الرسالة.</p>
-<div class="input-area">
-<input type="text" id="decryption-key" placeholder="أدخل مفتاح فك التشفير...">
-<button onclick="decryptMessage()">فك التشفير</button>
-<canvas id="modal-confetti-canvas"></canvas>
-</div>
-<p id="decrypted-message"></p>
-<p id="encrypted-message">Uif tfdsfu up tvddftt jt dpotjtufodz.</p>
-</div>
-</div>
     <a href="index.html" id="translator-link" class="animate__animated animate__fadeInUp" title="Translate to English">
         <i class="fas fa-language"></i>
     </a>

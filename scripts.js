@@ -27,12 +27,37 @@ links.forEach(link => {
 
 const certificates = document.querySelectorAll('.certificate');
 certificates.forEach(certificate => {
-    certificate.addEventListener('click', () => {
+    certificate.addEventListener('click', (e) => {
+        e.preventDefault();
         const imageSrc = certificate.querySelector('img').getAttribute('src');
         const cleanedSrc = imageSrc.replace('https://i.ibb.co/', 'https://ibb.co/').split('/')[0];
-        window.open(cleanedSrc, '_blank');
+        showCertificatePreview(cleanedSrc);
     });
 });
+
+function showCertificatePreview(imageSrc) {
+    const certificatePreviewModal = document.getElementById('certificate-preview-modal');
+    const certificatePreviewImage = document.getElementById('certificate-preview-image');
+
+    certificatePreviewImage.src = imageSrc;
+    certificatePreviewModal.style.display = 'flex';
+
+    setTimeout(() => {
+        certificatePreviewModal.classList.add('show');
+        certificatePreviewImage.classList.add('show');
+    }, 100);
+}
+function closeCertificatePreview() {
+    const certificatePreviewModal = document.getElementById('certificate-preview-modal');
+    const certificatePreviewImage = document.getElementById('certificate-preview-image');
+
+    certificatePreviewModal.classList.remove('show');
+    certificatePreviewImage.classList.remove('show');
+
+    setTimeout(() => {
+        certificatePreviewModal.style.display = 'none';
+    }, 500);
+}
 
 const contactInputs = document.querySelectorAll('form input, form textarea');
 contactInputs.forEach(input => {

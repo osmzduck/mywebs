@@ -25,14 +25,43 @@ links.forEach(link => {
     });
 });
 
+const certificatePreviewModal = document.getElementById('certificate-preview-modal');
+const certificatePreviewImage = document.getElementById('certificate-preview-image');
+function openCertificatePreview(imageSrc) {
+    certificatePreviewImage.src = imageSrc;
+    certificatePreviewModal.style.display = 'flex';
+    certificatePreviewModal.classList.add('show');
+    setTimeout(() => {
+        certificatePreviewImage.classList.add('show');
+    }, 100);
+}
+function closeCertificatePreview() {
+    certificatePreviewImage.classList.remove('show');
+    setTimeout(() => {
+        certificatePreviewModal.style.display = 'none';
+        certificatePreviewModal.classList.remove('show');
+    }, 500);
+}
+
+function handleCertificateClick(event) {
+    event.preventDefault();
+    const imageSrc = event.target.closest('.certificate').querySelector('img').getAttribute('src');
+    openCertificatePreview(imageSrc);
+}
+
+function handleCertificatePreviewClick(event) {
+    if (event.target === certificatePreviewImage) {
+        const cleanedSrc = certificatePreviewImage.src.replace('https://i.ibb.co/', 'https://ibb.co/').split('/')[0];
+        window.open(cleanedSrc, '_blank');
+    }
+}
 const certificates = document.querySelectorAll('.certificate');
 certificates.forEach(certificate => {
-    certificate.addEventListener('click', () => {
-        const imageSrc = certificate.querySelector('img').getAttribute('src');
-        const cleanedSrc = imageSrc.replace('https://i.ibb.co/', 'https://ibb.co/').split('/')[0];
-        window.open(cleanedSrc, '_blank');
-    });
+    certificate.addEventListener('click', handleCertificateClick);
 });
+
+certificatePreviewModal.addEventListener('click', handleCertificatePreviewClick);
+
 
 const contactInputs = document.querySelectorAll('form input, form textarea');
 contactInputs.forEach(input => {
@@ -76,35 +105,6 @@ sections.forEach(section => {
     section.classList.add('section-hidden');
 });
 
-// Certificate hover effect
-certificates.forEach(certificate => {
-    certificate.addEventListener('click', () => {
-        const imageSrc = certificate.querySelector('img').getAttribute('src');
-        window.open(imageSrc, '_blank');
-    });
-    
-    certificate.addEventListener('mouseenter', () => {
-        gsap.to(certificate, {
-            duration: 0.3,
-            scale: 1.05,
-            rotationX: 10,
-            rotationY: 10,
-            ease: 'power1.inOut',
-            boxShadow: '0 8px 12px rgba(0, 0, 0, 0.2)',
-        });
-    });
-
-    certificate.addEventListener('mouseleave', () => {
-        gsap.to(certificate, {
-            duration: 0.3,
-            scale: 1,
-            rotationX: 0,
-            rotationY: 0,
-            ease: 'power1.inOut',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-        });
-    });
-});
 
 // Interactive secret message
 const interactiveLink = document.getElementById('interactive-link');

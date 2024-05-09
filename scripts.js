@@ -41,31 +41,27 @@ certificates.forEach(certificate => {
             certificatePreviewModal.classList.add('show');
             setTimeout(() => {
                 certificatePreviewModal.querySelector('.modal-content').classList.add('show');
+                certificatePreviewImage.classList.add('show');
             }, 100);
         } else {
             window.open(cleanedSrc, '_blank');
         }
     });
+
+    certificate.addEventListener('mouseenter', () => {
+        cursor.classList.add('certificate-hover');
+    });
+    certificate.addEventListener('mouseleave', () => {
+        cursor.classList.remove('certificate-hover');
+    });
 });
-
-
-function showCertificatePreview(imageSrc) {
-    const certificatePreviewModal = document.getElementById('certificate-preview-modal');
-    const certificatePreviewImage = document.getElementById('certificate-preview-image');
-
-    certificatePreviewImage.src = imageSrc;
-    certificatePreviewModal.style.display = 'flex';
-
-    setTimeout(() => {
-        certificatePreviewModal.classList.add('show');
-        certificatePreviewImage.classList.add('show');
-    }, 100);
-}
 
 // Close certificate preview
 function closeCertificatePreview() {
     const certificatePreviewModal = document.getElementById('certificate-preview-modal');
+    const certificatePreviewImage = document.getElementById('certificate-preview-image');
     certificatePreviewModal.querySelector('.modal-content').classList.remove('show');
+    certificatePreviewImage.classList.remove('show');
     setTimeout(() => {
         certificatePreviewModal.style.display = 'none';
         certificatePreviewModal.classList.remove('show');
@@ -82,8 +78,7 @@ contactInputs.forEach(input => {
     });
 });
 
-// Rest of the scripts.js code...
-
+// Scroll down animation
 window.addEventListener('scroll', () => {
     if (window.scrollY > 0) {
         document.querySelector('.scroll-circle').style.opacity = 0;
@@ -112,45 +107,6 @@ const sectionObserver = new IntersectionObserver(revealSection, {
 sections.forEach(section => {
     sectionObserver.observe(section);
     section.classList.add('section-hidden');
-});
-
-// Certificate hover effect
-certificates.forEach(certificate => {
-    certificate.addEventListener('click', () => {
-        const imageSrc = certificate.querySelector('img').getAttribute('src');
-        window.open(imageSrc, '_blank');
-    });
-    
-    certificate.addEventListener('mouseenter', () => {
-        gsap.to(certificate, {
-            duration: 0.3,
-            scale: 1.05,
-            rotationX: 10,
-            rotationY: 10,
-            ease: 'power1.inOut',
-            boxShadow: '0 8px 12px rgba(0, 0, 0, 0.2)',
-        });
-    });
-
-    certificate.addEventListener('mouseleave', () => {
-        gsap.to(certificate, {
-            duration: 0.3,
-            scale: 1,
-            rotationX: 0,
-            rotationY: 0,
-            ease: 'power1.inOut',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-        });
-    });
-});
-
-   certificates.forEach(certificate => {
-    certificate.addEventListener('mouseenter', () => {
-        cursor.classList.add('certificate-hover');
-    });
-    certificate.addEventListener('mouseleave', () => {
-        cursor.classList.remove('certificate-hover');
-    });
 });
 
 // Interactive secret message
@@ -210,39 +166,6 @@ function startTypingEffect() {
     typeNextCharacter();
 }
 
-// Background particles effect
-particlesJS.load('background-particles', 'particles-config.json');
-
-// Cursor trail effect
-const cursorTrail = document.getElementById('cursor-trail');
-let mouseX = 0;
-let mouseY = 0;
-
-document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-});
-
-function createTrailParticle() {
-    const particle = document.createElement('div');
-    particle.className = 'cursor-particle';
-    particle.style.left = mouseX + 'px';
-    particle.style.top = mouseY + 'px';
-    cursorTrail.appendChild(particle);
-
-    gsap.to(particle, {
-        duration: 1,
-        scale: 0,
-        opacity: 0,
-        ease: 'power2.out',
-        onComplete: () => {
-            particle.remove();
-        }
-    });
-}
-
-setInterval(createTrailParticle, 50);
-
 // Confetti effect on form submission
 const form = document.querySelector('form');
 const confettiCanvas = document.getElementById('confetti-canvas');
@@ -266,10 +189,9 @@ function triggerConfetti() {
 }
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    confetti.render();
+    triggerConfetti();
 
     setTimeout(() => {
-        confetti.clear();
         form.reset();
     }, 3000);
 });
@@ -286,6 +208,8 @@ const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
 function openGameModal() {
     gameModal.style.display = 'flex';
     gameModal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    document.body.style.filter = 'blur(5px)';
     setTimeout(() => {
         gameModal.querySelector('.modal-content').classList.add('show');
     }, 100);
@@ -293,9 +217,13 @@ function openGameModal() {
 
 function closeGameModal() {
     gameModal.querySelector('.modal-content').classList.remove('show');
+    document.body.style.overflow = 'auto';
+    document.body.style.filter = 'none';
     setTimeout(() => {
         gameModal.style.display = 'none';
         gameModal.classList.remove('show');
+        decryptionKey.value = '';
+        decryptedMessage.textContent = '';
     }, 500);
 }
 
@@ -305,7 +233,6 @@ window.addEventListener('click', (e) => {
         closeGameModal();
     }
 });
-
 
 function decryptMessage() {
     const key = decryptionKey.value.toLowerCase();
@@ -361,4 +288,3 @@ const timelineObserver = new IntersectionObserver(animateTimelineBlock, {
 timelineBlocks.forEach(block => {
     timelineObserver.observe(block);
 });
-

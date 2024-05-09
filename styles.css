@@ -961,3 +961,22 @@ section.active .timeline-block {
 a, button, input, textarea {
     cursor: none;
 }
+
+.secret-game {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.4);
+    cursor: pointer;
+}
+
+.secret-game:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 123, 255, 0.6);
+}

@@ -849,8 +849,8 @@ section.active .timeline-block {
     position: fixed;
     top: 20px;
     left: 20px;
-    background-color: #007BFF;
-    color: white;
+    background-color: #FFFF;
+    color: black;
     border: none;
     padding: 10px;
     border-radius: 50%;

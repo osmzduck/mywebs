@@ -281,11 +281,3 @@ const timelineObserver = new IntersectionObserver(animateTimelineBlock, {
 timelineBlocks.forEach(block => {
     timelineObserver.observe(block);
 });
-
-window.addEventListener('load', () => {
-    const firstCertificate = document.querySelector('.certificate');
-    if (firstCertificate) {
-        const imageSrc = firstCertificate.querySelector('img').getAttribute('src');
-        openCertificatePreview(imageSrc);
-    }
-});

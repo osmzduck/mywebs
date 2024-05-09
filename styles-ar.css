@@ -320,6 +320,7 @@ section.active .certificate {
 
 .certificate:hover img {
     transform: scale(1.1);
+    cursor: none;
 }
 
 .certificate-overlay {
@@ -338,6 +339,7 @@ section.active .certificate {
 
 .certificate:hover .certificate-overlay {
     opacity: 1;
+    cursor: none;
 }
 
 .certificate-text {
@@ -389,6 +391,7 @@ section.active .certificate {
 
 .close-preview:hover {
     transform: rotate(90deg);
+    cursor: none;
 }
 
 form {
@@ -431,6 +434,7 @@ button {
 button:hover {
     background-color: #cccccc;
     transform: translateY(-2px);
+    cursor: none;
 }
 
 #interactive-link {
@@ -448,6 +452,7 @@ button:hover {
 #interactive-link:hover {
     background-color: #cccccc;
     transform: translateY(-2px);
+    cursor: none;
 }
 
 #interactive-overlay {
@@ -564,6 +569,7 @@ header.active .icon {
     color: #cccccc;
     transform: scale(1.2);
     text-shadow: 0 0 10px rgba(255, 64, 129, 0.8);
+    cursor: none;
 }
 
 .timeline-container {
@@ -761,6 +767,7 @@ section.active .timeline-block {
     background-color: #cccccc;
     transform: translateY(-2px);
     box-shadow: 0 6px 8px rgba(0, 123, 255, 0.6);
+    cursor: none;
 }
 
 .close {
@@ -776,6 +783,7 @@ section.active .timeline-block {
 .close:hover {
     color: #333;
     transform: rotate(90deg);
+    cursor: none;
 }
 
 .game-link {
@@ -785,6 +793,7 @@ section.active .timeline-block {
 
 .game-link:hover {
     transform: scale(1.2);
+    cursor: none;
 }
 
 .game-link::after {
@@ -806,6 +815,8 @@ section.active .timeline-block {
 
 .game-link:hover::after {
     opacity: 1;
+    cursor: none;
+
 }
 
 #modal-confetti-canvas {
@@ -864,6 +875,8 @@ section.active .timeline-block {
 #translator-link:hover {
     transform: scale(1.2);
     box-shadow: 0 6px 8px rgba(0, 123, 255, 0.6);
+    cursor: none;
+
 }
 
 .translate-animation {
@@ -918,6 +931,8 @@ section.active .timeline-block {
 .custom-cursor.hover {
     transform: translate(-50%, -50%) scale(1.5);
     background-color: rgba(255, 255, 255, 0.4);
+     cursor: none;
+
 }
 
 .custom-cursor.click {
@@ -928,6 +943,7 @@ section.active .timeline-block {
 .custom-cursor.certificate-hover {
     transform: translate(-50%, -50%) scale(2);
     background-color: rgba(255, 255, 255, 0.6);
+    cursor: none;
 }
 
 .custom-cursor.input-hover {
@@ -935,6 +951,7 @@ section.active .timeline-block {
     background-color: rgba(255, 255, 255, 0.4);
     border-style: dashed;
     animation: cursorTyping 1s infinite;
+    cursor: none;
 }
 
 @keyframes cursorTyping {

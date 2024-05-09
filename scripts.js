@@ -27,18 +27,13 @@ links.forEach(link => {
 
 const certificates = document.querySelectorAll('.certificate');
 
-certificates.forEach(certificate => {
-    certificate.addEventListener('click', (e) => {
-        e.preventDefault();
-        const imageSrc = certificate.querySelector('img').getAttribute('src');
-        const cleanedSrc = imageSrc.replace('https://i.ibb.co/', 'https://ibb.co/').split('/')[0];
-        
-        if (e.target.tagName !== 'A') {
-            openCertificatePreview(imageSrc);
-        } else {
-            window.open(cleanedSrc, '_blank');
-        }
-    });
+window.addEventListener('load', () => {
+    const firstCertificate = document.querySelector('.certificate');
+    if (firstCertificate) {
+        const imageSrc = firstCertificate.querySelector('img').getAttribute('src');
+        openCertificatePreview(imageSrc);
+    }
+});
 
     certificate.addEventListener('mouseenter', () => {
         cursor.classList.add('certificate-hover');

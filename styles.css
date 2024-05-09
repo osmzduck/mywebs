@@ -967,7 +967,7 @@ a, button, input, textarea {
     padding: 10px 20px;
     background-color: #007BFF;
     color: white;
-    text-decoration: none;
+    border: none;
     border-radius: 50px;
     font-weight: 700;
     transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
@@ -979,4 +979,5 @@ a, button, input, textarea {
     background-color: #0056b3;
     transform: translateY(-2px);
     box-shadow: 0 6px 8px rgba(0, 123, 255, 0.6);
+    cursor: none:
 }

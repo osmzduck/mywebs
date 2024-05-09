@@ -71,6 +71,7 @@ function closeCertificatePreview() {
         certificatePreviewModal.classList.remove('show');
     }, 500);
 }
+
 const contactInputs = document.querySelectorAll('form input, form textarea');
 contactInputs.forEach(input => {
     input.addEventListener('mouseover', () => {

@@ -1,14 +1,3 @@
-function openGameModal() {
-    gameModal.style.display = 'flex';
-    gameModal.classList.add('show');
-    document.body.style.overflow = 'hidden';
-    document.body.style.filter = 'blur(5px)';
-    setTimeout(() => {
-        gameModal.querySelector('.modal-content').classList.add('show');
-    }, 100);
-}
-
-// Custom cursor
 // Custom cursor
 const cursor = document.createElement('div');
 cursor.classList.add('custom-cursor');
@@ -209,6 +198,7 @@ form.addEventListener('submit', (e) => {
 
 // Secret game modal
 const gameModal = document.getElementById('game-modal');
+const openGameModalButton = document.querySelector('.open-game-modal');
 const closeModalButton = gameModal.querySelector('.close');
 const decryptionKey = document.getElementById('decryption-key');
 const decryptedMessage = document.getElementById('decrypted-message');
@@ -238,6 +228,7 @@ function closeGameModal() {
     }, 500);
 }
 
+openGameModalButton.addEventListener('click', openGameModal);
 closeModalButton.addEventListener('click', closeGameModal);
 window.addEventListener('click', (e) => {
     if (e.target === gameModal) {

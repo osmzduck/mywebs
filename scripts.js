@@ -1,3 +1,4 @@
+
 function openGameModal() {
     gameModal.style.display = 'flex';
     gameModal.classList.add('show');
@@ -7,27 +8,6 @@ function openGameModal() {
         gameModal.querySelector('.modal-content').classList.add('show');
     }, 100);
 }
-
-function closeGameModal() {
-    gameModal.querySelector('.modal-content').classList.remove('show');
-    document.body.style.overflow = 'auto';
-    document.body.style.filter = 'none';
-    setTimeout(() => {
-        gameModal.style.display = 'none';
-        gameModal.classList.remove('show');
-        decryptionKey.value = '';
-        decryptedMessage.textContent = '';
-    }, 500);
-}
-
-openGameModalButton.addEventListener('click', openGameModal);
-closeModalButton.addEventListener('click', closeGameModal);
-window.addEventListener('click', (e) => {
-    if (e.target === gameModal) {
-        closeGameModal();
-    }
-});
-
 
 // Custom cursor
 const cursor = document.createElement('div');
@@ -65,20 +45,12 @@ certificates.forEach(certificate => {
         const cleanedSrc = imageSrc.replace('https://i.ibb.co/', 'https://ibb.co/').split('/')[0];
         
         if (e.target.tagName !== 'A') {
-            const certificatePreviewModal = document.getElementById('certificate-preview-modal');
-            const certificatePreviewImage = document.getElementById('certificate-preview-image');
-            certificatePreviewImage.src = imageSrc;
-            certificatePreviewModal.style.display = 'flex';
-            certificatePreviewModal.classList.add('show');
-            setTimeout(() => {
-                certificatePreviewModal.querySelector('.modal-content').classList.add('show');
-                certificatePreviewImage.classList.add('show');
-            }, 100);
+            openCertificatePreview(imageSrc);
         } else {
             window.open(cleanedSrc, '_blank');
         }
     });
-
+    
     certificate.addEventListener('mouseenter', () => {
         cursor.classList.add('certificate-hover');
     });
@@ -86,6 +58,18 @@ certificates.forEach(certificate => {
         cursor.classList.remove('certificate-hover');
     });
 });
+
+function openCertificatePreview(imageSrc) {
+    const certificatePreviewModal = document.getElementById('certificate-preview-modal');
+    const certificatePreviewImage = document.getElementById('certificate-preview-image');
+    certificatePreviewImage.src = imageSrc;
+    certificatePreviewModal.style.display = 'flex';
+    certificatePreviewModal.classList.add('show');
+    setTimeout(() => {
+        certificatePreviewModal.querySelector('.modal-content').classList.add('show');
+        certificatePreviewImage.classList.add('show');
+    }, 100);
+}
 
 // Close certificate preview
 function closeCertificatePreview() {
@@ -236,6 +220,27 @@ const decryptedMessage = document.getElementById('decrypted-message');
 const modalConfettiCanvas = document.getElementById('modal-confetti-canvas');
 const modalConfettiSettings = { target: modalConfettiCanvas };
 const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
+
+
+function closeGameModal() {
+    gameModal.querySelector('.modal-content').classList.remove('show');
+    document.body.style.overflow = 'auto';
+    document.body.style.filter = 'none';
+    setTimeout(() => {
+        gameModal.style.display = 'none';
+        gameModal.classList.remove('show');
+        decryptionKey.value = '';
+        decryptedMessage.textContent = '';
+    }, 500);
+}
+
+openGameModalButton.addEventListener('click', openGameModal);
+closeModalButton.addEventListener('click', closeGameModal);
+window.addEventListener('click', (e) => {
+    if (e.target === gameModal) {
+        closeGameModal();
+    }
+});
 
 function decryptMessage() {
     const key = decryptionKey.value.toLowerCase();

@@ -17,7 +17,7 @@
                 <a href="#" class="icon github animate__animated animate__fadeInUp" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
                 <a href="#" class="icon linkedin animate__animated animate__fadeInUp" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
                 <a href="#" class="icon twitter animate__animated animate__fadeInUp" title="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="icon secret-game game-link animate__animated animate__fadeInUp" title="Hacker's Challenge" onclick="openHackerModal()"><i class="fas fa-user-secret"></i></a>
+                <a href="#" class="icon secret-game game-link animate__animated animate__fadeInUp" title="Hacker's Challenge" onclick="openGameModal()"><i class="fas fa-user-secret"></i></a>
             </div>
         </header>
         <a href="index-ar.html" id="translator-link" class="animate__animated animate__fadeInUp" title="Translate to Arabic">
@@ -112,12 +112,17 @@
             <img id="certificate-preview-image" src="" alt="Certificate Preview">
         </div>
     </div>
-    <div id="hacker-modal" class="modal">
+    <div id="game-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeHackerModal()">&times;</span>
+            <span class="close" onclick="closeGameModal()">&times;</span>
             <h2>Hacker's Challenge</h2>
             <p>Solve the hacker's challenge to prove your skills!</p>
-            <!-- Add your hacker challenge content here -->
+            <div class="input-area">
+                <input type="text" id="decryption-key" placeholder="Enter decryption key...">
+                <button onclick="decryptMessage()">Decrypt</button>
+                <canvas id="modal-confetti-canvas"></canvas>
+            </div>
+            <p id="decrypted-message"></p>
         </div>
     </div>
     <canvas id="background-particles"></canvas>

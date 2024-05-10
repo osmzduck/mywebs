@@ -1,16 +1,3 @@
-
-
-
-function openGameModal() {
-    gameModal.style.display = 'flex';
-    gameModal.classList.add('show');
-    document.body.style.overflow = 'hidden';
-    document.body.style.filter = 'blur(5px)';
-    setTimeout(() => {
-        gameModal.querySelector('.modal-content').classList.add('show');
-    }, 100);
-}
-
 // Custom cursor
 const cursor = document.createElement('div');
 cursor.classList.add('custom-cursor');
@@ -38,53 +25,6 @@ links.forEach(link => {
     });
 });
 
-const certificates = document.querySelectorAll('.certificate');
-
-certificates.forEach(certificate => {
-    certificate.addEventListener('click', (e) => {
-        e.preventDefault();
-        const imageSrc = certificate.querySelector('img').getAttribute('src');
-        const cleanedSrc = imageSrc.replace('https://i.ibb.co/', 'https://ibb.co/').split('/')[0];
-        
-        if (e.target.tagName !== 'A') {
-            openCertificatePreview(imageSrc);
-        } else {
-            window.open(cleanedSrc, '_blank');
-        }
-    });
-    
-    certificate.addEventListener('mouseenter', () => {
-        cursor.classList.add('certificate-hover');
-    });
-    certificate.addEventListener('mouseleave', () => {
-        cursor.classList.remove('certificate-hover');
-    });
-});
-
-function openCertificatePreview(imageSrc) {
-    const certificatePreviewModal = document.getElementById('certificate-preview-modal');
-    const certificatePreviewImage = document.getElementById('certificate-preview-image');
-    certificatePreviewImage.src = imageSrc;
-    certificatePreviewModal.style.display = 'flex';
-    certificatePreviewModal.classList.add('show');
-    setTimeout(() => {
-        certificatePreviewModal.querySelector('.modal-content').classList.add('show');
-        certificatePreviewImage.classList.add('show');
-    }, 100);
-}
-
-// Close certificate preview
-function closeCertificatePreview() {
-    const certificatePreviewModal = document.getElementById('certificate-preview-modal');
-    const certificatePreviewImage = document.getElementById('certificate-preview-image');
-    certificatePreviewModal.querySelector('.modal-content').classList.remove('show');
-    certificatePreviewImage.classList.remove('show');
-    setTimeout(() => {
-        certificatePreviewModal.style.display = 'none';
-        certificatePreviewModal.classList.remove('show');
-    }, 500);
-}
-
 const contactInputs = document.querySelectorAll('form input, form textarea');
 contactInputs.forEach(input => {
     input.addEventListener('mouseover', () => {
@@ -95,7 +35,6 @@ contactInputs.forEach(input => {
     });
 });
 
-// Scroll down animation
 window.addEventListener('scroll', () => {
     if (window.scrollY > 0) {
         document.querySelector('.scroll-circle').style.opacity = 0;
@@ -183,39 +122,98 @@ function startTypingEffect() {
     typeNextCharacter();
 }
 
+// Background particles effect
+particlesJS.load('background-particles', 'particles-config.json');
+
+// Cursor trail effect
+const cursorTrail = document.getElementById('cursor-trail');
+let mouseX = 0;
+let mouseY = 0;
+
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+function createTrailParticle() {
+    const particle = document.createElement('div');
+    particle.className = 'cursor-particle';
+    particle.style.left = mouseX + 'px';
+    particle.style.top = mouseY + 'px';
+    cursorTrail.appendChild(particle);
+
+    gsap.to(particle, {
+        duration: 1,
+        scale: 0,
+        opacity: 0,
+        ease: 'power2.out',
+        onComplete: () => {
+            particle.remove();
+        }
+    });
+}
+
+setInterval(createTrailParticle, 50);
+
 // Confetti effect on form submission
 const form = document.querySelector('form');
 const confettiCanvas = document.getElementById('confetti-canvas');
-const confettiSettings = { 
-    target: confettiCanvas,
-    size: 1.5,
-    max: 150,
-};
+const confettiSettings = { target: confettiCanvas };
 const confetti = new ConfettiGenerator(confettiSettings);
 
-function triggerConfetti() {
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
     confetti.render();
-    document.body.classList.add('party-mode');
-    document.body.classList.add('active');
 
     setTimeout(() => {
         confetti.clear();
-        document.body.classList.remove('party-mode');
-        document.body.classList.remove('active');
-    }, 5000);
-}
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    triggerConfetti();
-
-    setTimeout(() => {
         form.reset();
     }, 3000);
 });
 
+// Certificate preview
+const certificatePreviewModal = document.getElementById('certificate-preview-modal');
+const certificatePreviewImage = document.getElementById('certificate-preview-image');
+
+function openCertificatePreview(imageSrc) {
+    certificatePreviewImage.src = imageSrc;
+    certificatePreviewModal.style.display = 'flex';
+    certificatePreviewModal.classList.add('show');
+    setTimeout(() => {
+        certificatePreviewImage.classList.add('show');
+    }, 100);
+}
+
+function closeCertificatePreview() {
+    certificatePreviewImage.classList.remove('show');
+    setTimeout(() => {
+        certificatePreviewModal.style.display = 'none';
+        certificatePreviewModal.classList.remove('show');
+    }, 500);
+}
+
+function handleCertificateClick(event) {
+    event.preventDefault();
+    const imageSrc = event.target.closest('.certificate').querySelector('img').getAttribute('src');
+    openCertificatePreview(imageSrc);
+}
+
+function handleCertificatePreviewClick(event) {
+    if (event.target === certificatePreviewImage) {
+        const cleanedSrc = certificatePreviewImage.src.replace('https://i.ibb.co/', 'https://ibb.co/').split('/')[0];
+        window.open(cleanedSrc, '_blank');
+    }
+}
+
+const certificates = document.querySelectorAll('.certificate');
+certificates.forEach(certificate => {
+    certificate.addEventListener('click', handleCertificateClick);
+});
+
+certificatePreviewModal.addEventListener('click', handleCertificatePreviewClick);
+
 // Secret game modal
 const gameModal = document.getElementById('game-modal');
-const openGameModalButton = document.querySelector('.open-game-modal');
 const closeModalButton = gameModal.querySelector('.close');
 const decryptionKey = document.getElementById('decryption-key');
 const decryptedMessage = document.getElementById('decrypted-message');
@@ -223,11 +221,16 @@ const modalConfettiCanvas = document.getElementById('modal-confetti-canvas');
 const modalConfettiSettings = { target: modalConfettiCanvas };
 const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
 
+function openGameModal() {
+    gameModal.style.display = 'flex';
+    gameModal.classList.add('show');
+    setTimeout(() => {
+        gameModal.querySelector('.modal-content').classList.add('show');
+    }, 100);
+}
 
 function closeGameModal() {
     gameModal.querySelector('.modal-content').classList.remove('show');
-    document.body.style.overflow = 'auto';
-    document.body.style.filter = 'none';
     setTimeout(() => {
         gameModal.style.display = 'none';
         gameModal.classList.remove('show');
@@ -236,7 +239,6 @@ function closeGameModal() {
     }, 500);
 }
 
-openGameModalButton.addEventListener('click', openGameModal);
 closeModalButton.addEventListener('click', closeGameModal);
 window.addEventListener('click', (e) => {
     if (e.target === gameModal) {
@@ -249,7 +251,6 @@ function decryptMessage() {
     if (key === 'consistency') {
         decryptedMessage.textContent = 'The secret to success is consistency.';
         modalConfetti.render();
-        triggerConfetti();
 
         setTimeout(() => {
             modalConfetti.clear();
@@ -298,6 +299,3 @@ const timelineObserver = new IntersectionObserver(animateTimelineBlock, {
 timelineBlocks.forEach(block => {
     timelineObserver.observe(block);
 });
-
-
-

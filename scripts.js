@@ -1,3 +1,4 @@
+// Add a variable to track if the page is being loaded for the first time
 let isFirstLoad = true;
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -42,15 +43,26 @@ certificates.forEach(certificate => {
         const imageSrc = certificate.querySelector('img').getAttribute('src');
         const cleanedSrc = imageSrc.replace('https://i.ibb.co/', 'https://ibb.co/').split('/')[0];
         
-        if (e.target.tagName !== 'A') {
-            openCertificatePreview(imageSrc);
+        if (!isFirstLoad) {
+            if (e.target.tagName !== 'A') {
+                openCertificatePreview(imageSrc);
+            } else {
+                window.open(cleanedSrc, '_blank');
+            }
         } else {
-            window.open(cleanedSrc, '_blank');
+            isFirstLoad = false; // Update the isFirstLoad flag
         }
     });
+    
+    certificate.addEventListener('mouseenter', () => {
+        cursor.classList.add('certificate-hover');
+    });
+    certificate.addEventListener('mouseleave', () => {
+        cursor.classList.remove('certificate-hover');
+    });
+});
 
-
-    function openCertificatePreview(imageSrc) {
+function openCertificatePreview(imageSrc) {
     const certificatePreviewModal = document.getElementById('certificate-preview-modal');
     const certificatePreviewImage = document.getElementById('certificate-preview-image');
     certificatePreviewImage.src = imageSrc;
@@ -61,14 +73,6 @@ certificates.forEach(certificate => {
         certificatePreviewImage.classList.add('show');
     }, 100);
 }
-
-    certificate.addEventListener('mouseenter', () => {
-        cursor.classList.add('certificate-hover');
-    });
-    certificate.addEventListener('mouseleave', () => {
-        cursor.classList.remove('certificate-hover');
-    });
-});
 
 // Close certificate preview
 function closeCertificatePreview() {

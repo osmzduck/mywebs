@@ -192,22 +192,18 @@ function closeCertificatePreview() {
     }, 500);
 }
 
-function handleCertificateClick(event) {
-    event.preventDefault();
-    const imageSrc = event.target.closest('.certificate').querySelector('img').getAttribute('src');
-    openCertificatePreview(imageSrc);
-}
-
-function handleCertificatePreviewClick(event) {
-    if (event.target === certificatePreviewImage) {
-        const cleanedSrc = certificatePreviewImage.src.replace('https://i.ibb.co/', 'https://ibb.co/').split('/')[0];
-        window.open(cleanedSrc, '_blank');
-    }
+function handleCertificatePreviewClick() {
+    const cleanedSrc = certificatePreviewImage.src.replace('https://i.ibb.co/', 'https://ibb.co/').split('/')[0];
+    window.open(cleanedSrc, '_blank');
 }
 
 const certificates = document.querySelectorAll('.certificate');
 certificates.forEach(certificate => {
-    certificate.addEventListener('click', handleCertificateClick);
+    certificate.addEventListener('click', (event) => {
+        event.preventDefault();
+        const imageSrc = event.target.closest('.certificate').querySelector('img').getAttribute('src');
+        openCertificatePreview(imageSrc);
+    });
 });
 
 certificatePreviewModal.addEventListener('click', handleCertificatePreviewClick);

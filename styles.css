@@ -8,10 +8,6 @@ body, html {
     cursor: none;
 }
 
-body {
-    cursor: none;
-}
-
 .container {
     max-width: 1200px;
     margin: auto;
@@ -352,6 +348,75 @@ section.active .certificate {
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
+#certificate-preview-modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 20px rgba(255, 255, 255, 0.8);
+    transform: translateY(-30px);
+    transition: transform 0.5s ease-out;
+    position: relative;
+}
+
+.modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content.show {
+    transform: translateY(0);
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.close:hover {
+    color: #333;
+    transform: rotate(90deg);
+    cursor: none;
+}
+
+#certificate-preview-image {
+    max-width: 100%;
+    max-height: 80vh;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#certificate-preview-image.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
 form {
     display: grid;
     gap: 20px;
@@ -392,6 +457,7 @@ button {
 button:hover {
     background-color: #1c5ed8;
     transform: translateY(-2px);
+    cursor: none;
 }
 
 #interactive-link {
@@ -510,10 +576,6 @@ footer {
 
 .icon:nth-child(4) {
     transition-delay: 0.4s;
-}
-
-.icon:nth-child(5) {
-    transition-delay: 0.5s;
 }
 
 header.active .icon {
@@ -792,17 +854,6 @@ section.active .timeline-block {
     animation: modalShow 0.3s ease-out forwards;
 }
 
-@keyframes slideInFromSide {
-    0% {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
 .icon.github {
     animation-delay: 1.2s;
 }
@@ -923,4 +974,3 @@ section.active .timeline-block {
 a, button, input, textarea {
     cursor: none;
 }
-

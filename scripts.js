@@ -1,3 +1,12 @@
+let isFirstLoad = true;
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (isFirstLoad) {
+        // Prevent the certificate preview modal from opening on the first load
+        isFirstLoad = false;
+    }
+});
+
 // Custom cursor
 const cursor = document.createElement('div');
 cursor.classList.add('custom-cursor');

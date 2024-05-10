@@ -11,28 +11,24 @@
 <body>
     <div class="container">
         <header>
-            <h1>Essam Turki</h1>
-            <p class="animate__animated animate__fadeInUp">Cybersecurity Enthusiast & IT Professional</p>
+            <h1 data-translate="header-title">Essam Turki</h1>
+            <p class="animate__animated animate__fadeInUp" data-translate="header-subtitle">Cybersecurity Enthusiast & IT Professional</p>
             <div class="header-icons">
                 <a href="#" class="icon github animate__animated animate__fadeInUp" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
                 <a href="#" class="icon linkedin animate__animated animate__fadeInUp" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
                 <a href="#" class="icon twitter animate__animated animate__fadeInUp" title="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="icon secret-game game-link animate__animated animate__fadeInUp" title="Hacker's Challenge" onclick="openHackerModal()"><i class="fas fa-user-secret"></i></a>
+                <button class="secret-game open-game-modal animate__animated animate__fadeInUp" onclick="openGameModal()">Unlock the Secret!</button>
             </div>
         </header>
-        <a href="index-ar.html" id="translator-link" class="animate__animated animate__fadeInUp" title="Translate to Arabic">
-            <i class="fas fa-language"></i>
-        </a>
         <div class="scroll-down">
             <div class="scroll-circle">
-                <div class="scroll-arrow">
                     <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
         </div>
         <section id="bio" class="section-reveal">
-            <h2>About Me</h2>
-            <p>Passionate about cybersecurity and experienced in IT infrastructure, I have completed several professional courses from Google, enhancing my skills in system administration, networking, and security.</p>
+            <h2 data-translate="about-title">About Me</h2>
+            <p data-translate="about-text">Passionate about cybersecurity and experienced in IT infrastructure, I have completed several professional courses from Google, enhancing my skills in system administration, networking, and security.</p>
             <div class="skills">
                 <span class="skill">Cybersecurity</span>
                 <span class="skill">System Administration</span>
@@ -41,7 +37,7 @@
             </div>
         </section>
         <section id="certificates" class="section-reveal">
-            <h2>Certificates</h2>
+            <h2 data-translate="certificates-title">Certificates</h2>
             <div class="certificate-gallery">
                 <div class="certificate">
                     <img src="https://i.ibb.co/Xtkqhr5/image.png" alt="System Administration and IT Infrastructure Services">
@@ -70,16 +66,16 @@
             </div>
         </section>
         <section id="contact" class="section-reveal">
-            <h2>Contact Me</h2>
+            <h2 data-translate="contact-title">Contact Me</h2>
             <form>
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message"></textarea>
-                <button type="submit">Send</button>
+                <input type="text" data-translate-placeholder="contact-name" placeholder="Your Name" required>
+                <input type="email" data-translate-placeholder="contact-email" placeholder="Your Email" required>
+                <textarea data-translate-placeholder="contact-message" placeholder="Your Message"></textarea>
+                <button type="submit" data-translate="contact-send">Send</button>
             </form>
         </section>
         <section id="timeline">
-            <h2>My Journey</h2>
+            <h2 data-translate="timeline-title">My Journey</h2>
             <div class="timeline-container">
                 <div class="timeline-block">
                     <p class="timeline-date">2023</p>
@@ -92,10 +88,10 @@
             </div>
         </section>
         <footer>
-            <p>© 2024 Essam Turki. All rights reserved.</p>
+            <p data-translate="footer-text">© 2024 Essam Turki. All rights reserved.</p>
             <nav>
                 <ul>
-                    <li><a href="javascript:void(0)" id="interactive-link">🎮 Ooh, a secret I see!? 🎮</a></li>
+                    <li><a href="javascript:void(0)" id="interactive-link" data-translate="secret-link">🎮 Ooh, a secret I see!? 🎮</a></li>
                 </ul>
             </nav>
         </footer>
@@ -104,7 +100,7 @@
     <div id="interactive-content">
         <div id="typing-effect"></div>
         <div id="secret-message"></div>
-        <button id="close-button">Close</button>
+        <button id="close-button" data-translate="close-button">Close</button>
     </div>
     <div id="certificate-preview-modal" class="modal">
         <div class="modal-content">
@@ -112,23 +108,35 @@
             <img id="certificate-preview-image" src="" alt="Certificate Preview">
         </div>
     </div>
-    <div id="hacker-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeHackerModal()">&times;</span>
-            <h2>Hacker's Challenge</h2>
-            <p>Solve the hacker's challenge to prove your skills!</p>
-            <!-- Add your hacker challenge content here -->
-        </div>
-    </div>
     <canvas id="background-particles"></canvas>
     <div id="cursor-trail"></div>
+    <div id="game-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeGameModal()">&times;</span>
+            <h2 data-translate="game-title">Decrypt the Message!</h2>
+            <p data-translate="game-description">Find the correct key to decrypt the message.</p>
+            <div class="input-area">
+                <input type="text" id="decryption-key" data-translate-placeholder="game-placeholder" placeholder="Enter decryption key...">
+                <button onclick="decryptMessage()" data-translate="game-button">Decrypt</button>
+                <canvas id="modal-confetti-canvas"></canvas>
+            </div>
+            <p id="decrypted-message"></p>
+        </div>
+    </div>
+    <div class="party-mode">
+        <div class="party-light left"></div>
+        <div class="party-light right"></div>
+    </div>
     <canvas id="confetti-canvas"></canvas>
-
+    <a href="index-ar.html" id="translator-link" class="animate__animated animate__fadeInUp" title="Translate to Arabic">
+        <i class="fas fa-language"></i>
+    </a>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
     <script src="scripts.js"></script>
+    <script src="translation.js"></script>
 </body>
 </html>

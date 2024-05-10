@@ -35,14 +35,6 @@ contactInputs.forEach(input => {
     });
 });
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 0) {
-        document.querySelector('.scroll-circle').style.opacity = 0;
-    } else {
-        document.querySelector('.scroll-circle').style.opacity = 1;
-    }
-});
-
 // Reveal sections on scroll
 const sections = document.querySelectorAll('.section-reveal');
 
@@ -89,7 +81,7 @@ closeButton.addEventListener('click', () => {
 });
 
 function startTypingEffect() {
-    const text = "Wow, you have really digged down didn't ya?. well here's a secert: Success is not final, failure is not fatal: it is the courage to continue that counts!. now go! search smth!";
+    const text = "Wow, you have really dug deep, haven't you? Well, here's a secret: Success is not final, failure is not fatal: it is the courage to continue that counts! Now go and explore more!";
     let i = 0;
     const typingSpeed = 50;
 

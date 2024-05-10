@@ -1,12 +1,15 @@
-// Add a variable to track if the page is being loaded for the first time
-let isFirstLoad = true;
 
-document.addEventListener('DOMContentLoaded', function() {
-    if (isFirstLoad) {
-        // Prevent the certificate preview modal from opening on the first load
-        isFirstLoad = false;
-    }
-});
+
+
+function openGameModal() {
+    gameModal.style.display = 'flex';
+    gameModal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    document.body.style.filter = 'blur(5px)';
+    setTimeout(() => {
+        gameModal.querySelector('.modal-content').classList.add('show');
+    }, 100);
+}
 
 // Custom cursor
 const cursor = document.createElement('div');
@@ -43,14 +46,10 @@ certificates.forEach(certificate => {
         const imageSrc = certificate.querySelector('img').getAttribute('src');
         const cleanedSrc = imageSrc.replace('https://i.ibb.co/', 'https://ibb.co/').split('/')[0];
         
-        if (!isFirstLoad) {
-            if (e.target.tagName !== 'A') {
-                openCertificatePreview(imageSrc);
-            } else {
-                window.open(cleanedSrc, '_blank');
-            }
+        if (e.target.tagName !== 'A') {
+            openCertificatePreview(imageSrc);
         } else {
-            isFirstLoad = false; // Update the isFirstLoad flag
+            window.open(cleanedSrc, '_blank');
         }
     });
     
@@ -224,15 +223,6 @@ const modalConfettiCanvas = document.getElementById('modal-confetti-canvas');
 const modalConfettiSettings = { target: modalConfettiCanvas };
 const modalConfetti = new ConfettiGenerator(modalConfettiSettings);
 
-function openGameModal() {
-    gameModal.style.display = 'flex';
-    gameModal.classList.add('show');
-    document.body.style.overflow = 'hidden';
-    document.body.style.filter = 'blur(5px)';
-    setTimeout(() => {
-        gameModal.querySelector('.modal-content').classList.add('show');
-    }, 100);
-}
 
 function closeGameModal() {
     gameModal.querySelector('.modal-content').classList.remove('show');
@@ -308,3 +298,6 @@ const timelineObserver = new IntersectionObserver(animateTimelineBlock, {
 timelineBlocks.forEach(block => {
     timelineObserver.observe(block);
 });
+
+
+

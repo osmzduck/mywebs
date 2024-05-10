@@ -34,19 +34,24 @@ certificates.forEach(certificate => {
         const cleanedSrc = imageSrc.replace('https://i.ibb.co/', 'https://ibb.co/').split('/')[0];
         
         if (e.target.tagName !== 'A') {
-            const certificatePreviewModal = document.getElementById('certificate-preview-modal');
-            const certificatePreviewImage = document.getElementById('certificate-preview-image');
-            certificatePreviewImage.src = imageSrc;
-            certificatePreviewModal.style.display = 'flex';
-            certificatePreviewModal.classList.add('show');
-            setTimeout(() => {
-                certificatePreviewModal.querySelector('.modal-content').classList.add('show');
-                certificatePreviewImage.classList.add('show');
-            }, 100);
+            openCertificatePreview(imageSrc);
         } else {
             window.open(cleanedSrc, '_blank');
         }
     });
+
+
+    function openCertificatePreview(imageSrc) {
+    const certificatePreviewModal = document.getElementById('certificate-preview-modal');
+    const certificatePreviewImage = document.getElementById('certificate-preview-image');
+    certificatePreviewImage.src = imageSrc;
+    certificatePreviewModal.style.display = 'flex';
+    certificatePreviewModal.classList.add('show');
+    setTimeout(() => {
+        certificatePreviewModal.querySelector('.modal-content').classList.add('show');
+        certificatePreviewImage.classList.add('show');
+    }, 100);
+}
 
     certificate.addEventListener('mouseenter', () => {
         cursor.classList.add('certificate-hover');

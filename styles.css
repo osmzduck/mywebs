@@ -8,6 +8,10 @@ body, html {
     cursor: none;
 }
 
+body {
+    cursor: none;
+}
+
 .container {
     max-width: 1200px;
     margin: auto;

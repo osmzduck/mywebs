@@ -690,30 +690,35 @@ box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 #game-modal {
-display: none;
-position: fixed;
-left: 0;
-top: 0;
-width: 100%;
-height: 100%;
-background-color: rgba(0, 0, 0, 0.8);
-z-index: 1000;
-opacity: 0;
-transition: opacity 0.5s ease;
-justify-content: center;
-align-items: center;
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-content {
-background-color: white;
-padding: 30px;
-width: 90%;
-max-width: 500px;
-border-radius: 20px;
-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 20px rgba(255, 255, 255, 0.8);
-transform: translateY(-30px);
-transition: transform 0.5s ease-out;
-position: relative;
+    background-color: white;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 20px rgba(255, 255, 255, 0.8);
+    transform: translateY(-30px);
+    transition: transform 0.5s ease-out;
+    position: relative;
+}
+
+body.modal-open {
+    overflow: hidden;
+    filter: blur(5px);
 }
 
 .modal-content::before {

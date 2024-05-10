@@ -214,7 +214,6 @@ certificatePreviewModal.addEventListener('click', handleCertificatePreviewClick)
 
 // Secret game modal
 const gameModal = document.getElementById('game-modal');
-const closeModalButton = gameModal.querySelector('.close');
 const decryptionKey = document.getElementById('decryption-key');
 const decryptedMessage = document.getElementById('decrypted-message');
 const modalConfettiCanvas = document.getElementById('modal-confetti-canvas');
@@ -240,13 +239,6 @@ function closeGameModal() {
         decryptedMessage.textContent = '';
     }, 500);
 }
-
-closeModalButton.addEventListener('click', closeGameModal);
-window.addEventListener('click', (e) => {
-    if (e.target === gameModal) {
-        closeGameModal();
-    }
-});
 
 function decryptMessage() {
     const key = decryptionKey.value.toLowerCase();

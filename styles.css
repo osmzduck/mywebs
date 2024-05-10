@@ -956,7 +956,7 @@ section.active .timeline-block {
 }
 
 .custom-cursor.input-hover {
-    transform: translate(-50%, -50%) scale(1.2);
+    transform: translate(-50%, -50%) scale(1.9);
     background-color: rgba(255, 255, 255, 0.4);
     border-style: dashed;
     animation: cursorTyping 1s infinite;

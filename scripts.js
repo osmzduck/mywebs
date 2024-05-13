@@ -25,6 +25,16 @@ links.forEach(link => {
     });
 });
 
+const certificateImages = document.querySelectorAll('.certificate img');
+certificateImages.forEach(image => {
+    image.addEventListener('mouseover', () => {
+        cursor.classList.add('certificate-hover');
+    });
+    image.addEventListener('mouseleave', () => {
+        cursor.classList.remove('certificate-hover');
+    });
+});
+
 const contactInputs = document.querySelectorAll('form input, form textarea');
 contactInputs.forEach(input => {
     input.addEventListener('mouseover', () => {
@@ -117,36 +127,6 @@ function startTypingEffect() {
 // Background particles effect
 particlesJS.load('background-particles', 'particles-config.json');
 
-// Cursor trail effect
-const cursorTrail = document.getElementById('cursor-trail');
-let mouseX = 0;
-let mouseY = 0;
-
-document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-});
-
-function createTrailParticle() {
-    const particle = document.createElement('div');
-    particle.className = 'cursor-particle';
-    particle.style.left = mouseX + 'px';
-    particle.style.top = mouseY + 'px';
-    cursorTrail.appendChild(particle);
-
-    gsap.to(particle, {
-        duration: 1,
-        scale: 0,
-        opacity: 0,
-        ease: 'power2.out',
-        onComplete: () => {
-            particle.remove();
-        }
-    });
-}
-
-setInterval(createTrailParticle, 50);
-
 // Confetti effect on form submission
 const form = document.querySelector('form');
 const confettiCanvas = document.getElementById('confetti-canvas');
@@ -184,11 +164,6 @@ function closeCertificatePreview() {
     }, 500);
 }
 
-function handleCertificatePreviewClick() {
-    const cleanedSrc = certificatePreviewImage.src.replace('https://i.ibb.co/', 'https://ibb.co/').split('/')[0];
-    window.open(cleanedSrc, '_blank');
-}
-
 const certificates = document.querySelectorAll('.certificate');
 certificates.forEach(certificate => {
     certificate.addEventListener('click', (event) => {
@@ -197,8 +172,6 @@ certificates.forEach(certificate => {
         openCertificatePreview(imageSrc);
     });
 });
-
-certificatePreviewModal.addEventListener('click', handleCertificatePreviewClick);
 
 // Secret game modal
 const gameModal = document.getElementById('game-modal');

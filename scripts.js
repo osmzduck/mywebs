@@ -253,4 +253,8 @@ const timelineObserver = new IntersectionObserver(animateTimelineBlock, {
 
 timelineBlocks.forEach(block => {
     timelineObserver.observe(block);
+
+    const secretGameIcon = document.querySelector('.icon.secret-game');
+secretGameIcon.addEventListener('click', openGameModal);
+
 });

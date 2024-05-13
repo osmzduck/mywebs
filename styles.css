@@ -364,6 +364,7 @@ section.active .certificate {
 }
 
 .modal-content {
+    display: flex;
     background-color: white;
     padding: 30px;
     width: 90%;
@@ -373,6 +374,7 @@ section.active .certificate {
     transform: translateY(-30px);
     transition: transform 0.5s ease-out;
     position: relative;
+    z-index: 1000
 }
 
 .modal.show {
@@ -703,7 +705,7 @@ top: 0;
 width: 100%;
 height: 100%;
 background-color: rgba(0, 0, 0, 0.8);
- z-index: 10000; /* Higher than the confetti canvas */
+ z-index: 10; /* Higher than the confetti canvas */
  justify-content: center;
  align-items: center;
 opacity: 0;

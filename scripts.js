@@ -115,3 +115,32 @@ const modals = document.querySelectorAll('.modal');
 modals.forEach(modal => {
     modal.style.zIndex = '10001'; // Higher than confetti
 });
+
+
+const certificates = document.querySelectorAll('.certificate');
+const certificatePreviewModal = document.getElementById('certificate-preview-modal');
+const certificatePreviewImage = document.getElementById('certificate-preview-image');
+
+certificates.forEach(certificate => {
+    certificate.addEventListener('click', () => {
+        const imgSrc = certificate.querySelector('img').src.replace('i.ibb.co', 'ibb.co');
+        certificatePreviewImage.src = imgSrc;
+        certificatePreviewModal.style.display = 'flex';
+        certificatePreviewModal.classList.add('show');
+    });
+});
+
+const closeCertificatePreview = () => {
+    certificatePreviewModal.style.display = 'none';
+    certificatePreviewModal.classList.remove('show');
+};
+
+const closeModal = gameModal.querySelector('.close');
+closeModal.addEventListener('click', () => {
+    gameModal.style.display = 'none';
+    gameModal.classList.remove('show');
+    document.body.style.overflow = 'auto'; // Re-enable scrolling
+});
+
+const decryptMessage = () =>
+

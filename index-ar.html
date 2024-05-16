@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -13,8 +12,8 @@
 <body>
     <div class="container">
         <header>
-            <h1>عصام تركي</h1>
-            <p class="animate__animated animate__fadeInUp">مهتم بالأمن السيبراني ومحترف تكنولوجيا المعلومات</p>
+            <h1 data-translate="header-title">عصام تركي</h1>
+            <p class="animate__animated animate__fadeInUp" data-translate="header-subtitle">مهتم بالأمن السيبراني ومحترف تكنولوجيا المعلومات</p>
             <div class="header-icons">
                 <a href="#" class="icon github animate__animated animate__fadeInUp" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
                 <a href="#" class="icon linkedin animate__animated animate__fadeInUp" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
@@ -31,8 +30,8 @@
             </div>
         </div>
         <section id="bio" class="section-reveal">
-            <h2>نبذة عني</h2>
-            <p>شغوف بالأمن السيبراني وذو خبرة في البنية التحتية لتكنولوجيا المعلومات، أكملت العديد من الدورات المهنية من جوجل، مما عزز مهاراتي في إدارة الأنظمة والشبكات والأمن.</p>
+            <h2 data-translate="about-title">نبذة عني</h2>
+            <p data-translate="about-text">شغوف بالأمن السيبراني وذو خبرة في البنية التحتية لتكنولوجيا المعلومات، أكملت العديد من الدورات المهنية من جوجل، مما عزز مهاراتي في إدارة الأنظمة والشبكات والأمن.</p>
             <div class="skills">
                 <span class="skill">الأمن السيبراني</span>
                 <span class="skill">إدارة الأنظمة</span>
@@ -41,7 +40,7 @@
             </div>
         </section>
         <section id="certificates" class="section-reveal">
-            <h2>الشهادات</h2>
+            <h2 data-translate="certificates-title">الشهادات</h2>
             <div class="certificate-gallery">
                 <div class="certificate">
                     <img src="https://i.ibb.co/Xtkqhr5/image.png" alt="إدارة الأنظمة وخدمات البنية التحتية لتكنولوجيا المعلومات">
@@ -70,16 +69,16 @@
             </div>
         </section>
         <section id="contact" class="section-reveal">
-            <h2>تواصل معي</h2>
+            <h2 data-translate="contact-title">تواصل معي</h2>
             <form>
-                <input type="text" placeholder="اسمك" required>
-                <input type="email" placeholder="بريدك الإلكتروني" required>
-                <textarea placeholder="رسالتك"></textarea>
-                <button type="submit">إرسال</button>
+                <input type="text" placeholder="اسمك" data-translate="contact-name" required>
+                <input type="email" placeholder="بريدك الإلكتروني" data-translate="contact-email" required>
+                <textarea placeholder="رسالتك" data-translate="contact-message"></textarea>
+                <button type="submit" data-translate="contact-send" onclick="triggerConfetti()">إرسال</button>
             </form>
         </section>
         <section id="timeline">
-            <h2>رحلتي</h2>
+            <h2 data-translate="timeline-title">رحلتي</h2>
             <div class="timeline-container">
                 <div class="timeline-block">
                     <p class="timeline-date">2023</p>
@@ -92,10 +91,10 @@
             </div>
         </section>
         <footer>
-            <p>© 2024 عصام تركي. جميع الحقوق محفوظة.</p>
+            <p data-translate="footer-text">© 2024 عصام تركي. جميع الحقوق محفوظة.</p>
             <nav>
                 <ul>
-<li><a href="javascript:void(0)" id="interactive-link">🎮 أوه، هل سر أراه!؟ 🎮</a></li>
+                    <li><a href="javascript:void(0)" id="interactive-link" data-translate="secret-link">🎮 أوه، هل سر أراه!؟ 🎮</a></li>
                 </ul>
             </nav>
         </footer>
@@ -104,7 +103,7 @@
     <div id="interactive-content">
         <div id="typing-effect"></div>
         <div id="secret-message"></div>
-        <button id="close-button">إغلاق</button>
+        <button id="close-button" data-translate="close-button">إغلاق</button>
     </div>
     <div id="certificate-preview">
         <button class="close-preview">X</button>
@@ -112,26 +111,26 @@
     </div>
     <canvas id="background-particles"></canvas>
     <div id="cursor-trail"></div>
-<div id="game-modal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeGameModal()">&times;</span>
-        <h2>فك تشفير الرسالة!</h2>
-        <p>ابحث عن المفتاح الصحيح لفك تشفير الرسالة.</p>
-        <div class="input-area">
-            <input type="text" id="decryption-key" placeholder="أدخل مفتاح فك التشفير...">
-            <button onclick="decryptMessage()">فك التشفير</button>
-            <canvas id="modal-confetti-canvas"></canvas>
+    <div id="game-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeGameModal()">&times;</span>
+            <h2 data-translate="game-title">فك تشفير الرسالة!</h2>
+            <p data-translate="game-description">ابحث عن المفتاح الصحيح لفك تشفير الرسالة.</p>
+            <div class="input-area">
+                <input type="text" id="decryption-key" placeholder="أدخل مفتاح فك التشفير..." data-translate="game-placeholder">
+                <button onclick="decryptMessage()" data-translate="game-button">فك التشفير</button>
+                <canvas id="modal-confetti-canvas"></canvas>
+            </div>
+            <p id="decrypted-message"></p>
         </div>
-        <p id="decrypted-message"></p>
     </div>
-</div>
 
-<div class="party-mode">
-    <div class="party-light left"></div>
-    <div class="party-light right"></div>
-</div>
+    <div class="party-mode">
+        <div class="party-light left"></div>
+        <div class="party-light right"></div>
+    </div>
 
-<canvas id="confetti-canvas"></canvas>
+    <canvas id="confetti-canvas"></canvas>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
@@ -144,4 +143,3 @@
     </a>
 </body>
 </html>
-

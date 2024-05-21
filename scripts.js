@@ -101,6 +101,13 @@ closeModal.addEventListener('click', closeGameModal);
 const confettiCanvas = document.getElementById('confetti-canvas');
 confettiCanvas.style.zIndex = '9999'; // Ensure confetti is on top
 
+const confettiSettings = {
+    target: confettiCanvas,
+    max: 80,
+    props: ['circle', 'square'],
+    colors: ['#ffd700', '#ffdf00', '#ffd700', '#ffdf00']
+};
+
 const confettiSettings = { target: confettiCanvas, max: 80 };
 const confetti = new ConfettiGenerator(confettiSettings);
 
@@ -146,9 +153,11 @@ function decryptMessage() {
 
     if (decryptionKey === 'hacktheplanet') {
         decryptedMessage.textContent = 'Congratulations! You have unlocked the secret message.';
+        decryptedMessage.classList.add('show');
         triggerModalConfetti();
     } else {
         decryptedMessage.textContent = 'Oops! Wrong decryption key. Try again.';
+        decryptedMessage.classList.remove('show');
     }
 }
 

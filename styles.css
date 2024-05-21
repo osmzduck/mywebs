@@ -903,7 +903,7 @@ section.active .timeline-block {
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.2);
     pointer-events: none;
-    z-index: 9999;
+    z-index: 10002;
     transition: transform 0.3s ease;
     transform: translate(-50%, -50%);
     backdrop-filter: blur(4px);

@@ -692,6 +692,7 @@ section.active .timeline-block {
     transform: translateY(-30px);
     transition: transform 0.5s ease-out;
     position: relative;
+    z-index: -1
 }
 
 .modal-content::before {
@@ -703,7 +704,7 @@ section.active .timeline-block {
     bottom: -20px;
     background: linear-gradient(45deg, #ff0058, #0056b3);
     border-radius: 40px;
-    z-index: 1;
+    z-index: -4;
     opacity: 0.8;
     filter: blur(20px);
 }

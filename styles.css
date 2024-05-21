@@ -744,9 +744,17 @@ section.active .timeline-block {
 }
 
 #decrypted-message {
-    margin-top: 20px;
-    color: #007BFF;
-    text-shadow: 0 0 10px rgba(0, 123, 255, 0.8);
+    color: #ff6b6b;
+    font-size: 24px;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#decrypted-message.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .input-area button:hover {

@@ -94,6 +94,28 @@ closeModal.addEventListener('click', () => {
     document.body.style.overflow = 'auto'; // Re-enable scrolling
 });
 
+// Certificate preview modal
+const certificates = document.querySelectorAll('.certificate');
+const certificatePreviewModal = document.getElementById('certificate-preview-modal');
+const certificatePreviewImage = document.getElementById('certificate-preview-image');
+
+certificates.forEach(certificate => {
+    certificate.addEventListener('click', () => {
+        const imgSrc = certificate.querySelector('img').src;
+        certificatePreviewImage.src = imgSrc;
+        certificatePreviewModal.style.display = 'flex';
+        certificatePreviewModal.classList.add('show');
+        certificatePreviewImage.classList.add('show');
+    });
+});
+
+const closeCertificatePreview = certificatePreviewModal.querySelector('.close');
+closeCertificatePreview.addEventListener('click', () => {
+    certificatePreviewModal.style.display = 'none';
+    certificatePreviewModal.classList.remove('show');
+    certificatePreviewImage.classList.remove('show');
+});
+
 // Confetti effect setup
 const confettiCanvas = document.getElementById('confetti-canvas');
 confettiCanvas.style.zIndex = '9999'; // Ensure confetti is on top
@@ -114,5 +136,4 @@ document.addEventListener('DOMContentLoaded', triggerConfetti);
 const modals = document.querySelectorAll('.modal');
 modals.forEach(modal => {
     modal.style.zIndex = '10001'; // Higher than confetti
-})
-
+});

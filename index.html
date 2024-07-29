@@ -17,21 +17,11 @@
                 <a href="#" class="icon github animate__animated animate__fadeInUp" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
                 <a href="#" class="icon linkedin animate__animated animate__fadeInUp" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
                 <a href="#" class="icon twitter animate__animated animate__fadeInUp" title="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="icon secret-game game-link animate__animated animate__fadeInUp" title="Hacker's Challenge" onclick="openGameModal()"><i class="fas fa-user-secret"></i></a>
             </div>
         </header>
-        <a href="index-ar.html" id="translator-link" class="animate__animated animate__fadeInUp" title="Translate to Arabic">
-            <i class="fas fa-language"></i>
-        </a>
         <section id="bio" class="section-reveal">
             <h2>About _ Me</h2>
             <p>Passionate about cybersecurity and experienced in IT infrastructure, I have completed several professional courses from Google, enhancing my skills in system administration, networking, and security.</p>
-            <div class="skills">
-                <span class="skill">Cybersecurity</span>
-                <span class="skill">System Administration</span>
-                <span class="skill">Networking</span>
-                <span class="skill">IT Infrastructure</span>
-            </div>
         </section>
         <section id="certificates" class="section-reveal">
             <h2>Certificates</h2>
@@ -64,56 +54,11 @@
         </section>
         <section id="contact" class="section-reveal">
             <h2>Contact _ Me</h2>
-            <form>
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message"></textarea>
-                <button type="submit">Send</button>
-            </form>
+            <p>osmzkod@gmail.com</p>
         </section>
-        <footer>
-            <p>© 2024 Essam Turki. All rights reserved.</p>
-            <nav>
-                <ul>
-                    <li><a href="javascript:void(0)" id="interactive-link">🎮 Ooh, a secret I see!? 🎮</a></li>
-                </ul>
-            </nav>
-        </footer>
     </div>
-    <div id="interactive-overlay"></div>
-    <div id="interactive-content">
-        <div id="typing-effect"></div>
-        <div id="secret-message"></div>
-        <button id="close-button">Close</button>
-    </div>
-    <div id="certificate-preview-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeCertificatePreview()">&times;</span>
-            <img id="certificate-preview-image" src="" alt="Certificate Preview">
-        </div>
-    </div>
-    <div id="game-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeGameModal()">&times;</span>
-            <h2>Hacker's Challenge</h2>
-            <p>Solve the hacker's challenge to prove your skills!</p>
-            <div class="input-area">
-                <input type="text" id="decryption-key" placeholder="Enter decryption key...">
-                <button onclick="decryptMessage()">Decrypt</button>
-                <canvas id="modal-confetti-canvas"></canvas>
-            </div>
-            <p id="decrypted-message"></p>
-        </div>
-    </div>
-    <canvas id="background-particles"></canvas>
-    <div id="cursor-trail"></div>
-    <canvas id="confetti-canvas"></canvas>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
     <script src="scripts.js"></script>
 </body>
 </html>
